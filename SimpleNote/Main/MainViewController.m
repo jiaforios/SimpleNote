@@ -9,8 +9,10 @@
 #import "MainViewController.h"
 #import "NoteViewController.h"
 #import "SetViewController.h"
-#import <CoreText/CoreText.h>
 
+#import "TextCell.h"
+#import "ImgCell.h"
+#import "SoundCell.h"
 
 static NSString *textCellIdentifier = @"textCell";
 static NSString *imgCellIdentifier = @"imgCell";
@@ -39,15 +41,17 @@ static NSString *soundCellIdentifier = @"soundCell";
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, MZHEIGHT) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:textCellIdentifier];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:imgCellIdentifier];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:soundCellIdentifier];
+        
+        [_tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:textCellIdentifier];
+        [_tableView registerNib:[UINib nibWithNibName:@"ImgCell" bundle:nil] forCellReuseIdentifier:imgCellIdentifier];
+        [_tableView registerNib:[UINib nibWithNibName:@"SoundCell" bundle:nil] forCellReuseIdentifier:soundCellIdentifier];
+
         _tableView.tableFooterView = [UIView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         UIView *head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 1)];
         head.backgroundColor = [UIColor whiteColor];
         _tableView.tableHeaderView = head;
-        
+        _tableView.showsVerticalScrollIndicator = NO;
         _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
     }
     return _tableView;
@@ -55,7 +59,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 -(UIButton *)noteButton{
     if (!_noteButton) {
-        _noteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        _noteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         _noteButton.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         _noteButton.center = CGPointMake(self.view.center.x, CGRectGetHeight(self.view.frame) - CGRectGetWidth(_noteButton.frame)/2.0 - 30);
         _noteButton.layer.cornerRadius = CGRectGetWidth(_noteButton.frame)/2.0;
@@ -96,7 +100,17 @@ static NSString *soundCellIdentifier = @"soundCell";
         for (int i = 0; i<self.sectionSource.count; i++) {
             NSMutableArray *marr = [NSMutableArray new];
             for (int i = 0; i< 5; i++) {
-                [marr addObject:@"明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。"];
+                if (i == 0) {
+                    [marr addObject:@"明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。"];
+                }else
+                if (i == 2) {
+                    [marr addObject:@"今天是个好日子，明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。"];
+                }else
+                if (i == 3) {
+                    [marr addObject:@"马上要房价了，今天是个好日子"];
+                }else{
+                    [marr addObject:@"马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子"];
+                }
             }
             [_dataSource addObject:marr];
         }
@@ -115,14 +129,7 @@ static NSString *soundCellIdentifier = @"soundCell";
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.noteButton];
     [self.view addSubview:self.setButton];
-    
-//
-//    for (NSString *family in [UIFont familyNames]) {
-//        NSLog(@"family: %@",family);
-//        for (NSString *font in [UIFont fontNamesForFamilyName:family]) {
-//            NSLog(@"-- font: %@",font);
-//        }
-//    }
+
 }
 
 /*
@@ -157,14 +164,12 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    [self asynchronouslySetFontName:@"DFWaWaTC-W5"];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *sect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 30)];
+    UIView *sect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
     sect.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
     [sect addSubview:label];
     label.textAlignment = NSTextAlignmentCenter;
     label.text = self.sectionSource[section];
@@ -173,37 +178,34 @@ static NSString *soundCellIdentifier = @"soundCell";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
+    return 50;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:textCellIdentifier forIndexPath:indexPath];
+    TextCell *textCell = [tableView dequeueReusableCellWithIdentifier:textCellIdentifier forIndexPath:indexPath];
 
     NSArray *arr = self.dataSource[indexPath.section];
-    cell.textLabel.numberOfLines = 0;
+    textCell.contentLabel.numberOfLines = 0;
     
     NSAttributedString *attr = [[NSAttributedString alloc] initWithString:arr[indexPath.row] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[self paraStyle]}];
     NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];
-    cell.textLabel.attributedText = strM;
+    textCell.contentLabel.attributedText = strM;
     
-    return  cell;
+    return  textCell;
     
 }
 
 - (NSMutableParagraphStyle *)paraStyle{
     
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-    
     paragraphStyle.lineSpacing = 8.;// 行间距
     paragraphStyle.lineHeightMultiple = 1.3;// 行高倍数（1.5倍行高）
     paragraphStyle.firstLineHeadIndent = 30.0f;//首行缩进
     paragraphStyle.minimumLineHeight = 10;//最低行高
-    
     paragraphStyle.alignment = NSTextAlignmentLeft;// 对齐方式
     paragraphStyle.defaultTabInterval = 144;// 默认Tab 宽度
     paragraphStyle.headIndent = 10;// 起始 x位置
-    
     return paragraphStyle;
 }
 

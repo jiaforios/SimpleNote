@@ -22,6 +22,13 @@
   
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor brownColor]}];
     
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"";
+    //主要是以下两个图片设置
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back"];
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
+    self.navigationItem.backBarButtonItem = backItem;
+    
 }
 
 - (void)didReceiveMemoryWarning {
