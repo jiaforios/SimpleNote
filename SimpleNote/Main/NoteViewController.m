@@ -17,17 +17,16 @@
 
 @implementation NoteViewController
 
-
 - (UIButton *)saveButton{
     if (!_saveButton) {
         _saveButton = [[UIButton alloc] init];
         _saveButton.frame = CGRectMake(0, 0, 44,44);
         [_saveButton setImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
+        [_saveButton setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5 )];
         [_saveButton addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveButton;
 }
-
 
 - (UITextView *)noteTextView{
     if (!_noteTextView) {
@@ -37,7 +36,6 @@
         _noteTextView.layer.cornerRadius = 6;
         _noteTextView.clipsToBounds = YES;
         _noteTextView.delegate = self;
-        
         UILabel *placeHolderLabel = [[UILabel alloc] init];
         placeHolderLabel.text = @"  ";
         placeHolderLabel.numberOfLines = 0;
@@ -92,14 +90,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
