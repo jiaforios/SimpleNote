@@ -24,10 +24,12 @@
     
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"";
+    backItem.tintColor = RGB(222, 93, 0);
     //主要是以下两个图片设置
     self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back"];
     self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
     self.navigationItem.backBarButtonItem = backItem;
+    
     
 }
 

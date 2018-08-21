@@ -25,6 +25,7 @@
 		846E25AA212B9CAB00C797CE /* SoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846E25A8212B9CAB00C797CE /* SoundCell.xib */; };
 		846E25AF212BA24600C797CE /* ImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E25AD212BA24600C797CE /* ImgCell.m */; };
 		846E25B0212BA24600C797CE /* ImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846E25AE212BA24600C797CE /* ImgCell.xib */; };
+		846E25B3212BC67300C797CE /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E25B2212BC67300C797CE /* NoteModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		846E25AC212BA24600C797CE /* ImgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImgCell.h; sourceTree = "<group>"; };
 		846E25AD212BA24600C797CE /* ImgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImgCell.m; sourceTree = "<group>"; };
 		846E25AE212BA24600C797CE /* ImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImgCell.xib; sourceTree = "<group>"; };
+		846E25B1212BC67300C797CE /* NoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteModel.h; sourceTree = "<group>"; };
+		846E25B2212BC67300C797CE /* NoteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 			children = (
 				846E2583212A92C500C797CE /* MainViewController.h */,
 				846E2584212A92C500C797CE /* MainViewController.m */,
+				846E25B1212BC67300C797CE /* NoteModel.h */,
+				846E25B2212BC67300C797CE /* NoteModel.m */,
 				846E25AB212B9CB400C797CE /* NoteCell */,
 				846E258C212AA54A00C797CE /* NoteViewController.h */,
 				846E258D212AA54A00C797CE /* NoteViewController.m */,
@@ -302,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846E2582212A92B900C797CE /* MZBaseNavigationViewController.m in Sources */,
+				846E25B3212BC67300C797CE /* NoteModel.m in Sources */,
 				846E25AF212BA24600C797CE /* ImgCell.m in Sources */,
 				846E2585212A92C500C797CE /* MainViewController.m in Sources */,
 				846E2569212A928200C797CE /* main.m in Sources */,
