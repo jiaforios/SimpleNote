@@ -55,7 +55,7 @@ static sqlite3 *db;
 }
 
 - (void)createTableName:(NSString *)tableName{
-    NSString *sqlStr = @"create table if not exists 'notes'('noteId' integer primary key autoincrement not null,'imgCount' integer,'level' interger default 0,'soundTime' double,'remind' boolean default 0,'lock' boolean default 0,'expire' boolead default 0,'content' text,'dateStr' text,'remindDateStr' text,'lockTitle' text,'lockPwd' text,'lockType' text,'noteType' text,'noteClass' text,'imgUrl' text,'imgSmallUrl' text)";
+    NSString *sqlStr = @"create table if not exists 'notes'('noteId' integer primary key autoincrement not null,'imgCount' integer default 0,'level' interger default 0,'soundTime' double default 0,'remind' boolean default 0,'lock' boolean default 0,'expire' boolead default 0,'content' text default '','dateStr' text default '','remindDateStr' text default '','lockTitle' text default '','lockPwd' text default '','lockType' text default '0','noteType' text default '0','noteClass' text default '0','imgUrl' text default '','imgSmallUrl' text default '')";
     char *error = nil;
     sqlite3_exec(db, sqlStr.UTF8String, nil, nil, &error);
     if (error == nil) {
@@ -84,23 +84,23 @@ static sqlite3 *db;
     while (sqlite3_step(smt) == SQLITE_ROW) {
         NoteModel *model = [NoteModel new];
         
-        int noteId = sqlite3_column_int(smt, 1);
-        int imgCount = sqlite3_column_int(smt, 2);
-        int level = sqlite3_column_int(smt, 3);
-        double soundTime = sqlite3_column_double(smt,4);
-        BOOL remind = sqlite3_column_int(smt, 5);
-        BOOL lock = sqlite3_column_int(smt, 6);
-        BOOL expire = sqlite3_column_int(smt, 7);
-        NSString *content = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 8)] ;
-        NSString *dateStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 9)] ;
-        NSString *remindDateStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 10)] ;
-        NSString *lockTitle = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 11)] ;
-        NSString *lockPwd = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 12)] ;
-        NSString *lockType = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 13)] ;
-        NSString *noteType = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 14)] ;
-        NSString *noteClass = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 15)] ;
-        NSString *imgUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 16)] ;
-        NSString *imgSmallUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 17)] ;
+        int noteId = sqlite3_column_int(smt, 0);
+        int imgCount = sqlite3_column_int(smt, 1);
+        int level = sqlite3_column_int(smt, 2);
+        double soundTime = sqlite3_column_double(smt,3);
+        BOOL remind = sqlite3_column_int(smt, 4);
+        BOOL lock = sqlite3_column_int(smt, 5);
+        BOOL expire = sqlite3_column_int(smt, 6);
+        NSString *content = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 7)] ;
+        NSString *dateStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 8)] ;
+        NSString *remindDateStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 9)] ;
+        NSString *lockTitle = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 10)] ;
+        NSString *lockPwd = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 11)] ;
+        NSString *lockType = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 12)] ;
+        NSString *noteType = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 13)] ;
+        NSString *noteClass = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 14)] ;
+        NSString *imgUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 15)] ;
+        NSString *imgSmallUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 16)] ;
 
         model.noteId = noteId;
         model.imgCount = imgCount;

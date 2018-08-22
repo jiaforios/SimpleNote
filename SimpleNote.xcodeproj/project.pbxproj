@@ -17,7 +17,6 @@
 		846E2585212A92C500C797CE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2584212A92C500C797CE /* MainViewController.m */; };
 		846E258E212AA54A00C797CE /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E258D212AA54A00C797CE /* NoteViewController.m */; };
 		846E2591212AA66600C797CE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2590212AA66600C797CE /* SetViewController.m */; };
-		846E2594212ABBED00C797CE /* STHeiti-Light.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 846E2593212ABBED00C797CE /* STHeiti-Light.ttc */; };
 		846E2597212ABF1E00C797CE /* UIFont+FontType.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2596212ABF1E00C797CE /* UIFont+FontType.m */; };
 		846E25A4212B9C9400C797CE /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E25A2212B9C9400C797CE /* TextCell.m */; };
 		846E25A5212B9C9400C797CE /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846E25A3212B9C9400C797CE /* TextCell.xib */; };
@@ -64,7 +63,6 @@
 		846E258D212AA54A00C797CE /* NoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
 		846E258F212AA66600C797CE /* SetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
 		846E2590212AA66600C797CE /* SetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
-		846E2593212ABBED00C797CE /* STHeiti-Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Light.ttc"; sourceTree = "<group>"; };
 		846E2595212ABF1E00C797CE /* UIFont+FontType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontType.h"; sourceTree = "<group>"; };
 		846E2596212ABF1E00C797CE /* UIFont+FontType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontType.m"; sourceTree = "<group>"; };
 		846E25A1212B9C9400C797CE /* TextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 		846E2592212ABBC000C797CE /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				846E2593212ABBED00C797CE /* STHeiti-Light.ttc */,
 				846E2595212ABF1E00C797CE /* UIFont+FontType.h */,
 				846E2596212ABF1E00C797CE /* UIFont+FontType.m */,
 			);
@@ -356,7 +353,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				846E2594212ABBED00C797CE /* STHeiti-Light.ttc in Resources */,
 				846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */,
 				846E25A5212B9C9400C797CE /* TextCell.xib in Resources */,
 				846E2563212A928200C797CE /* Assets.xcassets in Resources */,
