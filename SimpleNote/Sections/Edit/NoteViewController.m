@@ -22,7 +22,7 @@
         _saveButton = [[UIButton alloc] init];
         _saveButton.frame = CGRectMake(0, 0, 44,44);
         [_saveButton setImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
-        [_saveButton setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5 )];
+        [_saveButton setImageEdgeInsets:UIEdgeInsetsMake(7, 7, 7, 7)];
         [_saveButton addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveButton;

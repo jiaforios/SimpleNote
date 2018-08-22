@@ -1,15 +1,12 @@
 //
-//  MainViewController.m
+//  MainView.m
 //  SimpleNote
 //
-//  Created by admin on 2018/8/20.
+//  Created by admin on 2018/8/22.
 //  Copyright © 2018年 com. All rights reserved.
-// 列表式 界面 ，悬空 按钮
+//
 
-#import "MainViewController.h"
-#import "NoteViewController.h"
-#import "SetViewController.h"
-
+#import "MainView.h"
 #import "TextCell.h"
 #import "ImgCell.h"
 #import "SoundCell.h"
@@ -18,22 +15,26 @@ static NSString *textCellIdentifier = @"textCell";
 static NSString *imgCellIdentifier = @"imgCell";
 static NSString *soundCellIdentifier = @"soundCell";
 
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@interface MainView()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UIButton *noteButton;
-@property(nonatomic, strong)UIButton *setButton;
 // 段头展示数据
-@property(nonatomic, strong)NSMutableArray *sectionSource;
+@property(nonatomic, strong)NSMutableArray *sectionArr;
 // 段内展示数据
-@property(nonatomic, strong)NSMutableArray *dataSource;
-
+@property(nonatomic, strong)NSMutableArray *dataArr;
 
 @end
 
-@implementation MainViewController
-
+@implementation MainView
 #pragma mark -- property or view  set   --
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self addSubview:self.tableView];
+        [self addSubview:self.noteButton];
+    }
+    return self;
+}
+
 
 -(UITableView *)tableView{
     
@@ -45,7 +46,7 @@ static NSString *soundCellIdentifier = @"soundCell";
         [_tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:textCellIdentifier];
         [_tableView registerNib:[UINib nibWithNibName:@"ImgCell" bundle:nil] forCellReuseIdentifier:imgCellIdentifier];
         [_tableView registerNib:[UINib nibWithNibName:@"SoundCell" bundle:nil] forCellReuseIdentifier:soundCellIdentifier];
-
+        
         _tableView.tableFooterView = [UIView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         UIView *head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 1)];
@@ -61,7 +62,7 @@ static NSString *soundCellIdentifier = @"soundCell";
     if (!_noteButton) {
         _noteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         _noteButton.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-        _noteButton.center = CGPointMake(self.view.center.x, CGRectGetHeight(self.view.frame) - CGRectGetWidth(_noteButton.frame)/2.0 - 30);
+        _noteButton.center = CGPointMake(self.center.x, CGRectGetHeight(self.frame) - CGRectGetWidth(_noteButton.frame)/2.0 - 30);
         _noteButton.layer.cornerRadius = CGRectGetWidth(_noteButton.frame)/2.0;
         _noteButton.clipsToBounds = YES;
         [_noteButton setImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
@@ -70,74 +71,33 @@ static NSString *soundCellIdentifier = @"soundCell";
     return _noteButton;
 }
 
-- (UIButton *)setButton{
-    if (!_setButton) {
-        _setButton = [[UIButton alloc] init];
-        _setButton.frame = CGRectMake(0, 0, 44,44);
-        [_setButton setImage:[UIImage imageNamed:@"set"] forState:UIControlStateNormal];
-        [_setButton addTarget:self action:@selector(setAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _setButton;
-}
-
-- (NSMutableArray *)sectionSource{
-    if (!_sectionSource) {
-        _sectionSource = [NSMutableArray new];
-        [_sectionSource addObject:@"2018-08"];
-        [_sectionSource addObject:@"2018-07"];
-        [_sectionSource addObject:@"2018-06"];
-        [_sectionSource addObject:@"2018-05"];
-        [_sectionSource addObject:@"2018-04"];
-        [_sectionSource addObject:@"2018-03"];
-    }
-    return _sectionSource;
-}
-
-- (NSMutableArray *)dataSource{
-    
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray new];
-        for (int i = 0; i<self.sectionSource.count; i++) {
-            NSMutableArray *marr = [NSMutableArray new];
-            for (int i = 0; i< 5; i++) {
-                if (i == 0) {
-                    [marr addObject:@"明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。"];
-                }else
-                if (i == 2) {
-                    [marr addObject:@"今天是个好日子，明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。"];
-                }else
-                if (i == 3) {
-                    [marr addObject:@"马上要房价了，今天是个好日子"];
-                }else{
-                    [marr addObject:@"马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子"];
-                }
-            }
-            [_dataSource addObject:marr];
-        }
+- (void)setUpData{
+    if ([self.dataSource respondsToSelector:@selector(mainViewSectionData)] && [self.dataSource conformsToProtocol:@protocol(MainViewDataSource)]) {
+        self.sectionArr = [[self.dataSource mainViewSectionData] copy];
+    }else{
+        NSLog(@"%@ 未处理 mainViewSectionData ",self.dataSource);
     }
     
-    return _dataSource;
+    if ([self.dataSource respondsToSelector:@selector(mainViewCellData)] && [self.dataSource conformsToProtocol:@protocol(MainViewDataSource)]) {
+        self.dataArr = [[self.dataSource mainViewCellData] copy];
+    }else{
+        NSLog(@"%@ 未处理 mainViewData ",self.dataSource);
+    }
 }
 
-#pragma mark -- 生命周期
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"主页";
-    UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.setButton];
-    self.navigationItem.rightBarButtonItem = set;
-    [self.view addSubview:self.tableView];
-    [self.view addSubview:self.noteButton];
-    [self.view addSubview:self.setButton];
-
+- (NSMutableArray *)sectionArr{
+    if (!_sectionArr) {
+        _sectionArr = [NSMutableArray new];
+    }
+    return _sectionArr;
 }
 
-/*
- 设置
- */
-- (void)setAction{
+- (NSMutableArray *)dataArr{
     
-    [self.navigationController pushViewController:[SetViewController new] animated:YES];
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray new];
+    }
+    return _dataArr;
 }
 
 
@@ -146,7 +106,9 @@ static NSString *soundCellIdentifier = @"soundCell";
  */
 - (void)noteAction{
     
-    [self.navigationController pushViewController:[NoteViewController new] animated:YES];
+    if ([self.delegate respondsToSelector:@selector(mainViewEdit)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
+        [self.delegate mainViewEdit];
+    }
 }
 
 
@@ -154,11 +116,11 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return self.sectionSource.count;
+    return self.sectionArr.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *arr = self.dataSource[section];
+    NSArray *arr = self.dataArr[section];
     return  arr.count;
 }
 
@@ -172,7 +134,7 @@ static NSString *soundCellIdentifier = @"soundCell";
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
     [sect addSubview:label];
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = self.sectionSource[section];
+    label.text = self.sectionArr[section];
     label.font = [UIFont systemFontOfSize:16];
     return sect;
 }
@@ -184,8 +146,8 @@ static NSString *soundCellIdentifier = @"soundCell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TextCell *textCell = [tableView dequeueReusableCellWithIdentifier:textCellIdentifier forIndexPath:indexPath];
-
-    NSArray *arr = self.dataSource[indexPath.section];
+    
+    NSArray *arr = self.dataArr[indexPath.section];
     textCell.contentLabel.numberOfLines = 0;
     
     NSAttributedString *attr = [[NSAttributedString alloc] initWithString:arr[indexPath.row] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[self paraStyle]}];
@@ -208,12 +170,5 @@ static NSString *soundCellIdentifier = @"soundCell";
     paragraphStyle.headIndent = 10;// 起始 x位置
     return paragraphStyle;
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end
