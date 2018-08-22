@@ -41,6 +41,8 @@ static NSString *soundCellIdentifier = @"soundCell";
     
     self.view = mv;
     
+//    NSLog(@"count = %@",[[DBManager shareManager] fetchAllModel]);
+    
 }
 - (UIButton *)setButton{
     if (!_setButton) {

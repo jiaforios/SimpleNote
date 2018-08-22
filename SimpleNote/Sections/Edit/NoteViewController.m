@@ -7,7 +7,6 @@
 //
 
 #import "NoteViewController.h"
-
 @interface NoteViewController ()<UITextViewDelegate>
 
 @property(nonatomic, strong)UITextView *noteTextView;
@@ -62,6 +61,7 @@
 
 - (void)saveAction{
     NSLog(@"保存");
+    [[DBManager shareManager] saveModel];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

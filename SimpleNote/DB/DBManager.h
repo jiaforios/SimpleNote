@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NoteModel.h"
 
 @interface DBManager : NSObject
 + (instancetype)shareManager;
@@ -15,6 +16,6 @@
 - (void)deleteModel;
 - (void)updateModel;
 - (void)fetchModel;
-- (void)fetchAllModel;
+- (NSArray <NoteModel*>*)fetchAllModel;
 
 @end

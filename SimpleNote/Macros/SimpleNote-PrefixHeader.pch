@@ -10,5 +10,6 @@
 #define SimpleNote_PrefixHeader_pch
 
 #import "CustomHeader.h"
+#import "DBManager.h"
 
 #endif

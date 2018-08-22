@@ -9,6 +9,7 @@
 #import "DBManager.h"
 #import <sqlite3.h>
 
+
 static DBManager *_manager;
 static sqlite3 *db;
 
@@ -37,7 +38,8 @@ static sqlite3 *db;
 - (instancetype)init{
     if (self = [super init]) {
         // 初始化数据库
-        
+        [self openDB];
+        [self createTableName:nil];
         
     }
     return  self;
@@ -53,7 +55,7 @@ static sqlite3 *db;
 }
 
 - (void)createTableName:(NSString *)tableName{
-    NSString *sqlStr = @"create table is not exists 'notes'('noteId' integer primary key autoincrement not null,'imgCount' integer,'level' interger,'soundTime' double,'remind' boolean,'lock' boolean,'expire' boolead,'content' text,'dateStr' text,'remindDateStr' text,'lockTitle' text,'lockPwd' text,'lockType' text,'noteType' text,'noteClass' text,'imgUrl' text,'imgSmallUrl' text)";
+    NSString *sqlStr = @"create table if not exists 'notes'('noteId' integer primary key autoincrement not null,'imgCount' integer,'level' interger default 0,'soundTime' double,'remind' boolean default 0,'lock' boolean default 0,'expire' boolead default 0,'content' text,'dateStr' text,'remindDateStr' text,'lockTitle' text,'lockPwd' text,'lockType' text,'noteType' text,'noteClass' text,'imgUrl' text,'imgSmallUrl' text)";
     char *error = nil;
     sqlite3_exec(db, sqlStr.UTF8String, nil, nil, &error);
     if (error == nil) {
@@ -61,6 +63,68 @@ static sqlite3 *db;
     }else{
         NSLog(@"创建表失败");
     }
+}
+
+-(void)saveModel{
+    NSString *sqlStr = @"insert into 'notes'('content','dateStr')values('hello world','2018-08-22 17:16:44')";
+    char *error = nil;
+    sqlite3_exec(db, sqlStr.UTF8String, nil, nil, &error);
+    if (error == nil) {
+        NSLog(@"插入数据成功");
+    }else{
+        NSLog(@"插入数据失败");
+    }
+}
+
+- (NSArray*) fetchAllModel{
+    NSString *sqlStr = @"select *from 'notes'";
+    sqlite3_stmt *smt = nil;
+    sqlite3_prepare(db, sqlStr.UTF8String, -1, &smt, nil);
+    NSMutableArray *models = [NSMutableArray new];
+    while (sqlite3_step(smt) == SQLITE_ROW) {
+        NoteModel *model = [NoteModel new];
+        
+        int noteId = sqlite3_column_int(smt, 1);
+        int imgCount = sqlite3_column_int(smt, 2);
+        int level = sqlite3_column_int(smt, 3);
+        double soundTime = sqlite3_column_double(smt,4);
+        BOOL remind = sqlite3_column_int(smt, 5);
+        BOOL lock = sqlite3_column_int(smt, 6);
+        BOOL expire = sqlite3_column_int(smt, 7);
+        NSString *content = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 8)] ;
+        NSString *dateStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 9)] ;
+        NSString *remindDateStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 10)] ;
+        NSString *lockTitle = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 11)] ;
+        NSString *lockPwd = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 12)] ;
+        NSString *lockType = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 13)] ;
+        NSString *noteType = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 14)] ;
+        NSString *noteClass = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 15)] ;
+        NSString *imgUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 16)] ;
+        NSString *imgSmallUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 17)] ;
+
+        model.noteId = noteId;
+        model.imgCount = imgCount;
+        model.level = level;
+        model.soundTime = soundTime;
+        model.remind = remind;
+        
+        model.lock = lock;
+        model.expire = expire;
+        model.content = content;
+        model.dateStr = dateStr;
+        model.remindDateStr = remindDateStr;
+        model.lockTitle = lockTitle;
+        
+        model.lockPwd = lockPwd;
+        model.lockType = lockType;
+        model.noteType = noteType;
+        model.noteClass = noteClass;
+        model.imgUrl = imgUrl;
+        model.imgSmallUrl = imgSmallUrl;
+        [models addObject:model];
+    }
+    
+    return [models copy];
     
 }
 
