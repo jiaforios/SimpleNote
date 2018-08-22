@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_1"]];
+    
 //    self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
   
@@ -30,7 +31,14 @@
     self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
     self.navigationItem.backBarButtonItem = backItem;
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_1"] forBarMetrics:UIBarMetricsDefault];
     
+}
+
+// 如果
+-(void)setView:(UIView *)view{
+    [super setView:view];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_1"]];
 }
 
 - (void)didReceiveMemoryWarning {

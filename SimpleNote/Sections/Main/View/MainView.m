@@ -42,16 +42,16 @@ static NSString *soundCellIdentifier = @"soundCell";
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, MZHEIGHT) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
+        _tableView.backgroundColor = [UIColor clearColor];
         [_tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:textCellIdentifier];
         [_tableView registerNib:[UINib nibWithNibName:@"ImgCell" bundle:nil] forCellReuseIdentifier:imgCellIdentifier];
         [_tableView registerNib:[UINib nibWithNibName:@"SoundCell" bundle:nil] forCellReuseIdentifier:soundCellIdentifier];
         
         _tableView.tableFooterView = [UIView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        UIView *head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 1)];
-        head.backgroundColor = [UIColor whiteColor];
-        _tableView.tableHeaderView = head;
+//        UIView *head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 1)];
+//        head.backgroundColor = [UIColor whiteColor];
+//        _tableView.tableHeaderView = head;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
     }
@@ -62,7 +62,7 @@ static NSString *soundCellIdentifier = @"soundCell";
     if (!_noteButton) {
         _noteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         _noteButton.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-        _noteButton.center = CGPointMake(self.center.x, CGRectGetHeight(self.frame) - CGRectGetWidth(_noteButton.frame)/2.0 - 30);
+        _noteButton.center = CGPointMake(self.center.x, CGRectGetHeight(self.frame) - CGRectGetWidth(_noteButton.frame)/2.0 - 30-kNavBarHeight);
         _noteButton.layer.cornerRadius = CGRectGetWidth(_noteButton.frame)/2.0;
         _noteButton.clipsToBounds = YES;
         [_noteButton setImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
@@ -114,6 +114,13 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 #pragma mark --  UITableViewDelegate UITableViewDataSource--
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+   CGRect rect= [self.tableView rectForSection:1];
+    NSLog(@"view.frame = %f",rect.origin.y);
+
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return self.sectionArr.count;
@@ -130,7 +137,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *sect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
-    sect.backgroundColor = [UIColor whiteColor];
+    sect.backgroundColor = [UIColor clearColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
     [sect addSubview:label];
     label.textAlignment = NSTextAlignmentCenter;

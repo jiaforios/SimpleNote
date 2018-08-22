@@ -30,7 +30,7 @@
 
 - (UITextView *)noteTextView{
     if (!_noteTextView) {
-        _noteTextView = [[UITextView alloc] initWithFrame: CGRectMake(15, kNavBarHeight+15, MZWIDTH-30, MZHEIGHT*0.4)];
+        _noteTextView = [[UITextView alloc] initWithFrame: CGRectMake(15, 15, MZWIDTH-30, MZHEIGHT*0.4)];
         _noteTextView.backgroundColor = [UIColor whiteColor];
         _noteTextView.font = [UIFont systemFontOfSize:14];
         _noteTextView.layer.cornerRadius = 6;
@@ -52,7 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor =RGB(240, 240, 240);
+//    self.view.backgroundColor =RGB(240, 240, 240);
     self.title = @"新增";
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.saveButton];
     self.navigationItem.rightBarButtonItem = set;

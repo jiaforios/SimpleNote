@@ -19,6 +19,7 @@
     [super awakeFromNib];
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.backgroundColor = [UIColor clearColor];
     [self.editButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5,10, 5)];
 
 }
