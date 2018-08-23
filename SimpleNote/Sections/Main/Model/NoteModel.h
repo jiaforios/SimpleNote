@@ -29,6 +29,7 @@
 @property(nonatomic, copy) NSString *noteClass;
 @property(nonatomic, copy) NSString *imgUrl;
 @property(nonatomic, copy) NSString *imgSmallUrl;
+@property(nonatomic, copy) NSString *soundUrl;
 
 + (NSArray<NoteModel*>*)fetchAllModel;
 - (void)save;

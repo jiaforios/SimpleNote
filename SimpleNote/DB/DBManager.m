@@ -54,7 +54,7 @@ static sqlite3 *db;
 }
 
 - (void)createTableName:(NSString *)tableName{
-    NSString *sqlStr = @"create table if not exists 'notes'('noteId' integer primary key autoincrement not null,'imgCount' integer default 0,'level' interger default 0,'soundTime' double default 0,'remind' boolean default 0,'lock' boolean default 0,'expire' boolead default 0,'content' text default '','dateStr' text default '','remindDateStr' text default '','lockTitle' text default '','lockPwd' text default '','lockType' text default '0','noteType' text default '0','noteClass' text default '0','imgUrl' text default '','imgSmallUrl' text default '')";
+    NSString *sqlStr = @"create table if not exists 'notes'('noteId' integer primary key autoincrement not null,'imgCount' integer default 0,'level' interger default 0,'soundTime' double default 0,'remind' boolean default 0,'lock' boolean default 0,'expire' boolead default 0,'content' text default '','dateStr' text default '','remindDateStr' text default '','lockTitle' text default '','lockPwd' text default '','lockType' text default '0','noteType' text default '0','noteClass' text default '0','imgUrl' text default '','imgSmallUrl' text default '',soundUrl text default '')";
     char *error = nil;
     sqlite3_exec(db, sqlStr.UTF8String, nil, nil, &error);
     if (error == nil) {
@@ -111,6 +111,7 @@ static sqlite3 *db;
         NSString *noteClass = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 14)] ;
         NSString *imgUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 15)] ;
         NSString *imgSmallUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 16)] ;
+        NSString *soundUrl = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(smt, 17)] ;
 
         model.noteId = noteId;
         model.imgCount = imgCount;
@@ -131,6 +132,8 @@ static sqlite3 *db;
         model.noteClass = noteClass;
         model.imgUrl = imgUrl;
         model.imgSmallUrl = imgSmallUrl;
+        model.soundUrl = soundUrl;
+        
         [models addObject:model];
     }
     
