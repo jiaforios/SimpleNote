@@ -8,12 +8,16 @@
 
 #import "SoundEditViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "ZJFileManger.h"
+
+
 
 @interface SoundEditViewController ()
 @property(nonatomic, strong)UIButton *soundButton;
 
 @property(nonatomic ,strong) AVAudioRecorder *recorder;
 @property(nonatomic, strong) AVAudioSession *session;
+@property(nonatomic, copy) NSString *soundPath;
 
 @end
 
@@ -58,11 +62,11 @@
     self.session = session;
     //1.获取沙盒地址
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-   NSString * filePath = [path stringByAppendingString:@"/RRecord.wav"];
-    
+    NSString * filePath = [ZJFileManger createDirectoryPath:[path stringByAppendingPathComponent:@"noteSound"]];
+    filePath = [filePath stringByAppendingPathComponent:@"test.wav"];
+    self.soundPath = @"noteSound/test.wav";
     //2.获取文件路径
     NSURL * recordFileUrl = [NSURL fileURLWithPath:filePath];
-    
     //设置参数
     NSDictionary *recordSetting = [[NSDictionary alloc] initWithObjectsAndKeys:
                                    //采样率  8000/11025/22050/44100/96000（影响音频的质量）
