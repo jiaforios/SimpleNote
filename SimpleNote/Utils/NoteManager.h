@@ -12,7 +12,9 @@
 
 // 记录本次程序活动期间 已解锁查看的note
 + (void)markUnLockedOnceNoteId:(id)noteId;
+
 + (NSSet *)unLockedNoteIds;
 
++ (void)clearAllIds;
 
 @end

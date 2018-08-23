@@ -7,6 +7,7 @@
 //
 
 #import "NoteModel.h"
+#import "NoteManager.h"
 
 @implementation NoteModel
 {
@@ -41,8 +42,17 @@
     
    // 拿到的数据 加工处理，争取不在cell 层处理数据显示逻辑
         
+    NSArray <NoteModel *> *arr = [[DBManager shareManager] fetchAllModel];
+// 如果需要在本次 程序活动时，一致保持解锁状态，则打开这段代码,同时关闭 [NoteManager clearAllIds]
+//    [arr enumerateObjectsUsingBlock:^(NoteModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([[NoteManager unLockedNoteIds] containsObject:@(obj.noteId)]) {
+//            obj.lock = NO;
+//        }
+//    }];
     
-    return [[DBManager shareManager] fetchAllModel];
+    [NoteManager clearAllIds];
+    
+    return arr;
 }
 
 -(void)delegate:(id<DataProtocol>)obj{

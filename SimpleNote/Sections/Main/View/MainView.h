@@ -13,6 +13,8 @@
 
 - (void)mainViewEdit;
 
+- (void)mainViewSoundEdit;
+
 @optional
 - (void)mainViewCellSelect:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData;
 
@@ -32,6 +34,6 @@
 @property(nonatomic, weak)id<MainViewDelegate>delegate;
 @property(nonatomic, weak)id<MainViewDataSource>dataSource;
 
-- (void)setUpData;
+- (void)setUpDataReload:(BOOL)isReload;
 - (void)changeLockedCellState:(NSIndexPath *)indexPath;
 @end

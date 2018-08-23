@@ -23,7 +23,9 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
     [self.editButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5,10, 5)];
-    self.coverView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lock_bg_2"]];
+//    self.coverView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lock_bg_2"]];
+    self.coverView.backgroundColor = [UIColor whiteColor];
+
 }
 
 -(UIVisualEffectView*)visView{
@@ -36,14 +38,9 @@
 
 - (void)showWithData:(NSDictionary *)dic{
     self.contentLabel.numberOfLines = 0;
-    self.timeLabel.text= dic[@"dateStr"];
-    
-    if ([dic[@"lock"] boolValue] && ![[NoteManager unLockedNoteIds] containsObject:dic[@"noteId"]]) {
-        self.coverView.hidden = NO;
-    }else{
-        self.coverView.hidden = YES;
-    }
-    
+    self.timeLabel.text= dic[@"dateStr"];    
+    self.coverView.hidden = ![dic[@"lock"] boolValue];
+
     NSAttributedString *attr = [[NSAttributedString alloc] initWithString:dic[@"content"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[self paraStyle]}];
     NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];
     self.contentLabel.attributedText = strM;

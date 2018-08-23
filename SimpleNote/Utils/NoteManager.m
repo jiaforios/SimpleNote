@@ -17,10 +17,15 @@ static NSMutableSet * _lockedOnceNoteIdSet;
 
 + (void)markUnLockedOnceNoteId:(id)noteId{
     [_lockedOnceNoteIdSet addObject:noteId];
+
 }
 
 + (NSSet *)unLockedNoteIds{
     return [_lockedOnceNoteIdSet copy];
+}
+
++(void)clearAllIds{
+    [_lockedOnceNoteIdSet removeAllObjects];
 }
 
 @end

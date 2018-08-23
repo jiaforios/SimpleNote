@@ -68,15 +68,20 @@ static NSString *soundCellIdentifier = @"soundCell";
         _noteButton.clipsToBounds = YES;
         [_noteButton setImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
         [_noteButton addTarget:self action:@selector(noteAction) forControlEvents:UIControlEventTouchUpInside];
+        
+
+        
+        [_noteButton addTarget:self action:@selector(soundAction) forControlEvents:UIControlEventTouchDragExit];
     }
     return _noteButton;
 }
 
-- (void)setUpData{
-   
+- (void)setUpDataReload:(BOOL)isReload{
     if ([self.dataSource respondsToSelector:@selector(mainViewCellData)] && [self.dataSource conformsToProtocol:@protocol(MainViewDataSource)]) {
         self.dataArr = [[self.dataSource mainViewCellData] copy];
-        [self.tableView reloadData];
+        if (isReload) {
+            [self.tableView reloadData];
+        }
     }else{
         NSLog(@"%@ 未处理 mainViewData ",self.dataSource);
     }
@@ -107,22 +112,33 @@ static NSString *soundCellIdentifier = @"soundCell";
     }
 }
 
+/*
+ 编辑语音
+ */
+
+- (void)soundAction{
+    if ([self.delegate respondsToSelector:@selector(mainViewSoundEdit)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
+        [self.delegate mainViewSoundEdit];
+    }
+}
 
 - (void)changeLockedCellState:(NSIndexPath *)indexPath{
     TextCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if (cell.coverView.hidden == NO) {
         cell.coverView.alpha = 1;
+        CGRect oldRect = cell.coverView.frame;
         [UIView animateWithDuration:1 animations:^{
             cell.coverView.alpha = 0;
-            cell.coverView.frame = CGRectMake(cell.coverView.frame.size.width+10, cell.coverView.frame.origin.y,  cell.coverView.frame.size.width,  cell.coverView.frame.size.height);
+            cell.coverView.frame = CGRectMake(oldRect.size.width+10, oldRect.origin.y,  oldRect.size.width,  oldRect.size.height);
         } completion:^(BOOL finished) {
+            cell.coverView.alpha = 1;
+            cell.coverView.frame  = oldRect;
             cell.coverView.hidden = YES;
         }];
     }
 }
 
 #pragma mark --  UITableViewDelegate UITableViewDataSource--
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return  self.dataArr.count;

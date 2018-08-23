@@ -14,6 +14,7 @@
 
 @property(nonatomic, strong)UITextView *noteTextView;
 @property(nonatomic, strong)UIButton *saveButton;
+@property(nonatomic, strong)UIButton *lockButton;
 
 @end
 
@@ -30,9 +31,24 @@
     return _saveButton;
 }
 
+- (UIButton *)lockButton{
+    if (!_lockButton) {
+        _lockButton = [[UIButton alloc] init];
+        _lockButton.frame = CGRectMake((MZWIDTH-100)/2.0, CGRectGetMaxY(self.noteTextView.frame)+30, 100,44);
+        [_lockButton setTitle:@"lock" forState:UIControlStateNormal];
+        [_lockButton setTitle:@"locked" forState:UIControlStateSelected];
+        
+        [_lockButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_lockButton setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+        _lockButton.backgroundColor = [UIColor whiteColor];
+        [_lockButton addTarget:self action:@selector(lockAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _lockButton;
+}
+
 - (UITextView *)noteTextView{
     if (!_noteTextView) {
-        _noteTextView = [[UITextView alloc] initWithFrame: CGRectMake(15, 15, MZWIDTH-30, MZHEIGHT*0.4)];
+        _noteTextView = [[UITextView alloc] initWithFrame: CGRectMake(15, 15, MZWIDTH-30, MZHEIGHT*0.3)];
         _noteTextView.backgroundColor = [UIColor clearColor];
         _noteTextView.font = [UIFont systemFontOfSize:14];
         _noteTextView.layer.cornerRadius = 6;
@@ -61,7 +77,11 @@
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.saveButton];
     self.navigationItem.rightBarButtonItem = set;
     [self.view addSubview:self.noteTextView];
-    
+    [self.view addSubview:self.lockButton];
+}
+
+- (void)lockAction:(UIButton *)sender{
+    sender.selected = !sender.selected;
 }
 
 - (void)saveAction{
@@ -73,6 +93,9 @@
     }
     NoteModel *model = [NoteModel new];
     model.content = _noteTextView.text;
+    if (self.lockButton.selected) {
+        model.lock = YES;
+    }
     [model save];
     [self.navigationController popViewControllerAnimated:YES];
     

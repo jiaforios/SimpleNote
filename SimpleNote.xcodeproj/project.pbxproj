@@ -11,6 +11,7 @@
 		842269F6212E75D8009D2F82 /* ZJTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 842269F5212E75D7009D2F82 /* ZJTools.m */; };
 		842269F9212E836F009D2F82 /* MHD_FingerPrintVerify.m in Sources */ = {isa = PBXBuildFile; fileRef = 842269F7212E836F009D2F82 /* MHD_FingerPrintVerify.m */; };
 		842269FC212E88B7009D2F82 /* NoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842269FB212E88B7009D2F82 /* NoteManager.m */; };
+		842269FF212EAC94009D2F82 /* SoundEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842269FE212EAC94009D2F82 /* SoundEditViewController.m */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
 		846E2563212A928200C797CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846E2562212A928200C797CE /* Assets.xcassets */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
@@ -56,6 +57,8 @@
 		842269F8212E836F009D2F82 /* MHD_FingerPrintVerify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHD_FingerPrintVerify.h; sourceTree = "<group>"; };
 		842269FA212E88B7009D2F82 /* NoteManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteManager.h; sourceTree = "<group>"; };
 		842269FB212E88B7009D2F82 /* NoteManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteManager.m; sourceTree = "<group>"; };
+		842269FD212EAC94009D2F82 /* SoundEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundEditViewController.h; sourceTree = "<group>"; };
+		842269FE212EAC94009D2F82 /* SoundEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoundEditViewController.m; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 			children = (
 				846E258C212AA54A00C797CE /* NoteViewController.h */,
 				846E258D212AA54A00C797CE /* NoteViewController.m */,
+				842269FD212EAC94009D2F82 /* SoundEditViewController.h */,
+				842269FE212EAC94009D2F82 /* SoundEditViewController.m */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -544,6 +549,7 @@
 			files = (
 				846E2582212A92B900C797CE /* MZBaseNavigationViewController.m in Sources */,
 				846E25B3212BC67300C797CE /* NoteModel.m in Sources */,
+				842269FF212EAC94009D2F82 /* SoundEditViewController.m in Sources */,
 				846E25AF212BA24600C797CE /* ImgCell.m in Sources */,
 				8493EE6D212E654A001FC8C2 /* Utils.m in Sources */,
 				84916FFD212CEDCD00AC23EB /* MZView.m in Sources */,

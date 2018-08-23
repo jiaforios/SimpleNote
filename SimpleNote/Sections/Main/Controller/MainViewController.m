@@ -12,6 +12,7 @@
 #import "NoteModel.h"
 #import "MHD_FingerPrintVerify.h"
 #import "NoteManager.h"
+#import "SoundEditViewController.h"
 
 #import "TextCell.h"
 #import "ImgCell.h"
@@ -34,7 +35,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.mainView setUpData];
+    [self.mainView setUpDataReload:YES];
 }
 
 - (void)viewDidLoad {
@@ -73,6 +74,10 @@ static NSString *soundCellIdentifier = @"soundCell";
     [self.navigationController pushViewController:[NoteViewController new] animated:YES];
 }
 
+- (void)mainViewSoundEdit{
+    [self.navigationController pushViewController:[SoundEditViewController new] animated:YES];
+}
+
 - (void)mainViewCellSelect:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData{
     // 判断点击的行 是否加密
     if ([cellData[@"lock"] boolValue] && ![[NoteManager unLockedNoteIds] containsObject:cellData[@"noteId"]]) {
@@ -80,6 +85,7 @@ static NSString *soundCellIdentifier = @"soundCell";
         [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:@"确定" localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
             if (isSuccess) {
                 [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
+//                [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel
                 [self.mainView changeLockedCellState:indexPath];
             }else{
                 
