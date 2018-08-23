@@ -9,6 +9,7 @@
 #import "NoteManager.h"
 static NSMutableSet * _lockedOnceNoteIdSet;
 
+
 @implementation NoteManager
 
 +(void)initialize{
@@ -29,3 +30,4 @@ static NSMutableSet * _lockedOnceNoteIdSet;
 }
 
 @end
+

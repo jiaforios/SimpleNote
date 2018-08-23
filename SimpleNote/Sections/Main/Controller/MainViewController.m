@@ -85,7 +85,7 @@ static NSString *soundCellIdentifier = @"soundCell";
         [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:@"确定" localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
             if (isSuccess) {
                 [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
-//                [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel
+                [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel
                 [self.mainView changeLockedCellState:indexPath];
             }else{
                 

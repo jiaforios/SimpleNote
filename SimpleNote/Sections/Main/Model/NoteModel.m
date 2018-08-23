@@ -44,13 +44,13 @@
         
     NSArray <NoteModel *> *arr = [[DBManager shareManager] fetchAllModel];
 // 如果需要在本次 程序活动时，一致保持解锁状态，则打开这段代码,同时关闭 [NoteManager clearAllIds]
-//    [arr enumerateObjectsUsingBlock:^(NoteModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        if ([[NoteManager unLockedNoteIds] containsObject:@(obj.noteId)]) {
-//            obj.lock = NO;
-//        }
-//    }];
+    [arr enumerateObjectsUsingBlock:^(NoteModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[NoteManager unLockedNoteIds] containsObject:@(obj.noteId)]) {
+            obj.lock = NO;
+        }
+    }];
     
-    [NoteManager clearAllIds];
+//    [NoteManager clearAllIds];
     
     return arr;
 }
