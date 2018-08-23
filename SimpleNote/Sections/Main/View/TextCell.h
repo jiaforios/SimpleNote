@@ -12,5 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIView *coverView;
+
+- (void)showWithData:(NSDictionary *)dic;
 
 @end

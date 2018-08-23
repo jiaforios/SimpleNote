@@ -9,7 +9,6 @@
 #import "DBManager.h"
 #import <sqlite3.h>
 
-
 static DBManager *_manager;
 static sqlite3 *db;
 
@@ -62,6 +61,17 @@ static sqlite3 *db;
         NSLog(@"创建表成功");
     }else{
         NSLog(@"创建表失败");
+    }
+}
+
+#pragma mark -- DataProtocol
+-(void)saveWithSqlStr:(NSString *)sqlStr{
+    char *error = nil;
+    sqlite3_exec(db, sqlStr.UTF8String, nil, nil, &error);
+    if (error == nil) {
+        NSLog(@"插入数据成功");
+    }else{
+        NSLog(@"插入数据失败");
     }
 }
 

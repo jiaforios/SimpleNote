@@ -7,6 +7,9 @@
 //
 
 #import "NoteViewController.h"
+#import "NoteModel.h"
+
+
 @interface NoteViewController ()<UITextViewDelegate>
 
 @property(nonatomic, strong)UITextView *noteTextView;
@@ -30,11 +33,13 @@
 - (UITextView *)noteTextView{
     if (!_noteTextView) {
         _noteTextView = [[UITextView alloc] initWithFrame: CGRectMake(15, 15, MZWIDTH-30, MZHEIGHT*0.4)];
-        _noteTextView.backgroundColor = [UIColor whiteColor];
+        _noteTextView.backgroundColor = [UIColor clearColor];
         _noteTextView.font = [UIFont systemFontOfSize:14];
         _noteTextView.layer.cornerRadius = 6;
         _noteTextView.clipsToBounds = YES;
         _noteTextView.delegate = self;
+        _noteTextView.layer.borderWidth = 2;
+        _noteTextView.layer.borderColor = [UIColor whiteColor].CGColor;
         UILabel *placeHolderLabel = [[UILabel alloc] init];
         placeHolderLabel.text = @"  ";
         placeHolderLabel.numberOfLines = 0;
@@ -61,7 +66,16 @@
 
 - (void)saveAction{
     NSLog(@"保存");
-    [[DBManager shareManager] saveModel];
+    [self.view resignFirstResponder];
+    if (_noteTextView.text.length == 0) {
+        NSLog(@"没有输入内容");
+        return;
+    }
+    NoteModel *model = [NoteModel new];
+    model.content = _noteTextView.text;
+    [model save];
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

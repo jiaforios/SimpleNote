@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NoteModel.h"
 
-@interface DBManager : NSObject
+@interface DBManager : NSObject<DataProtocol>
 + (instancetype)shareManager;
 
 - (void)saveModel;

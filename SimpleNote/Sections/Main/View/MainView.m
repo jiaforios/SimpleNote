@@ -11,6 +11,7 @@
 #import "ImgCell.h"
 #import "SoundCell.h"
 
+
 static NSString *textCellIdentifier = @"textCell";
 static NSString *imgCellIdentifier = @"imgCell";
 static NSString *soundCellIdentifier = @"soundCell";
@@ -72,14 +73,10 @@ static NSString *soundCellIdentifier = @"soundCell";
 }
 
 - (void)setUpData{
-    if ([self.dataSource respondsToSelector:@selector(mainViewSectionData)] && [self.dataSource conformsToProtocol:@protocol(MainViewDataSource)]) {
-        self.sectionArr = [[self.dataSource mainViewSectionData] copy];
-    }else{
-        NSLog(@"%@ 未处理 mainViewSectionData ",self.dataSource);
-    }
-    
+   
     if ([self.dataSource respondsToSelector:@selector(mainViewCellData)] && [self.dataSource conformsToProtocol:@protocol(MainViewDataSource)]) {
         self.dataArr = [[self.dataSource mainViewCellData] copy];
+        [self.tableView reloadData];
     }else{
         NSLog(@"%@ 未处理 mainViewData ",self.dataSource);
     }
@@ -111,6 +108,19 @@ static NSString *soundCellIdentifier = @"soundCell";
 }
 
 
+- (void)changeLockedCellState:(NSIndexPath *)indexPath{
+    TextCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (cell.coverView.hidden == NO) {
+        cell.coverView.alpha = 1;
+        [UIView animateWithDuration:1 animations:^{
+            cell.coverView.alpha = 0;
+            cell.coverView.frame = CGRectMake(cell.coverView.frame.size.width+10, cell.coverView.frame.origin.y,  cell.coverView.frame.size.width,  cell.coverView.frame.size.height);
+        } completion:^(BOOL finished) {
+            cell.coverView.hidden = YES;
+        }];
+    }
+}
+
 #pragma mark --  UITableViewDelegate UITableViewDataSource--
 
 
@@ -119,7 +129,10 @@ static NSString *soundCellIdentifier = @"soundCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
+    if ([self.delegate respondsToSelector:@selector(mainViewCellSelect:dataSource:)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
+        [self.delegate mainViewCellSelect:indexPath dataSource:self.dataArr[indexPath.row]];
+    }
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -142,27 +155,12 @@ static NSString *soundCellIdentifier = @"soundCell";
     TextCell *textCell = [tableView dequeueReusableCellWithIdentifier:textCellIdentifier forIndexPath:indexPath];
     
     NSDictionary *dic = self.dataArr[indexPath.row];
-    textCell.contentLabel.numberOfLines = 0;
-    
-    NSAttributedString *attr = [[NSAttributedString alloc] initWithString:dic[@"content"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[self paraStyle]}];
-    NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];
-    textCell.contentLabel.attributedText = strM;
+    [textCell showWithData:dic];
     
     return  textCell;
     
 }
 
-- (NSMutableParagraphStyle *)paraStyle{
-    
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.lineSpacing = 8.;// 行间距
-    paragraphStyle.lineHeightMultiple = 1.3;// 行高倍数（1.5倍行高）
-    paragraphStyle.firstLineHeadIndent = 30.0f;//首行缩进
-    paragraphStyle.minimumLineHeight = 10;//最低行高
-    paragraphStyle.alignment = NSTextAlignmentLeft;// 对齐方式
-    paragraphStyle.defaultTabInterval = 144;// 默认Tab 宽度
-    paragraphStyle.headIndent = 10;// 起始 x位置
-    return paragraphStyle;
-}
+
 
 @end

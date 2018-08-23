@@ -10,6 +10,8 @@
 #import "NoteViewController.h"
 #import "SetViewController.h"
 #import "NoteModel.h"
+#import "MHD_FingerPrintVerify.h"
+#import "NoteManager.h"
 
 #import "TextCell.h"
 #import "ImgCell.h"
@@ -23,11 +25,17 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 @interface MainViewController ()<MainViewDelegate,MainViewDataSource>
 @property(nonatomic, strong)UIButton *setButton;
-
+@property(nonatomic, strong)MainView *mainView;
 
 @end
 
 @implementation MainViewController
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.mainView setUpData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,8 +46,8 @@ static NSString *soundCellIdentifier = @"soundCell";
     MainView *mv = [[MainView alloc] initWithFrame:self.view.bounds];
     mv.delegate = self;
     mv.dataSource = self;
-    [mv setUpData];    
     self.view = mv;
+    self.mainView  = mv;
 
 }
 - (UIButton *)setButton{
@@ -65,16 +73,33 @@ static NSString *soundCellIdentifier = @"soundCell";
     [self.navigationController pushViewController:[NoteViewController new] animated:YES];
 }
 
+- (void)mainViewCellSelect:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData{
+    // 判断点击的行 是否加密
+    if ([cellData[@"lock"] boolValue] && ![[NoteManager unLockedNoteIds] containsObject:cellData[@"noteId"]]) {
+        // 弹出指纹验证
+        [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:@"确定" localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
+            if (isSuccess) {
+                [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
+                [self.mainView changeLockedCellState:indexPath];
+            }else{
+                
+            }
+        }];
+    }
+}
 
 -(id)mainViewCellData{
-    NSArray *arr = [NoteModel mj_keyValuesArrayWithObjectArray:[NoteModel fetchAllModel]];
-    return arr;
+    NSArray <NoteModel *>*arr = [NoteModel fetchAllModel];
+    arr = [arr sortedArrayUsingComparator:^NSComparisonResult(NoteModel* obj1, NoteModel* obj2) {
+        return obj1.noteId < obj2.noteId;
+    }];
+    
+    return [NoteModel mj_keyValuesArrayWithObjectArray:arr];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

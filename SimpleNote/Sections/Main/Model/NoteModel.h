@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataProtocol.h"
 
 @interface NoteModel : NSObject
 
@@ -30,5 +31,7 @@
 @property(nonatomic, copy) NSString *imgSmallUrl;
 
 + (NSArray<NoteModel*>*)fetchAllModel;
+- (void)save;
+
 
 @end

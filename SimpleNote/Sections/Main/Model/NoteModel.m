@@ -9,8 +9,57 @@
 #import "NoteModel.h"
 
 @implementation NoteModel
+{
+    id<DataProtocol> _delegate;
+}
+
+
+
+-(instancetype)init{
+    if (self = [super init]) {
+        _imgCount = 0;
+        _level = 0;
+        _soundTime = 0;
+        _remind = YES;
+        _lock = NO;
+        _expire = NO;
+        _dateStr =  [Utils currentDateStr];
+        _remindDateStr = @"";
+        _lockTitle = @"加密";
+        _lockPwd = @"";
+        _lockType  = @"0";
+        _noteType = @"0";
+        _noteClass = @"0";
+        _imgUrl = @"";
+        _imgSmallUrl = @"";
+        [self delegate:[DBManager shareManager]];
+    }
+    return  self;
+}
 
 + (NSArray<NoteModel *> *)fetchAllModel{
+    
+   // 拿到的数据 加工处理，争取不在cell 层处理数据显示逻辑
+        
+    
     return [[DBManager shareManager] fetchAllModel];
 }
+
+-(void)delegate:(id<DataProtocol>)obj{
+    _delegate = obj;
+}
+
+-(void)save{
+    NSString *sqlStr = [NSString stringWithFormat:@"insert into 'notes'('imgCount','level','soundTime','remind','lock','expire','content','dateStr','remindDateStr','lockTitle','lockPwd','lockType','noteType','noteClass','imgUrl','imgSmallUrl')values('%ld','%ld','%f','%d','%d','%d','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",(long)self.imgCount,self.level,self.soundTime,self.remind,self.lock,self.expire,self.content,self.dateStr,self.remindDateStr,self.lockTitle,self.lockPwd,self.lockType,self.noteType,self.noteClass,self.imgUrl,self.imgSmallUrl];
+    
+    if ([_delegate respondsToSelector:@selector(saveWithSqlStr:)] && [_delegate conformsToProtocol:@protocol(DataProtocol)]) {
+        [_delegate saveWithSqlStr:sqlStr];
+    }else{
+        NSLog(@"未实现数据存储");
+    }
+}
+
+
+
+
 @end

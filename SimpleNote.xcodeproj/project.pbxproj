@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		204D44B458C08701A583C9DD /* libPods-SimpleNoteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F086426C41C966F95491F9B3 /* libPods-SimpleNoteTests.a */; };
+		842269F6212E75D8009D2F82 /* ZJTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 842269F5212E75D7009D2F82 /* ZJTools.m */; };
+		842269F9212E836F009D2F82 /* MHD_FingerPrintVerify.m in Sources */ = {isa = PBXBuildFile; fileRef = 842269F7212E836F009D2F82 /* MHD_FingerPrintVerify.m */; };
+		842269FC212E88B7009D2F82 /* NoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842269FB212E88B7009D2F82 /* NoteManager.m */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
 		846E2563212A928200C797CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846E2562212A928200C797CE /* Assets.xcassets */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
@@ -29,6 +32,7 @@
 		84916FFD212CEDCD00AC23EB /* MZView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84916FFC212CEDCD00AC23EB /* MZView.m */; };
 		84917000212CEE0500AC23EB /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84916FFF212CEE0500AC23EB /* MainView.m */; };
 		84917005212D20C900AC23EB /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84917004212D20C900AC23EB /* DBManager.m */; };
+		8493EE6D212E654A001FC8C2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493EE6C212E654A001FC8C2 /* Utils.m */; };
 		9D06DD739D7CB08BBD90D425 /* libPods-SimpleNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA372B6791D54BB9FEEAF /* libPods-SimpleNote.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +50,12 @@
 		3C701F36D70697F83DF38E60 /* Pods-SimpleNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNote/Pods-SimpleNote.release.xcconfig"; sourceTree = "<group>"; };
 		410AA372B6791D54BB9FEEAF /* libPods-SimpleNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		677FDE8E5F2348AE422B33F2 /* Pods-SimpleNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNoteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNoteTests/Pods-SimpleNoteTests.release.xcconfig"; sourceTree = "<group>"; };
+		842269F4212E75D7009D2F82 /* ZJTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJTools.h; sourceTree = "<group>"; };
+		842269F5212E75D7009D2F82 /* ZJTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJTools.m; sourceTree = "<group>"; };
+		842269F7212E836F009D2F82 /* MHD_FingerPrintVerify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHD_FingerPrintVerify.m; sourceTree = "<group>"; };
+		842269F8212E836F009D2F82 /* MHD_FingerPrintVerify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHD_FingerPrintVerify.h; sourceTree = "<group>"; };
+		842269FA212E88B7009D2F82 /* NoteManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteManager.h; sourceTree = "<group>"; };
+		842269FB212E88B7009D2F82 /* NoteManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteManager.m; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -88,6 +98,9 @@
 		84917002212CEFF900AC23EB /* ViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewProtocol.h; sourceTree = "<group>"; };
 		84917003212D20C900AC23EB /* DBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		84917004212D20C900AC23EB /* DBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		8493EE6A212E5E48001FC8C2 /* DataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataProtocol.h; sourceTree = "<group>"; };
+		8493EE6B212E654A001FC8C2 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		8493EE6C212E654A001FC8C2 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		A439BBC2FEDD917CF93016B4 /* Pods-SimpleNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNoteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNoteTests/Pods-SimpleNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DAE35767B18355652C4DE338 /* Pods-SimpleNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNote/Pods-SimpleNote.debug.xcconfig"; sourceTree = "<group>"; };
 		F086426C41C966F95491F9B3 /* libPods-SimpleNoteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleNoteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +149,7 @@
 		846E2558212A928200C797CE /* SimpleNote */ = {
 			isa = PBXGroup;
 			children = (
+				8493EE6E212E654F001FC8C2 /* Utils */,
 				84917006212D20CD00AC23EB /* DB */,
 				846E258B212A98D000C797CE /* Macros */,
 				84916FFA212CED5300AC23EB /* Sources */,
@@ -170,6 +184,7 @@
 				84916FFB212CEDCD00AC23EB /* MZView.h */,
 				84916FFC212CEDCD00AC23EB /* MZView.m */,
 				84917002212CEFF900AC23EB /* ViewProtocol.h */,
+				8493EE6A212E5E48001FC8C2 /* DataProtocol.h */,
 			);
 			path = MZBase;
 			sourceTree = "<group>";
@@ -281,6 +296,21 @@
 				84917004212D20C900AC23EB /* DBManager.m */,
 			);
 			path = DB;
+			sourceTree = "<group>";
+		};
+		8493EE6E212E654F001FC8C2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				842269F8212E836F009D2F82 /* MHD_FingerPrintVerify.h */,
+				842269F7212E836F009D2F82 /* MHD_FingerPrintVerify.m */,
+				842269F4212E75D7009D2F82 /* ZJTools.h */,
+				842269F5212E75D7009D2F82 /* ZJTools.m */,
+				8493EE6B212E654A001FC8C2 /* Utils.h */,
+				8493EE6C212E654A001FC8C2 /* Utils.m */,
+				842269FA212E88B7009D2F82 /* NoteManager.h */,
+				842269FB212E88B7009D2F82 /* NoteManager.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		A1027E0B1DC9B8950F676F1D /* Pods */ = {
@@ -515,11 +545,14 @@
 				846E2582212A92B900C797CE /* MZBaseNavigationViewController.m in Sources */,
 				846E25B3212BC67300C797CE /* NoteModel.m in Sources */,
 				846E25AF212BA24600C797CE /* ImgCell.m in Sources */,
+				8493EE6D212E654A001FC8C2 /* Utils.m in Sources */,
 				84916FFD212CEDCD00AC23EB /* MZView.m in Sources */,
 				846E2585212A92C500C797CE /* MainViewController.m in Sources */,
 				846E2569212A928200C797CE /* main.m in Sources */,
+				842269F6212E75D8009D2F82 /* ZJTools.m in Sources */,
 				846E2591212AA66600C797CE /* SetViewController.m in Sources */,
 				846E25A9212B9CAB00C797CE /* SoundCell.m in Sources */,
+				842269FC212E88B7009D2F82 /* NoteManager.m in Sources */,
 				846E25A4212B9C9400C797CE /* TextCell.m in Sources */,
 				84917005212D20C900AC23EB /* DBManager.m in Sources */,
 				84917000212CEE0500AC23EB /* MainView.m in Sources */,
@@ -527,6 +560,7 @@
 				846E2597212ABF1E00C797CE /* UIFont+FontType.m in Sources */,
 				846E258E212AA54A00C797CE /* NoteViewController.m in Sources */,
 				846E255B212A928200C797CE /* AppDelegate.m in Sources */,
+				842269F9212E836F009D2F82 /* MHD_FingerPrintVerify.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

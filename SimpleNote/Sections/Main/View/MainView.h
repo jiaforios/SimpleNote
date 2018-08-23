@@ -14,7 +14,7 @@
 - (void)mainViewEdit;
 
 @optional
-- (void)mainViewCellSelect;
+- (void)mainViewCellSelect:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData;
 
 @end
 
@@ -33,5 +33,5 @@
 @property(nonatomic, weak)id<MainViewDataSource>dataSource;
 
 - (void)setUpData;
-
+- (void)changeLockedCellState:(NSIndexPath *)indexPath;
 @end
