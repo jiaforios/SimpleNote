@@ -9,7 +9,7 @@
 #import "SoundEditViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ZJFileManger.h"
-
+#import "NoteModel.h"
 
 
 @interface SoundEditViewController ()
@@ -101,6 +101,10 @@
 - (void)stopAction:(UIButton *)sender{
 
     [self.recorder stop];
+    NoteModel *model = [NoteModel new];
+    model.soundUrl = self.soundPath;
+    model.noteType = @"2"; // 图片
+    
 }
 
 
