@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "NoteViewController.h"
 #import "SetViewController.h"
+#import "NoteModel.h"
 
 #import "TextCell.h"
 #import "ImgCell.h"
@@ -37,12 +38,9 @@ static NSString *soundCellIdentifier = @"soundCell";
     MainView *mv = [[MainView alloc] initWithFrame:self.view.bounds];
     mv.delegate = self;
     mv.dataSource = self;
-    [mv setUpData];
-    
+    [mv setUpData];    
     self.view = mv;
-    
-    NSLog(@"count = %@",[[DBManager shareManager] fetchAllModel]);
-    
+
 }
 - (UIButton *)setButton{
     if (!_setButton) {
@@ -67,41 +65,11 @@ static NSString *soundCellIdentifier = @"soundCell";
     [self.navigationController pushViewController:[NoteViewController new] animated:YES];
 }
 
-- (id)mainViewSectionData{
-    
-    NSMutableArray *marr = [NSMutableArray new];
-    [marr addObject:@"2018-08"];
-    [marr addObject:@"2018-07"];
-    [marr addObject:@"2018-06"];
-    [marr addObject:@"2018-05"];
-    [marr addObject:@"2018-04"];
-    [marr addObject:@"2018-03"];
-    return marr;
-}
 
 -(id)mainViewCellData{
-    NSMutableArray *dataArr = [NSMutableArray new];
-    for (int i = 0; i<6; i++) {
-        NSMutableArray *marr = [NSMutableArray new];
-        for (int i = 0; i< 5; i++) {
-            if (i == 0) {
-                [marr addObject:@"明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。"];
-            }else
-                if (i == 2) {
-                    [marr addObject:@"今天是个好日子，明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。明天上午九点去深南花园约同学吃饭，带上手机钥匙，钱包。"];
-                }else
-                    if (i == 3) {
-                        [marr addObject:@"马上要房价了，今天是个好日子"];
-                    }else{
-                        [marr addObject:@"马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子,马上要房价了，今天是个好日子"];
-                    }
-        }
-        [dataArr addObject:marr];
-    }
-    
-    return dataArr;
+    NSArray *arr = [NoteModel mj_keyValuesArrayWithObjectArray:[NoteModel fetchAllModel]];
+    return arr;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

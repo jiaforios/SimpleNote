@@ -10,4 +10,7 @@
 
 @implementation NoteModel
 
++ (NSArray<NoteModel *> *)fetchAllModel{
+    return [[DBManager shareManager] fetchAllModel];
+}
 @end

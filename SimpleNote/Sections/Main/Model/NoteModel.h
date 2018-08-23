@@ -29,4 +29,6 @@
 @property(nonatomic, copy) NSString *imgUrl;
 @property(nonatomic, copy) NSString *imgSmallUrl;
 
++ (NSArray<NoteModel*>*)fetchAllModel;
+
 @end

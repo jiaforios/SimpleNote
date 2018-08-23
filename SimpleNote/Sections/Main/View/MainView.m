@@ -39,7 +39,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 -(UITableView *)tableView{
     
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, MZHEIGHT) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, MZHEIGHT-kNavBarHeight) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -100,7 +100,6 @@ static NSString *soundCellIdentifier = @"soundCell";
     return _dataArr;
 }
 
-
 /*
  编辑新增
  */
@@ -114,50 +113,38 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 #pragma mark --  UITableViewDelegate UITableViewDataSource--
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-   CGRect rect= [self.tableView rectForSection:1];
-    NSLog(@"view.frame = %f",rect.origin.y);
-
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return self.sectionArr.count;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *arr = self.dataArr[section];
-    return  arr.count;
+    return  self.dataArr.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *sect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
-    sect.backgroundColor = [UIColor clearColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
-    [sect addSubview:label];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = self.sectionArr[section];
-    label.font = [UIFont systemFontOfSize:16];
-    return sect;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    UIView *sect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
+//    sect.backgroundColor = [UIColor clearColor];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 50)];
+//    [sect addSubview:label];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.text = self.dataArr[section];
+//    label.font = [UIFont systemFontOfSize:16];
+//    return sect;
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 50;
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TextCell *textCell = [tableView dequeueReusableCellWithIdentifier:textCellIdentifier forIndexPath:indexPath];
     
-    NSArray *arr = self.dataArr[indexPath.section];
+    NSDictionary *dic = self.dataArr[indexPath.row];
     textCell.contentLabel.numberOfLines = 0;
     
-    NSAttributedString *attr = [[NSAttributedString alloc] initWithString:arr[indexPath.row] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[self paraStyle]}];
+    NSAttributedString *attr = [[NSAttributedString alloc] initWithString:dic[@"content"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[self paraStyle]}];
     NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];
     textCell.contentLabel.attributedText = strM;
     

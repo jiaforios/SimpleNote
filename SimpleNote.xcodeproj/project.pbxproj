@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		204D44B458C08701A583C9DD /* libPods-SimpleNoteTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F086426C41C966F95491F9B3 /* libPods-SimpleNoteTests.a */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
 		846E2563212A928200C797CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846E2562212A928200C797CE /* Assets.xcassets */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
@@ -28,6 +29,7 @@
 		84916FFD212CEDCD00AC23EB /* MZView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84916FFC212CEDCD00AC23EB /* MZView.m */; };
 		84917000212CEE0500AC23EB /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84916FFF212CEE0500AC23EB /* MainView.m */; };
 		84917005212D20C900AC23EB /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84917004212D20C900AC23EB /* DBManager.m */; };
+		9D06DD739D7CB08BBD90D425 /* libPods-SimpleNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA372B6791D54BB9FEEAF /* libPods-SimpleNote.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C701F36D70697F83DF38E60 /* Pods-SimpleNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNote/Pods-SimpleNote.release.xcconfig"; sourceTree = "<group>"; };
+		410AA372B6791D54BB9FEEAF /* libPods-SimpleNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		677FDE8E5F2348AE422B33F2 /* Pods-SimpleNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNoteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNoteTests/Pods-SimpleNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -83,6 +88,9 @@
 		84917002212CEFF900AC23EB /* ViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewProtocol.h; sourceTree = "<group>"; };
 		84917003212D20C900AC23EB /* DBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		84917004212D20C900AC23EB /* DBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		A439BBC2FEDD917CF93016B4 /* Pods-SimpleNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNoteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNoteTests/Pods-SimpleNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DAE35767B18355652C4DE338 /* Pods-SimpleNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNote/Pods-SimpleNote.debug.xcconfig"; sourceTree = "<group>"; };
+		F086426C41C966F95491F9B3 /* libPods-SimpleNoteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleNoteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D06DD739D7CB08BBD90D425 /* libPods-SimpleNote.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204D44B458C08701A583C9DD /* libPods-SimpleNoteTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +119,8 @@
 				846E2558212A928200C797CE /* SimpleNote */,
 				846E2571212A928200C797CE /* SimpleNoteTests */,
 				846E2557212A928200C797CE /* Products */,
+				A1027E0B1DC9B8950F676F1D /* Pods */,
+				EDF5E1A990AEAE27ADF183BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -271,6 +283,26 @@
 			path = DB;
 			sourceTree = "<group>";
 		};
+		A1027E0B1DC9B8950F676F1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DAE35767B18355652C4DE338 /* Pods-SimpleNote.debug.xcconfig */,
+				3C701F36D70697F83DF38E60 /* Pods-SimpleNote.release.xcconfig */,
+				A439BBC2FEDD917CF93016B4 /* Pods-SimpleNoteTests.debug.xcconfig */,
+				677FDE8E5F2348AE422B33F2 /* Pods-SimpleNoteTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EDF5E1A990AEAE27ADF183BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				410AA372B6791D54BB9FEEAF /* libPods-SimpleNote.a */,
+				F086426C41C966F95491F9B3 /* libPods-SimpleNoteTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -278,9 +310,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846E2577212A928200C797CE /* Build configuration list for PBXNativeTarget "SimpleNote" */;
 			buildPhases = (
+				8004C4C2B706D2CA99D82E35 /* [CP] Check Pods Manifest.lock */,
 				846E2552212A928200C797CE /* Sources */,
 				846E2553212A928200C797CE /* Frameworks */,
 				846E2554212A928200C797CE /* Resources */,
+				DB0E27E71652612033447CF7 /* [CP] Embed Pods Frameworks */,
+				CDA06C626040A7CD28E606E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -295,9 +330,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846E257A212A928200C797CE /* Build configuration list for PBXNativeTarget "SimpleNoteTests" */;
 			buildPhases = (
+				73A98C91F5EAE2E73F2227EF /* [CP] Check Pods Manifest.lock */,
 				846E256A212A928200C797CE /* Sources */,
 				846E256B212A928200C797CE /* Frameworks */,
 				846E256C212A928200C797CE /* Resources */,
+				3BB96B547129303BF66D472D /* [CP] Embed Pods Frameworks */,
+				CCE5A67576A186F5506043C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -369,6 +407,105 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3BB96B547129303BF66D472D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleNoteTests/Pods-SimpleNoteTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73A98C91F5EAE2E73F2227EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SimpleNoteTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8004C4C2B706D2CA99D82E35 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SimpleNote-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCE5A67576A186F5506043C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleNoteTests/Pods-SimpleNoteTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDA06C626040A7CD28E606E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleNote/Pods-SimpleNote-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB0E27E71652612033447CF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleNote/Pods-SimpleNote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		846E2552212A928200C797CE /* Sources */ = {
@@ -529,6 +666,7 @@
 		};
 		846E2578212A928200C797CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAE35767B18355652C4DE338 /* Pods-SimpleNote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -548,6 +686,7 @@
 		};
 		846E2579212A928200C797CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C701F36D70697F83DF38E60 /* Pods-SimpleNote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -566,6 +705,7 @@
 		};
 		846E257B212A928200C797CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A439BBC2FEDD917CF93016B4 /* Pods-SimpleNoteTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -580,6 +720,7 @@
 		};
 		846E257C212A928200C797CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 677FDE8E5F2348AE422B33F2 /* Pods-SimpleNoteTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
