@@ -13,5 +13,7 @@
 #import "DBManager.h"
 #import "MJExtension.h"
 #import "Utils.h"
+#import "NoteConst.h"
+
 
 #endif

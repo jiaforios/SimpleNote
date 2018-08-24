@@ -8,17 +8,44 @@
 
 #import "NoteViewController.h"
 #import "NoteModel.h"
+#import "EncryptViewController.h"
 
+static NSString *cellIdentifier = @"cellIdentifier";
+#define kRowHeight 60
 
-@interface NoteViewController ()<UITextViewDelegate>
+@interface NoteViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, strong)UITextView *noteTextView;
 @property(nonatomic, strong)UIButton *saveButton;
 @property(nonatomic, strong)UIButton *lockButton;
-
+@property(nonatomic, strong)UITableView *tableView;
+@property(nonatomic, strong) NSMutableArray *dataSource;
 @end
 
 @implementation NoteViewController
+
+
+- (NSMutableArray *)dataSource{
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray new];
+        [_dataSource addObject:LocalizedString(@"encryptSet")];
+        [_dataSource addObject:LocalizedString(@"remindSet")];
+        [_dataSource addObject:LocalizedString(@"imgSet")];
+    }
+    return _dataSource;
+}
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.noteTextView.frame), CGRectGetMaxY(self.noteTextView.frame)+30, CGRectGetWidth(self.noteTextView.frame), kRowHeight*self.dataSource.count) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+        _tableView.tableFooterView = [UIView new];
+    }
+    
+    return _tableView;
+}
 
 - (UIButton *)saveButton{
     if (!_saveButton) {
@@ -49,15 +76,14 @@
 - (UITextView *)noteTextView{
     if (!_noteTextView) {
         _noteTextView = [[UITextView alloc] initWithFrame: CGRectMake(15, 15, MZWIDTH-30, MZHEIGHT*0.3)];
-        _noteTextView.backgroundColor = [UIColor clearColor];
+        _noteTextView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
         _noteTextView.font = [UIFont systemFontOfSize:14];
         _noteTextView.layer.cornerRadius = 6;
         _noteTextView.clipsToBounds = YES;
         _noteTextView.delegate = self;
-        _noteTextView.layer.borderWidth = 2;
-        _noteTextView.layer.borderColor = [UIColor whiteColor].CGColor;
+        _noteTextView.textColor = TextColor;
         UILabel *placeHolderLabel = [[UILabel alloc] init];
-        placeHolderLabel.text = @"  ";
+        placeHolderLabel.text = @"在这里输入内容";
         placeHolderLabel.numberOfLines = 0;
         placeHolderLabel.textColor =RGB(210, 210, 210);
         [placeHolderLabel sizeToFit];
@@ -72,12 +98,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.view.backgroundColor =RGB(240, 240, 240);
     self.title = @"新增";
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.saveButton];
     self.navigationItem.rightBarButtonItem = set;
     [self.view addSubview:self.noteTextView];
-    [self.view addSubview:self.lockButton];
+//    [self.view addSubview:self.lockButton];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)lockAction:(UIButton *)sender{
@@ -101,25 +127,40 @@
     
 }
 
+#pragma mark -- delegate --
+
 -(void)textViewDidChange:(UITextView *)textView{
     
-    NSAttributedString *attr = [[NSAttributedString alloc] initWithString:textView.text attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[self paraStyle]}];
+    NSAttributedString *attr = [[NSAttributedString alloc] initWithString:textView.text attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[Utils paraStyle]}];
     NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];
     textView.attributedText  = strM;
     
 }
 
-- (NSMutableParagraphStyle *)paraStyle{
-    
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.lineSpacing = 8.;// 行间距
-    paragraphStyle.lineHeightMultiple = 1.3;// 行高倍数（1.5倍行高）
-    paragraphStyle.firstLineHeadIndent = 30.0f;//首行缩进
-    paragraphStyle.minimumLineHeight = 10;//最低行高
-    paragraphStyle.alignment = NSTextAlignmentLeft;// 对齐方式
-    paragraphStyle.defaultTabInterval = 144;// 默认Tab 宽度
-    paragraphStyle.headIndent = 10;// 起始 x位置
-    return paragraphStyle;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return kRowHeight;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.textLabel.text = self.dataSource[indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.textColor = TextColor;
+    cell.detailTextLabel.textColor = DetailTextColor;
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"点击cell");
+    [self.navigationController showViewController:[EncryptViewController new] sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {

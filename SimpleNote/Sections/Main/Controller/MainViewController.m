@@ -49,6 +49,7 @@ static NSString *soundCellIdentifier = @"soundCell";
     mv.dataSource = self;
     self.view = mv;
     self.mainView  = mv;
+    
 
 }
 - (UIButton *)setButton{

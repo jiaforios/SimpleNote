@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DataProtocol.h"
+
 
 @interface NoteModel : NSObject
 

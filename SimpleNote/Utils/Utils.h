@@ -11,6 +11,7 @@
 @interface Utils : NSObject
 
 + (NSString *)currentDateStr;
-
-
++ (NSString *)currentDateStrForSoundPathName;
++ (NSMutableParagraphStyle *)paraStyle;
++ (CGFloat)widthOfContent:(NSString *)content;
 @end

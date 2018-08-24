@@ -118,7 +118,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 - (void)soundAction{
     if ([self.delegate respondsToSelector:@selector(mainViewSoundEdit)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
-        [self.delegate mainViewSoundEdit];
+//        [self.delegate mainViewSoundEdit];
     }
 }
 

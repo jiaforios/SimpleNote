@@ -6,6 +6,9 @@
 //  Copyright © 2018年 com. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #ifndef CustomHeader_h
 #define CustomHeader_h
 
@@ -26,6 +29,10 @@
 // 颜色控制
 #define RGB(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBA(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
-
+#define TextColor RGB(110,110,110)
+#define DetailTextColor RGB(210,210,210)
+#define AppColor RGB(222,93,0)
+// 多语言
+#define LocalizedString(key) ([[[NSLocale preferredLanguages] objectAtIndex:0] rangeOfString:@"zh-Hans"].length)? ([[NSBundle mainBundle] localizedStringForKey:key value:@"" table:nil]):([[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"]] localizedStringForKey:key value:@"" table:nil])
 
 #endif

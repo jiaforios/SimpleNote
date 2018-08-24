@@ -9,12 +9,11 @@
 #import "NoteModel.h"
 #import "NoteManager.h"
 
+
 @implementation NoteModel
 {
     id<DataProtocol> _delegate;
 }
-
-
 
 -(instancetype)init{
     if (self = [super init]) {
@@ -29,7 +28,7 @@
         _lockTitle = @"加密";
         _lockPwd = @"";
         _lockType  = @"0";
-        _noteType = @"0";
+        _noteType = TextNoteType;
         _noteClass = @"0";
         _imgUrl = @"";
         _imgSmallUrl = @"";
@@ -60,7 +59,7 @@
 }
 
 -(void)save{
-    NSString *sqlStr = [NSString stringWithFormat:@"insert into 'notes'('imgCount','level','soundTime','remind','lock','expire','content','dateStr','remindDateStr','lockTitle','lockPwd','lockType','noteType','noteClass','imgUrl','imgSmallUrl')values('%ld','%ld','%f','%d','%d','%d','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",(long)self.imgCount,self.level,self.soundTime,self.remind,self.lock,self.expire,self.content,self.dateStr,self.remindDateStr,self.lockTitle,self.lockPwd,self.lockType,self.noteType,self.noteClass,self.imgUrl,self.imgSmallUrl];
+    NSString *sqlStr = [NSString stringWithFormat:@"insert into 'notes'('imgCount','level','soundTime','remind','lock','expire','content','dateStr','remindDateStr','lockTitle','lockPwd','lockType','noteType','noteClass','imgUrl','imgSmallUrl')values('%ld','%ld','%f','%d','%d','%d','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",(long)self.imgCount,(long)self.level,self.soundTime,self.remind,self.lock,self.expire,self.content,self.dateStr,self.remindDateStr,self.lockTitle,self.lockPwd,self.lockType,self.noteType,self.noteClass,self.imgUrl,self.imgSmallUrl];
     
     if ([_delegate respondsToSelector:@selector(saveWithSqlStr:)] && [_delegate conformsToProtocol:@protocol(DataProtocol)]) {
         [_delegate saveWithSqlStr:sqlStr];
@@ -68,8 +67,6 @@
         NSLog(@"未实现数据存储");
     }
 }
-
-
 
 
 @end

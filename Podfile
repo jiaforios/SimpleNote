@@ -6,7 +6,7 @@ target 'SimpleNote' do
   # use_frameworks!
 
   # Pods for SimpleNote
-
+pod 'Masonry'
 pod 'MJExtension'
   target 'SimpleNoteTests' do
     inherit! :search_paths
