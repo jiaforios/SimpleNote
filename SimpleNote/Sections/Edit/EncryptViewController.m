@@ -21,6 +21,17 @@
 
 @implementation EncryptViewController
 
+-(UILabel *)label{
+    if (!_label) {
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(32, CGRectGetMaxY(self.optView2.frame)+20, 10, 30)];
+        _label.font = [UIFont systemFontOfSize:15];
+        _label.textColor = TextColor;
+        _label.text = LocalizedString(@"contentTips");
+        [_label sizeToFit];
+    }
+    return _label;
+}
+
 - (UIButton *)saveButton{
     if (!_saveButton) {
         _saveButton = [[UIButton alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.textField.frame)+25, MZWIDTH-60, 44)];
@@ -50,7 +61,7 @@
 
 - (UITextField *)textField{
     if (!_textField) {
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(32, CGRectGetMaxY(self.label.frame)+15, MZWIDTH-40, 50)];
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(32, CGRectGetMaxY(self.label.frame)+15, MZWIDTH-64, 50)];
         _textField.placeholder = LocalizedString(@"entryptTips");
         _textField.textColor = TextColor;
         _textField.font = [UIFont systemFontOfSize:15];
@@ -70,16 +81,7 @@
     
     [self.optView1 addObserver:self forKeyPath:@"checkButton.selected" options:NSKeyValueObservingOptionNew context:@"opt1"];
     [self.optView2 addObserver:self forKeyPath:@"checkButton.selected" options:NSKeyValueObservingOptionNew context:@"opt2"];
-    
-    // 设置提示词
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(32, CGRectGetMaxY(self.optView2.frame)+20, 10, 30)];
-    self.label = label;
-    [self.view addSubview:label];
-    label.font = [UIFont systemFontOfSize:15];
-    label.textColor = TextColor;
-    label.text = LocalizedString(@"contentTips");
-    [label sizeToFit];
-    
+    [self.view addSubview:self.label]; 
     [self.view addSubview:self.textField];
     [self.view addSubview:self.saveButton];
 

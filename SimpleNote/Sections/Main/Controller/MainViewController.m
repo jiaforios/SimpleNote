@@ -79,8 +79,8 @@ static NSString *soundCellIdentifier = @"soundCell";
 /*
  设置
  */
+
 - (void)setAction{
-    
     [self.navigationController pushViewController:[SetViewController new] animated:YES];
 }
 

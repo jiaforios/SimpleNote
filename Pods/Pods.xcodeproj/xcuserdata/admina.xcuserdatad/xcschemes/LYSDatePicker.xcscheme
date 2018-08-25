@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6DF58D0EF6F31DF6752DF451FCD9A8D"
-               BlueprintName = "Pods-SimpleNote"
+               BlueprintIdentifier = "482EA3C779CD099E345408CB1B5504D2"
+               BlueprintName = "LYSDatePicker"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPods-SimpleNote.a">
+               BuildableName = "libLYSDatePicker.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

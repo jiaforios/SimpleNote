@@ -19,7 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+    [self requestAuthor];
+
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
@@ -28,10 +29,20 @@
     
     [self.window makeKeyAndVisible];
     
-    sleep(3);
-    
     return YES;
 }
+
+//创建本地通知
+- (void)requestAuthor
+{
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+        // 设置通知的类型可以为弹窗提示,声音提示,应用图标数字提示
+        UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
+        // 授权通知
+        [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+    }
+}
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -48,6 +59,8 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
 }
 
 

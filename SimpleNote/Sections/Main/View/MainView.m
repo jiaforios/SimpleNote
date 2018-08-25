@@ -145,7 +145,6 @@ static NSString *soundCellIdentifier = @"soundCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
     if ([self.delegate respondsToSelector:@selector(mainViewCellSelect:dataSource:)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
         [self.delegate mainViewCellSelect:indexPath dataSource:self.dataArr[indexPath.row]];
     }
@@ -166,17 +165,39 @@ static NSString *soundCellIdentifier = @"soundCell";
 //    return 50;
 //}
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TextCell *textCell = [tableView dequeueReusableCellWithIdentifier:textCellIdentifier forIndexPath:indexPath];
-    
     NSDictionary *dic = self.dataArr[indexPath.row];
     [textCell showWithData:dic];
-    
     return  textCell;
-    
 }
 
+-(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewRowAction *edit = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:LocalizedString(@"edit") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+    }];
+    
+    edit.backgroundColor = AppColor;
+    
+    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:LocalizedString(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        
+    }];
+    delete.backgroundColor = [UIColor redColor];
+    
+    return @[delete,edit];
+}
+
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dic = self.dataArr[indexPath.row];
+    if ([dic[@"lock"] boolValue]) {
+        return NO;
+    }
+    return YES;
+}
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Utils.h"
 
+
 @implementation Utils
 
 + (NSString *)currentDateStr{
@@ -34,9 +35,46 @@
     return paragraphStyle;
 }
 
++ (NSDate *)dateFromStr:(NSString *)str{
+    NSDateFormatter *format = [NSDateFormatter new];
+    format.dateFormat = @"yyyy-MM-dd HH:mm";
+    return [format dateFromString:str];
+}
+
++ (NSString *)strFromDate:(NSDate*)date{
+    NSDateFormatter *format = [NSDateFormatter new];
+    format.dateFormat = @"yyyy-MM-dd HH:mm";
+    return [format stringFromDate:date];
+}
+
 + (CGFloat)widthOfContent:(NSString *)content{
     CGSize size = [content boundingRectWithSize:CGSizeMake(1000, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
     return size.width;
+}
+
++ (void)localNotification:(NSString *)notifContent notiDate:(NSString *)dateStr{
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    localNotification.alertBody = notifContent;
+    localNotification.fireDate = [self dateFromStr:dateStr];
+    localNotification.applicationIconBadgeNumber = 1;
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    // 以触发日期为通知标识
+    NSDictionary *info = @{@"notifId":dateStr};
+    localNotification.userInfo = info;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
++ (void)cancelLocalNotificationWithId:(NSString *)notifiId{
+    for (UILocalNotification *nofi in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        if ([[nofi.userInfo objectForKey:@"notifId"] isEqualToString:notifiId]) {
+            [[UIApplication sharedApplication] cancelLocalNotification:nofi];
+            break;
+        }
+    }
+}
+
++ (void)cancelAllLocalnotifications{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 @end

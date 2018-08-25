@@ -25,13 +25,15 @@
         _expire = NO;
         _dateStr =  [Utils currentDateStr];
         _remindDateStr = @"";
-        _lockTitle = @"加密";
+        _lockTitle = @"";
         _lockPwd = @"";
         _lockType  = EntryptTypeNone;
         _noteType = TextNoteType;
         _noteClass = @"0";
         _imgUrl = @"";
         _imgSmallUrl = @"";
+        _remindTips = @"";
+        _soundUrl = @"";
         [self delegate:[DBManager shareManager]];
     }
     return  self;
@@ -60,7 +62,7 @@
 }
 
 -(void)save{
-    NSString *sqlStr = [NSString stringWithFormat:@"insert into 'notes'('imgCount','level','soundTime','remind','lock','expire','content','dateStr','remindDateStr','lockTitle','lockPwd','lockType','noteType','noteClass','imgUrl','imgSmallUrl')values('%ld','%ld','%f','%d','%d','%d','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",(long)self.imgCount,(long)self.level,self.soundTime,self.remind,self.lock,self.expire,self.content,self.dateStr,self.remindDateStr,self.lockTitle,self.lockPwd,self.lockType,self.noteType,self.noteClass,self.imgUrl,self.imgSmallUrl];
+    NSString *sqlStr = [NSString stringWithFormat:@"insert into 'notes'('imgCount','level','soundTime','remind','lock','expire','content','dateStr','remindDateStr','lockTitle','lockPwd','lockType','noteType','noteClass','imgUrl','imgSmallUrl','soundUrl','remindTips')values('%ld','%ld','%f','%d','%d','%d','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",(long)self.imgCount,(long)self.level,self.soundTime,self.remind,self.lock,self.expire,self.content,self.dateStr,self.remindDateStr,self.lockTitle,self.lockPwd,self.lockType,self.noteType,self.noteClass,self.imgUrl,self.imgSmallUrl,self.soundUrl,self.remindTips];
     
     if ([_delegate respondsToSelector:@selector(exeWithSqlStr:)] && [_delegate conformsToProtocol:@protocol(DataProtocol)]) {
         [_delegate exeWithSqlStr:sqlStr];

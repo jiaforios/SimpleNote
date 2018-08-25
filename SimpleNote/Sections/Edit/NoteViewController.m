@@ -9,6 +9,7 @@
 #import "NoteViewController.h"
 #import "NoteModel.h"
 #import "EncryptViewController.h"
+#import "RemindViewController.h"
 
 static NSString *cellIdentifier = @"cellIdentifier";
 #define kRowHeight 60
@@ -48,7 +49,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-//        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
         _tableView.tableFooterView = [UIView new];
     }
     
@@ -118,15 +118,17 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (void)saveAction{
-    NSLog(@"保存");
     [self.view resignFirstResponder];
     if (_noteTextView.text.length == 0) {
-        NSLog(@"没有输入内容");
+        [[ZAlertViewManager shareManager] showContent:LocalizedString(@"contentNull") type:AlertViewTypeError];
         return;
     }
     self.noteModel.content = _noteTextView.text;
-
     [self.noteModel save];
+    if (self.noteModel.isRemind) { // 触发之后应该设置过期，或者remind 设置no，删除note 同时要删除 通知
+        [Utils localNotification:self.noteModel.remindTips notiDate:self.noteModel.remindDateStr];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -167,25 +169,43 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    EncryptViewController *entry = [EncryptViewController new];
-    entry.eventClourse = ^(NSString* pwd,NSString *entryptTypeStr,NSString *noteTips){
-        if (entryptTypeStr != EntryptTypeNone) {
-            self.noteModel.lockType = entryptTypeStr;
-            self.noteModel.lock = YES;
-            self.noteModel.lockTitle = noteTips;
-            if (entryptTypeStr == FingureEntryptType) {
-                cell.detailTextLabel.text = LocalizedString(@"fingureEncrypt");
+    if(indexPath.row == 0){
+        EncryptViewController *entry = [EncryptViewController new];
+        entry.eventClourse = ^(NSString* pwd,NSString *entryptTypeStr,NSString *noteTips){
+            if (entryptTypeStr != EntryptTypeNone) {
+                self.noteModel.lockType = entryptTypeStr;
+                self.noteModel.lock = YES;
+                self.noteModel.lockTitle = noteTips;
+                if (entryptTypeStr == FingureEntryptType) {
+                    cell.detailTextLabel.text = LocalizedString(@"fingureEncrypt");
+                }
+                if (entryptTypeStr == PwdEntryptType) {
+                    cell.detailTextLabel.text = LocalizedString(@"pwdEncrypt");
+                    self.noteModel.lockPwd = pwd;
+                }
+                
+            }else{
+                self.noteModel.lock = NO;
             }
-            if (entryptTypeStr == PwdEntryptType) {
-                cell.detailTextLabel.text = LocalizedString(@"pwdEncrypt");
-                self.noteModel.lockPwd = pwd;
-            }
- 
-        }else{
-            self.noteModel.lock = NO;
-        }
-    };
-    [self.navigationController showViewController:entry sender:nil];
+        };
+        [self.navigationController showViewController:entry sender:nil];
+    }
+    
+    if (indexPath.row == 1) {
+        RemindViewController *remind = [RemindViewController new];
+        remind.content = self.noteTextView.text;
+        remind.eventClourse = ^(NSString *tipContent, NSDate *remindDate) {
+          
+            self.noteModel.remind = YES;
+            self.noteModel.remindDateStr = [Utils strFromDate:remindDate];
+            self.noteModel.remindTips = tipContent;
+            cell.detailTextLabel.text = self.noteModel.remindDateStr;
+        };
+        
+        [self.navigationController showViewController:remind sender:nil];
+    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

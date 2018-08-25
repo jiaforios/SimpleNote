@@ -22,8 +22,8 @@
 @property(nonatomic, assign, getter = isExpired) BOOL expire; // 过期
 
 @property(nonatomic, copy) NSString *content;
-@property(nonatomic, copy) NSString *dateStr;
-@property(nonatomic, copy) NSString *remindDateStr;
+@property(nonatomic, copy) NSString *dateStr; // 创建日期
+@property(nonatomic, copy) NSString *remindDateStr; // 提醒日期
 @property(nonatomic, copy) NSString *lockTitle;
 @property(nonatomic, copy) NSString *lockPwd;
 @property(nonatomic, copy) NSString *lockType;
@@ -32,6 +32,8 @@
 @property(nonatomic, copy) NSString *imgUrl;
 @property(nonatomic, copy) NSString *imgSmallUrl;
 @property(nonatomic, copy) NSString *soundUrl;
+@property(nonatomic, copy) NSString *remindTips;  // 提示暗语
+
 
 + (NSArray<NoteModel*>*)fetchAllModel;
 - (void)save;

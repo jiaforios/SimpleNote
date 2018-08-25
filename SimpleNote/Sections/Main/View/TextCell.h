@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIView *coverView;
 @property (weak, nonatomic) IBOutlet UIImageView *lockImg;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 - (void)showWithData:(NSDictionary *)dic;
 

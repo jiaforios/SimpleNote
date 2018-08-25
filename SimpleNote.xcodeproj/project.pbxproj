@@ -22,6 +22,7 @@
 		84226A222130FE57009D2F82 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226A1B2130FE57009D2F82 /* UIColor+Hexadecimal.m */; };
 		84226A232130FE57009D2F82 /* ZAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226A1D2130FE57009D2F82 /* ZAlertView.m */; };
 		84226A242130FE57009D2F82 /* ZAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226A1F2130FE57009D2F82 /* ZAlertViewManager.m */; };
+		84226A2721312C4B009D2F82 /* RemindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226A2621312C4B009D2F82 /* RemindViewController.m */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
 		846E2563212A928200C797CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846E2562212A928200C797CE /* Assets.xcassets */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
@@ -88,6 +89,8 @@
 		84226A1D2130FE57009D2F82 /* ZAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAlertView.m; sourceTree = "<group>"; };
 		84226A1E2130FE57009D2F82 /* ZAlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAlertViewManager.h; sourceTree = "<group>"; };
 		84226A1F2130FE57009D2F82 /* ZAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAlertViewManager.m; sourceTree = "<group>"; };
+		84226A2521312C4B009D2F82 /* RemindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemindViewController.h; sourceTree = "<group>"; };
+		84226A2621312C4B009D2F82 /* RemindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemindViewController.m; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				842269FE212EAC94009D2F82 /* SoundEditViewController.m */,
 				84226A0F212FD348009D2F82 /* EncryptViewController.h */,
 				84226A10212FD348009D2F82 /* EncryptViewController.m */,
+				84226A2521312C4B009D2F82 /* RemindViewController.h */,
+				84226A2621312C4B009D2F82 /* RemindViewController.m */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				846E2582212A92B900C797CE /* MZBaseNavigationViewController.m in Sources */,
 				846E25B3212BC67300C797CE /* NoteModel.m in Sources */,
 				842269FF212EAC94009D2F82 /* SoundEditViewController.m in Sources */,
+				84226A2721312C4B009D2F82 /* RemindViewController.m in Sources */,
 				846E25AF212BA24600C797CE /* ImgCell.m in Sources */,
 				8493EE6D212E654A001FC8C2 /* Utils.m in Sources */,
 				84916FFD212CEDCD00AC23EB /* MZView.m in Sources */,

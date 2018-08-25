@@ -6,9 +6,10 @@ target 'SimpleNote' do
   # use_frameworks!
 
   # Pods for SimpleNote
+  pod 'LYSDatePicker'
 pod 'Masonry'
 pod 'MJExtension'
-  target 'SimpleNoteTests' do
+target 'SimpleNoteTests' do
     inherit! :search_paths
     # Pods for testing
   end

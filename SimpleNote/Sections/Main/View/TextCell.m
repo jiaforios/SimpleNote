@@ -40,6 +40,7 @@
     self.contentLabel.numberOfLines = 0;
     self.timeLabel.text= dic[@"dateStr"];    
     self.coverView.hidden = ![dic[@"lock"] boolValue];
+    self.tipLabel.text = dic[@"lockTitle"];
     if ([dic[@"lockType"] isEqualToString:FingureEntryptType]) {
         self.lockImg.image = [UIImage imageNamed:@"fingure_entrypt"];
     }
