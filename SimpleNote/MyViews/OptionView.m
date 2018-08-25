@@ -129,7 +129,7 @@
     }
 }
 
--(BOOL)isSelect{
+-(BOOL)isSelected{
     return self.checkButton.isSelected;
 }
 

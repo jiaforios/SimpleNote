@@ -11,3 +11,8 @@
 UIKIT_EXTERN NSString * const TextNoteType;
 UIKIT_EXTERN NSString * const ImgNoteType;
 UIKIT_EXTERN NSString * const SoundNoteType;
+
+UIKIT_EXTERN NSString * const FingureEntryptType;
+UIKIT_EXTERN NSString * const PwdEntryptType;
+UIKIT_EXTERN NSString * const EntryptTypeNone;
+

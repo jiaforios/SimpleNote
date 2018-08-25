@@ -27,7 +27,7 @@
         _remindDateStr = @"";
         _lockTitle = @"加密";
         _lockPwd = @"";
-        _lockType  = @"0";
+        _lockType  = EntryptTypeNone;
         _noteType = TextNoteType;
         _noteClass = @"0";
         _imgUrl = @"";

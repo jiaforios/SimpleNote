@@ -8,6 +8,10 @@
 
 #import "MZBaseViewController.h"
 
+
 @interface EncryptViewController : MZBaseViewController
+
+@property(nonatomic, copy) void(^eventClourse)(NSString *,NSString *,NSString *);
+
 
 @end

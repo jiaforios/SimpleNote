@@ -20,10 +20,18 @@ static NSString *cellIdentifier = @"cellIdentifier";
 @property(nonatomic, strong)UIButton *lockButton;
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong) NSMutableArray *dataSource;
+@property(nonatomic, strong)NoteModel *noteModel;
+
 @end
 
 @implementation NoteViewController
 
+- (NoteModel *)noteModel{
+    if (!_noteModel) {
+        _noteModel = [NoteModel new];
+    }
+    return _noteModel;
+}
 
 - (NSMutableArray *)dataSource{
     if (!_dataSource) {
@@ -40,7 +48,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+//        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
         _tableView.tableFooterView = [UIView new];
     }
     
@@ -102,7 +110,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.saveButton];
     self.navigationItem.rightBarButtonItem = set;
     [self.view addSubview:self.noteTextView];
-//    [self.view addSubview:self.lockButton];
     [self.view addSubview:self.tableView];
 }
 
@@ -117,12 +124,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
         NSLog(@"没有输入内容");
         return;
     }
-    NoteModel *model = [NoteModel new];
-    model.content = _noteTextView.text;
-    if (self.lockButton.selected) {
-        model.lock = YES;
-    }
-    [model save];
+    self.noteModel.content = _noteTextView.text;
+
+    [self.noteModel save];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -146,7 +150,10 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
     cell.textLabel.text = self.dataSource[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont systemFontOfSize:15];
@@ -159,8 +166,26 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"点击cell");
-    [self.navigationController showViewController:[EncryptViewController new] sender:nil];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    EncryptViewController *entry = [EncryptViewController new];
+    entry.eventClourse = ^(NSString* pwd,NSString *entryptTypeStr,NSString *noteTips){
+        if (entryptTypeStr != EntryptTypeNone) {
+            self.noteModel.lockType = entryptTypeStr;
+            self.noteModel.lock = YES;
+            self.noteModel.lockTitle = noteTips;
+            if (entryptTypeStr == FingureEntryptType) {
+                cell.detailTextLabel.text = LocalizedString(@"fingureEncrypt");
+            }
+            if (entryptTypeStr == PwdEntryptType) {
+                cell.detailTextLabel.text = LocalizedString(@"pwdEncrypt");
+                self.noteModel.lockPwd = pwd;
+            }
+ 
+        }else{
+            self.noteModel.lock = NO;
+        }
+    };
+    [self.navigationController showViewController:entry sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {

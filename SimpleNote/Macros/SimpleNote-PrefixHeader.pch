@@ -15,5 +15,7 @@
 #import "Utils.h"
 #import "NoteConst.h"
 
+#import "ZAlertViewManager.h"
+
 
 #endif

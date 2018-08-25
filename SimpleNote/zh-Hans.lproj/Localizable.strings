@@ -10,3 +10,11 @@
 "imgSet"="添加图片";
 "contentTips"="内容提示";
 "saveOver"="完成";
+"fingureEncrypt"="指纹加密";
+"pwdEncrypt"="密码加密";
+"entryptTips"="请输入提示词";
+"cancel"="取消";
+"sure"="确定";
+"inputPwd"="输入密码";
+"fingureError"="指纹验证失败";
+"pwdError"="密码验证失败";

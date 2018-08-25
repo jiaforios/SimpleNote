@@ -36,14 +36,14 @@
 
 - (OptionView *)optView1{
     if (!_optView1) {
-        _optView1 = [[OptionView alloc] initWithFrame:CGRectMake(20, 60, MZWIDTH-40, 60) title:@"指纹加密" type:OptionViewTypeFingure];
+        _optView1 = [[OptionView alloc] initWithFrame:CGRectMake(20, 60, MZWIDTH-40, 60) title:LocalizedString(@"fingureEncrypt") type:OptionViewTypeFingure];
     }
     return _optView1;
 }
 
 - (OptionView *)optView2{
     if (!_optView2) {
-        _optView2 = [[OptionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.optView1.frame)+20, MZWIDTH-40, 60) title:@"密码加密" type:OptionViewTypePwd];
+        _optView2 = [[OptionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.optView1.frame)+20, MZWIDTH-40, 60) title:LocalizedString(@"pwdEncrypt") type:OptionViewTypePwd];
     }
     return _optView2;
 }
@@ -51,7 +51,7 @@
 - (UITextField *)textField{
     if (!_textField) {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(32, CGRectGetMaxY(self.label.frame)+15, MZWIDTH-40, 50)];
-        _textField.placeholder = @"请输入提示词";
+        _textField.placeholder = LocalizedString(@"entryptTips");
         _textField.textColor = TextColor;
         _textField.font = [UIFont systemFontOfSize:15];
         _textField.background = [UIImage imageNamed:@"input_line"];
@@ -102,7 +102,24 @@
 
 - (void)saveAction{
     
-    NSLog(@"keep");
+    NSString *entryType;
+    if (self.optView1.isSelected) {
+        entryType = FingureEntryptType;
+    }else
+    if (self.optView2.isSelected) {
+        entryType = PwdEntryptType;
+    }else{
+        entryType = EntryptTypeNone;
+    }
+    
+    if (entryType != EntryptTypeNone && self.textField.text.length == 0) {
+        NSLog(@"没有提示词");
+    }
+    
+    if (self.eventClourse) {
+        self.eventClourse(self.optView2.pwdContent,entryType,self.textField.text);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

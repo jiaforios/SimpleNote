@@ -80,18 +80,41 @@ static NSString *soundCellIdentifier = @"soundCell";
 }
 
 - (void)mainViewCellSelect:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData{
-    // 判断点击的行 是否加密
     if ([cellData[@"lock"] boolValue] && ![[NoteManager unLockedNoteIds] containsObject:cellData[@"noteId"]]) {
-        // 弹出指纹验证
-        [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:@"确定" localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
-            if (isSuccess) {
-                [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
-                [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel
-                [self.mainView changeLockedCellState:indexPath];
-            }else{
-                
-            }
-        }];
+        
+        if ([cellData[@"lockType"] isEqualToString: FingureEntryptType]) {
+            [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:@"确定" localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
+                if (isSuccess) {
+                    [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
+                    [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel
+                    [self.mainView changeLockedCellState:indexPath];
+                }
+            }];
+        }
+        
+        if ([cellData[@"lockType"] isEqualToString: PwdEntryptType]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"inputPwd") message:cellData[@"lockTitle"] preferredStyle:UIAlertControllerStyleAlert];
+            [alert addTextFieldWithConfigurationHandler:nil];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *sure = [UIAlertAction actionWithTitle:LocalizedString(@"sure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if ([alert.textFields[0].text isEqualToString:cellData[@"lockPwd"]]) {
+                    [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
+                    [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel
+                    [self.mainView changeLockedCellState:indexPath];
+                }else{
+                    // 验证失败
+                    [[ZAlertViewManager shareManager] showContent:LocalizedString(@"pwdError") type:AlertViewTypeSuccess];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }];
+            
+            [alert addAction:cancel];
+            [alert addAction:sure];
+
+            [self presentViewController:alert animated:YES completion:nil];
+        
+        }
+        
     }
 }
 
@@ -100,7 +123,6 @@ static NSString *soundCellIdentifier = @"soundCell";
     arr = [arr sortedArrayUsingComparator:^NSComparisonResult(NoteModel* obj1, NoteModel* obj2) {
         return obj1.noteId < obj2.noteId;
     }];
-    
     return [NoteModel mj_keyValuesArrayWithObjectArray:arr];
 }
 

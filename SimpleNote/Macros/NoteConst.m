@@ -12,3 +12,6 @@ NSString * const TextNoteType = @"TextNoteType";
 NSString * const ImgNoteType = @"ImgNoteType";
 NSString * const SoundNoteType = @"SoundNoteType";
 
+NSString * const FingureEntryptType = @"FingureEntryptType";
+NSString * const PwdEntryptType = @"PwdEntryptType";
+NSString * const EntryptTypeNone = @"EntryptTypeNone";
