@@ -57,11 +57,11 @@
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wrb-FG-CfE" userLabel="coverView">
                         <rect key="frame" x="0.0" y="35" width="375" height="114.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock_small" translatesAutoresizingMaskIntoConstraints="NO" id="Ugx-b5-csK">
-                                <rect key="frame" x="177" y="45" width="20" height="25"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pwd_entrypt" translatesAutoresizingMaskIntoConstraints="NO" id="Ugx-b5-csK">
+                                <rect key="frame" x="165" y="35.5" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="57C-Nw-qGx"/>
-                                    <constraint firstAttribute="width" constant="20" id="xOg-CC-ftp"/>
+                                    <constraint firstAttribute="height" constant="44" id="57C-Nw-qGx"/>
+                                    <constraint firstAttribute="width" constant="44" id="xOg-CC-ftp"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -95,12 +95,13 @@
                 <outlet property="contentLabel" destination="Tq7-U6-0bZ" id="AUT-z3-kah"/>
                 <outlet property="coverView" destination="Wrb-FG-CfE" id="ckg-lu-QVv"/>
                 <outlet property="editButton" destination="9gW-60-wGn" id="j12-Zc-85x"/>
+                <outlet property="lockImg" destination="Ugx-b5-csK" id="cgj-NZ-oOk"/>
                 <outlet property="timeLabel" destination="hEd-Sa-Azg" id="T6Q-Xj-dQ7"/>
             </connections>
-            <point key="canvasLocation" x="-86.5" y="-354"/>
+            <point key="canvasLocation" x="-397" y="-506"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="lock_small" width="20" height="25"/>
+        <image name="pwd_entrypt" width="44" height="44"/>
     </resources>
 </document>

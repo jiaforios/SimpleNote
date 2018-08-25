@@ -40,7 +40,14 @@
     self.contentLabel.numberOfLines = 0;
     self.timeLabel.text= dic[@"dateStr"];    
     self.coverView.hidden = ![dic[@"lock"] boolValue];
-
+    if ([dic[@"lockType"] isEqualToString:FingureEntryptType]) {
+        self.lockImg.image = [UIImage imageNamed:@"fingure_entrypt"];
+    }
+    
+    if ([dic[@"lockType"] isEqualToString:PwdEntryptType]) {
+        self.lockImg.image = [UIImage imageNamed:@"pwd_entrypt"];
+    }
+    
     NSAttributedString *attr = [[NSAttributedString alloc] initWithString:dic[@"content"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[Utils paraStyle]}];
     NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];
     self.contentLabel.attributedText = strM;

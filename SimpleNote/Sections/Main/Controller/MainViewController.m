@@ -27,6 +27,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 @interface MainViewController ()<MainViewDelegate,MainViewDataSource>
 @property(nonatomic, strong)UIButton *setButton;
 @property(nonatomic, strong)MainView *mainView;
+@property(nonatomic, strong)UIButton *clearButton;
 
 @end
 
@@ -44,14 +45,27 @@ static NSString *soundCellIdentifier = @"soundCell";
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.setButton];
     self.navigationItem.rightBarButtonItem = set;
     
+    UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithCustomView:self.clearButton];
+    self.navigationItem.leftBarButtonItem = clear;
+    
     MainView *mv = [[MainView alloc] initWithFrame:self.view.bounds];
     mv.delegate = self;
     mv.dataSource = self;
     self.view = mv;
     self.mainView  = mv;
     
-
 }
+- (UIButton *)clearButton{
+    if (!_clearButton) {
+        _clearButton = [[UIButton alloc] init];
+        _clearButton.frame = CGRectMake(0, 0, 44,44);
+        [_clearButton setImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
+        [_clearButton addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _clearButton;
+}
+
+
 - (UIButton *)setButton{
     if (!_setButton) {
         _setButton = [[UIButton alloc] init];
@@ -61,12 +75,18 @@ static NSString *soundCellIdentifier = @"soundCell";
     }
     return _setButton;
 }
+
 /*
  设置
  */
 - (void)setAction{
     
     [self.navigationController pushViewController:[SetViewController new] animated:YES];
+}
+
+- (void)clearAction{
+    [[DBManager shareManager]clearAllNotes];
+    [self.mainView setUpDataReload:YES];
 }
 
 #pragma mark -- ViewProtocol --
@@ -83,7 +103,7 @@ static NSString *soundCellIdentifier = @"soundCell";
     if ([cellData[@"lock"] boolValue] && ![[NoteManager unLockedNoteIds] containsObject:cellData[@"noteId"]]) {
         
         if ([cellData[@"lockType"] isEqualToString: FingureEntryptType]) {
-            [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:@"确定" localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
+            [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:LocalizedString(@"sure") localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
                 if (isSuccess) {
                     [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
                     [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIView *coverView;
+@property (weak, nonatomic) IBOutlet UIImageView *lockImg;
 
 - (void)showWithData:(NSDictionary *)dic;
 

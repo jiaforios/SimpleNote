@@ -10,6 +10,6 @@
 
 @protocol DataProtocol <NSObject>
 @optional
-- (void)saveWithSqlStr:(NSString *)sqlStr;
+- (void)exeWithSqlStr:(NSString *)sqlStr;
 
 @end

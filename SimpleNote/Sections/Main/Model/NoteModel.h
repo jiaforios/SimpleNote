@@ -36,5 +36,4 @@
 + (NSArray<NoteModel*>*)fetchAllModel;
 - (void)save;
 
-
 @end

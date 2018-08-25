@@ -11,6 +11,7 @@
 
 @interface DBManager : NSObject<DataProtocol>
 + (instancetype)shareManager;
+- (void)clearAllNotes;
 
 - (void)saveModel;
 - (void)deleteModel;

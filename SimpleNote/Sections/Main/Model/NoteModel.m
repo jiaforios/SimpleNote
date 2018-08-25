@@ -54,6 +54,7 @@
     return arr;
 }
 
+
 -(void)delegate:(id<DataProtocol>)obj{
     _delegate = obj;
 }
@@ -61,8 +62,8 @@
 -(void)save{
     NSString *sqlStr = [NSString stringWithFormat:@"insert into 'notes'('imgCount','level','soundTime','remind','lock','expire','content','dateStr','remindDateStr','lockTitle','lockPwd','lockType','noteType','noteClass','imgUrl','imgSmallUrl')values('%ld','%ld','%f','%d','%d','%d','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",(long)self.imgCount,(long)self.level,self.soundTime,self.remind,self.lock,self.expire,self.content,self.dateStr,self.remindDateStr,self.lockTitle,self.lockPwd,self.lockType,self.noteType,self.noteClass,self.imgUrl,self.imgSmallUrl];
     
-    if ([_delegate respondsToSelector:@selector(saveWithSqlStr:)] && [_delegate conformsToProtocol:@protocol(DataProtocol)]) {
-        [_delegate saveWithSqlStr:sqlStr];
+    if ([_delegate respondsToSelector:@selector(exeWithSqlStr:)] && [_delegate conformsToProtocol:@protocol(DataProtocol)]) {
+        [_delegate exeWithSqlStr:sqlStr];
     }else{
         NSLog(@"未实现数据存储");
     }

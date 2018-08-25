@@ -65,13 +65,13 @@ static sqlite3 *db;
 }
 
 #pragma mark -- DataProtocol
--(void)saveWithSqlStr:(NSString *)sqlStr{
+-(void)exeWithSqlStr:(NSString *)sqlStr{
     char *error = nil;
     sqlite3_exec(db, sqlStr.UTF8String, nil, nil, &error);
     if (error == nil) {
-        NSLog(@"插入数据成功");
+        NSLog(@"操作成功");
     }else{
-        NSLog(@"插入数据失败");
+        NSLog(@"操作失败");
     }
 }
 
@@ -139,6 +139,17 @@ static sqlite3 *db;
     
     return [models copy];
     
+}
+
+- (void)clearAllNotes{
+    NSString *sqlStr = @"delete from 'notes'";
+    char *error = nil;
+    sqlite3_exec(db, sqlStr.UTF8String, nil, nil, &error);
+    if (error == nil) {
+        NSLog(@"操作成功");
+    }else{
+        NSLog(@"操作失败");
+    }
 }
 
 @end

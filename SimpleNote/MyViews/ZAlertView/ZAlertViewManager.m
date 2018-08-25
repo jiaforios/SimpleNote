@@ -38,7 +38,7 @@
     [[self class ] cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissView) object:nil];
     [self.alertView topAlertViewContent:content Type:type];
     [self.alertView show];
-    [self performSelector:@selector(dismissView) withObject:nil afterDelay:5];
+    [self performSelector:@selector(dismissView) withObject:nil afterDelay:2];
 }
 - (void)test_showConnectType:(NSString *)content{
     if (DEBUG) {
