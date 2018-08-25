@@ -20,7 +20,7 @@
         _imgCount = 0;
         _level = 0;
         _soundTime = 0;
-        _remind = YES;
+        _remind = NO;
         _lock = NO;
         _expire = NO;
         _dateStr =  [Utils currentDateStr];

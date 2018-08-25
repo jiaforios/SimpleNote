@@ -86,6 +86,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 - (void)clearAction{
     [[DBManager shareManager]clearAllNotes];
+    [Utils cancelAllLocalnotifications];
     [self.mainView setUpDataReload:YES];
 }
 

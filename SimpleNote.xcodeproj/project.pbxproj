@@ -91,6 +91,7 @@
 		84226A1F2130FE57009D2F82 /* ZAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAlertViewManager.m; sourceTree = "<group>"; };
 		84226A2521312C4B009D2F82 /* RemindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemindViewController.h; sourceTree = "<group>"; };
 		84226A2621312C4B009D2F82 /* RemindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemindViewController.m; sourceTree = "<group>"; };
+		84226A2821315033009D2F82 /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		846E2590212AA66600C797CE /* SetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 		846E2595212ABF1E00C797CE /* UIFont+FontType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontType.h"; sourceTree = "<group>"; };
 		846E2596212ABF1E00C797CE /* UIFont+FontType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontType.m"; sourceTree = "<group>"; };
-		846E25A1212B9C9400C797CE /* TextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
 		846E25A2212B9C9400C797CE /* TextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 		846E25A3212B9C9400C797CE /* TextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
 		846E25A6212B9CAB00C797CE /* SoundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundCell.h; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 				846E25A6212B9CAB00C797CE /* SoundCell.h */,
 				846E25A7212B9CAB00C797CE /* SoundCell.m */,
 				846E25A8212B9CAB00C797CE /* SoundCell.xib */,
-				846E25A1212B9C9400C797CE /* TextCell.h */,
+				84226A2821315033009D2F82 /* TextCell.h */,
 				846E25A2212B9C9400C797CE /* TextCell.m */,
 				846E25A3212B9C9400C797CE /* TextCell.xib */,
 				846E25AC212BA24600C797CE /* ImgCell.h */,

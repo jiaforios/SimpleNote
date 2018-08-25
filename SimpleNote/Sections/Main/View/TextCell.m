@@ -42,13 +42,16 @@
     self.coverView.hidden = ![dic[@"lock"] boolValue];
     self.tipLabel.text = dic[@"lockTitle"];
     if ([dic[@"lockType"] isEqualToString:FingureEntryptType]) {
-        self.lockImg.image = [UIImage imageNamed:@"fingure_entrypt"];
+        self.lockImg.hidden = NO;
+        self.lockImg.image = [UIImage imageNamed:@"small_fingure"];
+    }else if ([dic[@"lockType"] isEqualToString:PwdEntryptType]) {
+        self.lockImg.hidden = NO;
+        self.lockImg.image = [UIImage imageNamed:@"small_pwd"];
+    }else{
+        self.lockImg.hidden = YES;
     }
-    
-    if ([dic[@"lockType"] isEqualToString:PwdEntryptType]) {
-        self.lockImg.image = [UIImage imageNamed:@"pwd_entrypt"];
-    }
-    
+    self.remindImg.hidden = ![dic[@"remind"] boolValue];
+
     NSAttributedString *attr = [[NSAttributedString alloc] initWithString:dic[@"content"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[Utils paraStyle]}];
     NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];
     self.contentLabel.attributedText = strM;
