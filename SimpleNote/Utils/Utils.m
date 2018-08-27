@@ -13,7 +13,7 @@
 
 + (NSString *)currentDateStr{
     NSDateFormatter *format = [NSDateFormatter new];
-    format.dateFormat = @"dd/MM yyyy HH:mm:ss";
+    format.dateFormat = @"yyyy-MM-dd hh:mm";
     return [format stringFromDate:[NSDate date]];
 }
 
@@ -64,9 +64,9 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
-+ (void)cancelLocalNotificationWithId:(NSString *)notifiId{
++ (void)cancelLocalNotificationWithDate:(NSString *)notifiDate{
     for (UILocalNotification *nofi in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        if ([[nofi.userInfo objectForKey:@"notifId"] isEqualToString:notifiId]) {
+        if ([[nofi.userInfo objectForKey:@"notifId"] isEqualToString:notifiDate]) {
             [[UIApplication sharedApplication] cancelLocalNotification:nofi];
             break;
         }

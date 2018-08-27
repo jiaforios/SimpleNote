@@ -45,8 +45,8 @@ static NSString *soundCellIdentifier = @"soundCell";
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.setButton];
     self.navigationItem.rightBarButtonItem = set;
     
-    UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithCustomView:self.clearButton];
-    self.navigationItem.leftBarButtonItem = clear;
+//    UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithCustomView:self.clearButton];
+//    self.navigationItem.leftBarButtonItem = clear;
     
     MainView *mv = [[MainView alloc] initWithFrame:self.view.bounds];
     mv.delegate = self;
@@ -81,13 +81,16 @@ static NSString *soundCellIdentifier = @"soundCell";
  */
 
 - (void)setAction{
-    [self.navigationController pushViewController:[SetViewController new] animated:YES];
+    
+    SetViewController *set = [SetViewController new];
+    set.clearClourse = ^{
+        [self.mainView setUpDataReload:YES];
+    };
+    [self.navigationController pushViewController:set animated:YES];
 }
 
 - (void)clearAction{
-    [[DBManager shareManager]clearAllNotes];
-    [Utils cancelAllLocalnotifications];
-    [self.mainView setUpDataReload:YES];
+
 }
 
 #pragma mark -- ViewProtocol --
@@ -120,7 +123,7 @@ static NSString *soundCellIdentifier = @"soundCell";
             UIAlertAction *sure = [UIAlertAction actionWithTitle:LocalizedString(@"sure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 if ([alert.textFields[0].text isEqualToString:cellData[@"lockPwd"]]) {
                     [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
-                    [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：notemodel -> fetchAllmodel
+                    [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：Notemodel -> fetchAllmodel
                     [self.mainView changeLockedCellState:indexPath];
                 }else{
                     // 验证失败
@@ -131,9 +134,7 @@ static NSString *soundCellIdentifier = @"soundCell";
             
             [alert addAction:cancel];
             [alert addAction:sure];
-
             [self presentViewController:alert animated:YES completion:nil];
-        
         }
         
     }
@@ -145,6 +146,17 @@ static NSString *soundCellIdentifier = @"soundCell";
         return obj1.noteId < obj2.noteId;
     }];
     return [NoteModel mj_keyValuesArrayWithObjectArray:arr];
+}
+
+- (void)mainViewCellDelete:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData{
+    
+    NoteModel *model = [NoteModel mj_objectWithKeyValues:cellData];
+    [model deleteWithId];
+    [Utils cancelLocalNotificationWithDate:model.remindDateStr]; //清除提醒
+}
+
+-(void)mainViewCellEdit:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData{
+//    NoteModel *model = [NoteModel mj_objectWithKeyValues:cellData];
 }
 
 - (void)didReceiveMemoryWarning {

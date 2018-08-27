@@ -7,31 +7,139 @@
 //
 
 #import "SetViewController.h"
+#import "DBManager.h"
+#import "ColorViewController.h"
+#import "FontViewController.h"
+#import "APPentryptViewController.h"
+#import "OptionsViewController.h"
+#import "HelpsViewController.h"
+#import "VersionViewController.h"
 
-@interface SetViewController ()
+static NSString *cellIdentifier = @"cellIdentifier";
 
+@interface SetViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic, strong)UITableView *tableView;
+@property(nonatomic, strong)NSMutableArray *sourceArr;
 @end
 
 @implementation SetViewController
 
+- (NSMutableArray *)sourceArr{
+    if (!_sourceArr) {
+        _sourceArr = [NSMutableArray new];
+        NSArray *section0 = @[LocalizedString(@"colorSet"),LocalizedString(@"fontSet"),LocalizedString(@"appEntrypt"),LocalizedString(@"clearAll")];
+        NSArray *section1 = @[LocalizedString(@"options"),LocalizedString(@"helps"),LocalizedString(@"versionInfo")];
+        [_sourceArr addObject:section0];
+        [_sourceArr addObject:section1];
+    }
+    
+    return _sourceArr;
+}
+
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, MZHEIGHT-64) style:UITableViewStyleGrouped];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor clearColor];
+    }
+    
+    return _tableView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"设置";
+    [self.view addSubview:self.tableView];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.sourceArr.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSArray *arr = self.sourceArr[section];;
+    return arr.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+        cell.textLabel.textColor = TextColor;
+        cell.detailTextLabel.textColor = DetailTextColor;
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    NSArray *arr = self.sourceArr[indexPath.section];;
+    cell.textLabel.text = arr[indexPath.row];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                [self.navigationController showViewController:[ColorViewController new] sender:nil];
+                break;
+            case 1:
+                [self.navigationController showViewController:[FontViewController new] sender:nil];
+                break;
+            case 2:
+                [self.navigationController showViewController:[APPentryptViewController new] sender:nil];
+                break;
+            case 3:
+                [self clearAll];
+                break;
+            default:
+                break;
+        }
+    }
+    
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:
+                [self.navigationController showViewController:[OptionsViewController new] sender:nil];
+
+                break;
+            case 1:
+                [self.navigationController showViewController:[HelpsViewController new] sender:nil];
+
+                break;
+            case 2:
+                [self.navigationController showViewController:[VersionViewController new] sender:nil];
+                break;
+            default:
+                break;
+        }
+    }
+   
+}
+
+
+- (void)clearAll{
+    [self showAlertViewTitle:LocalizedString(@"clearAll") message:LocalizedString(@"deleteTips") sureBlock:^{
+        [[DBManager shareManager] clearAllNotes];
+        [Utils cancelAllLocalnotifications];
+        if (self.clearClourse) {
+            self.clearClourse();
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

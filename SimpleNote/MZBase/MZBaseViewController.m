@@ -9,15 +9,24 @@
 #import "MZBaseViewController.h"
 
 @interface MZBaseViewController ()
+@property(nonatomic, strong)NSUserDefaults *user;
 
 @end
 
 @implementation MZBaseViewController
 
+
+- (NSUserDefaults *)user{
+    if (!_user) {
+        _user = [NSUserDefaults standardUserDefaults];
+    }
+    return _user;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appColorChange:) name:AppColorChangeNotification object:nil];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[self bgImage]];
-    
 //    self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
   
@@ -42,13 +51,35 @@
 }
 
 - (UIImage *)bgImage{
-    return [UIImage imageNamed:@"bg_8"];
+    return [UIImage imageWithData:[self.user objectForKey:APPCOLORIMAGE]];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
     
     [self.view endEditing:YES];
+}
+
+
+- (void)showAlertViewTitle:(NSString *)title message:(NSString *)message sureBlock:(void(^)(void))sBlock{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:LocalizedString(@"sure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        sBlock?sBlock():nil;
+    }];
+    [alert addAction:cancel];
+    [alert addAction:sure];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)appColorChange:(NSNotification *)center{
+    
+    UIImage *img = [[center userInfo] objectForKey:@"color"];
+    NSData *data = UIImagePNGRepresentation(img);
+    [self.user setObject:data forKey:APPCOLORIMAGE];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:img];
+    [self.navigationController.navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 - (void)didReceiveMemoryWarning {

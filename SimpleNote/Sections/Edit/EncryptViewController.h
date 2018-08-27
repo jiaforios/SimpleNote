@@ -12,6 +12,9 @@
 @interface EncryptViewController : MZBaseViewController
 
 @property(nonatomic, copy) void(^eventClourse)(NSString *,NSString *,NSString *);
+@property(nonatomic, copy)NSString *pwd;
+@property(nonatomic, copy)NSString *locktype;
+@property(nonatomic, copy)NSString *lockTips;
 
 
 @end

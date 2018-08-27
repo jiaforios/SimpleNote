@@ -141,6 +141,13 @@
     return self.textField.text;
 }
 
+- (void)setPwdContent:(NSString *)pwdContent{
+    if (_type != OptionViewTypePwd) {
+        NSLog(@"指纹模式下没有密码");
+    }
+     self.textField.text = pwdContent;
+}
+
 - (CGFloat)widthOfContent:(NSString *)content{
     CGSize size = [content boundingRectWithSize:CGSizeMake(1000, 44) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
     NSLog(@"width = %f，heigth = %f",size.width,size.height);

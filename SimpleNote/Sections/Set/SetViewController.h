@@ -10,4 +10,6 @@
 
 @interface SetViewController : MZBaseViewController
 
+@property(nonatomic ,copy)void(^clearClourse)(void);
+
 @end

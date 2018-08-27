@@ -23,8 +23,15 @@
 		84226A232130FE57009D2F82 /* ZAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226A1D2130FE57009D2F82 /* ZAlertView.m */; };
 		84226A242130FE57009D2F82 /* ZAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226A1F2130FE57009D2F82 /* ZAlertViewManager.m */; };
 		84226A2721312C4B009D2F82 /* RemindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226A2621312C4B009D2F82 /* RemindViewController.m */; };
+		84455E9E2133C5E7007B25A9 /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455E9D2133C5E7007B25A9 /* ColorViewController.m */; };
+		84455EA12133C5F0007B25A9 /* FontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EA02133C5F0007B25A9 /* FontViewController.m */; };
+		84455EA42133C612007B25A9 /* APPentryptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EA32133C612007B25A9 /* APPentryptViewController.m */; };
+		84455EA72133CB94007B25A9 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EA62133CB94007B25A9 /* OptionsViewController.m */; };
+		84455EAA2133CBA2007B25A9 /* HelpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EA92133CBA2007B25A9 /* HelpsViewController.m */; };
+		84455EAD2133CBB9007B25A9 /* VersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EAC2133CBB9007B25A9 /* VersionViewController.m */; };
+		84455EB12133CF3B007B25A9 /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EB02133CF3B007B25A9 /* ColorCell.m */; };
+		84455EB32133F219007B25A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84455EB22133F218007B25A9 /* Assets.xcassets */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
-		846E2563212A928200C797CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846E2562212A928200C797CE /* Assets.xcassets */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
 		846E2569212A928200C797CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2568212A928200C797CE /* main.m */; };
 		846E2573212A928200C797CE /* SimpleNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2572212A928200C797CE /* SimpleNoteTests.m */; };
@@ -92,10 +99,24 @@
 		84226A2521312C4B009D2F82 /* RemindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemindViewController.h; sourceTree = "<group>"; };
 		84226A2621312C4B009D2F82 /* RemindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemindViewController.m; sourceTree = "<group>"; };
 		84226A2821315033009D2F82 /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
+		84455E9C2133C5E7007B25A9 /* ColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
+		84455E9D2133C5E7007B25A9 /* ColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
+		84455E9F2133C5F0007B25A9 /* FontViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontViewController.h; sourceTree = "<group>"; };
+		84455EA02133C5F0007B25A9 /* FontViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontViewController.m; sourceTree = "<group>"; };
+		84455EA22133C612007B25A9 /* APPentryptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APPentryptViewController.h; sourceTree = "<group>"; };
+		84455EA32133C612007B25A9 /* APPentryptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APPentryptViewController.m; sourceTree = "<group>"; };
+		84455EA52133CB94007B25A9 /* OptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
+		84455EA62133CB94007B25A9 /* OptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
+		84455EA82133CBA2007B25A9 /* HelpsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpsViewController.h; sourceTree = "<group>"; };
+		84455EA92133CBA2007B25A9 /* HelpsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpsViewController.m; sourceTree = "<group>"; };
+		84455EAB2133CBB9007B25A9 /* VersionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionViewController.h; sourceTree = "<group>"; };
+		84455EAC2133CBB9007B25A9 /* VersionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionViewController.m; sourceTree = "<group>"; };
+		84455EAF2133CF3B007B25A9 /* ColorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
+		84455EB02133CF3B007B25A9 /* ColorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
+		84455EB22133F218007B25A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		846E2562212A928200C797CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		846E2565212A928200C797CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		846E2567212A928200C797CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		846E2568212A928200C797CE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -186,6 +207,15 @@
 			path = ZAlertView;
 			sourceTree = "<group>";
 		};
+		84455EAE2133CF15007B25A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84455EAF2133CF3B007B25A9 /* ColorCell.h */,
+				84455EB02133CF3B007B25A9 /* ColorCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		846E254D212A928200C797CE = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +239,7 @@
 		846E2558212A928200C797CE /* SimpleNote */ = {
 			isa = PBXGroup;
 			children = (
+				84455EB22133F218007B25A9 /* Assets.xcassets */,
 				84226A13212FDE8A009D2F82 /* MyViews */,
 				8493EE6E212E654F001FC8C2 /* Utils */,
 				84917006212D20CD00AC23EB /* DB */,
@@ -216,7 +247,6 @@
 				84916FFA212CED5300AC23EB /* Sources */,
 				846E2587212A92D300C797CE /* Sections */,
 				846E2586212A92CD00C797CE /* MZBase */,
-				846E2562212A928200C797CE /* Assets.xcassets */,
 				846E2564212A928200C797CE /* LaunchScreen.storyboard */,
 				846E2567212A928200C797CE /* Info.plist */,
 				846E2568212A928200C797CE /* main.m */,
@@ -345,8 +375,21 @@
 		84916FF9212CED4200AC23EB /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				84455EAE2133CF15007B25A9 /* View */,
 				846E258F212AA66600C797CE /* SetViewController.h */,
 				846E2590212AA66600C797CE /* SetViewController.m */,
+				84455E9C2133C5E7007B25A9 /* ColorViewController.h */,
+				84455E9D2133C5E7007B25A9 /* ColorViewController.m */,
+				84455E9F2133C5F0007B25A9 /* FontViewController.h */,
+				84455EA02133C5F0007B25A9 /* FontViewController.m */,
+				84455EA22133C612007B25A9 /* APPentryptViewController.h */,
+				84455EA32133C612007B25A9 /* APPentryptViewController.m */,
+				84455EA52133CB94007B25A9 /* OptionsViewController.h */,
+				84455EA62133CB94007B25A9 /* OptionsViewController.m */,
+				84455EA82133CBA2007B25A9 /* HelpsViewController.h */,
+				84455EA92133CBA2007B25A9 /* HelpsViewController.m */,
+				84455EAB2133CBB9007B25A9 /* VersionViewController.h */,
+				84455EAC2133CBB9007B25A9 /* VersionViewController.m */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -497,10 +540,10 @@
 				846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */,
 				84226A202130FE57009D2F82 /* error.png in Resources */,
 				846E25A5212B9C9400C797CE /* TextCell.xib in Resources */,
-				846E2563212A928200C797CE /* Assets.xcassets in Resources */,
 				846E25AA212B9CAB00C797CE /* SoundCell.xib in Resources */,
 				846E25B0212BA24600C797CE /* ImgCell.xib in Resources */,
 				84226A0A212FD053009D2F82 /* Localizable.strings in Resources */,
+				84455EB32133F219007B25A9 /* Assets.xcassets in Resources */,
 				84226A212130FE57009D2F82 /* success.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,13 +666,18 @@
 				842269FF212EAC94009D2F82 /* SoundEditViewController.m in Sources */,
 				84226A2721312C4B009D2F82 /* RemindViewController.m in Sources */,
 				846E25AF212BA24600C797CE /* ImgCell.m in Sources */,
+				84455EB12133CF3B007B25A9 /* ColorCell.m in Sources */,
 				8493EE6D212E654A001FC8C2 /* Utils.m in Sources */,
 				84916FFD212CEDCD00AC23EB /* MZView.m in Sources */,
 				846E2585212A92C500C797CE /* MainViewController.m in Sources */,
+				84455E9E2133C5E7007B25A9 /* ColorViewController.m in Sources */,
+				84455EAA2133CBA2007B25A9 /* HelpsViewController.m in Sources */,
 				846E2569212A928200C797CE /* main.m in Sources */,
 				84226A232130FE57009D2F82 /* ZAlertView.m in Sources */,
 				84226A11212FD348009D2F82 /* EncryptViewController.m in Sources */,
 				842269F6212E75D8009D2F82 /* ZJTools.m in Sources */,
+				84455EA42133C612007B25A9 /* APPentryptViewController.m in Sources */,
+				84455EA12133C5F0007B25A9 /* FontViewController.m in Sources */,
 				846E2591212AA66600C797CE /* SetViewController.m in Sources */,
 				846E25A9212B9CAB00C797CE /* SoundCell.m in Sources */,
 				84226A242130FE57009D2F82 /* ZAlertViewManager.m in Sources */,
@@ -637,6 +685,7 @@
 				846E25A4212B9C9400C797CE /* TextCell.m in Sources */,
 				84917005212D20C900AC23EB /* DBManager.m in Sources */,
 				84917000212CEE0500AC23EB /* MainView.m in Sources */,
+				84455EAD2133CBB9007B25A9 /* VersionViewController.m in Sources */,
 				846E257F212A92A000C797CE /* MZBaseViewController.m in Sources */,
 				84226A222130FE57009D2F82 /* UIColor+Hexadecimal.m in Sources */,
 				846E2597212ABF1E00C797CE /* UIFont+FontType.m in Sources */,
@@ -644,6 +693,7 @@
 				84226A16212FDEBA009D2F82 /* OptionView.m in Sources */,
 				846E255B212A928200C797CE /* AppDelegate.m in Sources */,
 				84226A05212F9ECA009D2F82 /* NoteConst.m in Sources */,
+				84455EA72133CB94007B25A9 /* OptionsViewController.m in Sources */,
 				84226A02212EBBC7009D2F82 /* ZJFileManger.m in Sources */,
 				842269F9212E836F009D2F82 /* MHD_FingerPrintVerify.m in Sources */,
 			);

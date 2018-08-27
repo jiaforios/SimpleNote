@@ -16,7 +16,7 @@ typedef enum : NSUInteger {
 
 @interface OptionView : UIView
 @property(nonatomic, assign, getter=isSelected)BOOL select;
-@property(nonatomic, copy,readonly)NSString *pwdContent;
+@property(nonatomic, copy)NSString *pwdContent;
 
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title type:(OptionViewType)type;
 

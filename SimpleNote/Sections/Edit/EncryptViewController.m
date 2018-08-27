@@ -63,8 +63,9 @@
     if (!_textField) {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(32, CGRectGetMaxY(self.label.frame)+15, MZWIDTH-64, 50)];
         _textField.placeholder = LocalizedString(@"entryptTips");
-        _textField.textColor = TextColor;
+        _textField.textColor = AppColor;
         _textField.font = [UIFont systemFontOfSize:15];
+        _textField.text = self.lockTips?:LocalizedString(@"contentEntrypt");
         _textField.background = [UIImage imageNamed:@"input_line"];
     }
     return _textField;
@@ -84,6 +85,15 @@
     [self.view addSubview:self.label]; 
     [self.view addSubview:self.textField];
     [self.view addSubview:self.saveButton];
+    
+    if (self.locktype == FingureEntryptType) {
+        self.optView1.select = YES;
+    }
+    
+    if (self.locktype == PwdEntryptType) {
+        self.optView2.select = YES;
+        self.optView2.pwdContent = self.pwd;
+    }
 
 }
 

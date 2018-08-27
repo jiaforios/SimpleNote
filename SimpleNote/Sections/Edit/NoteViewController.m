@@ -15,7 +15,11 @@ static NSString *cellIdentifier = @"cellIdentifier";
 #define kRowHeight 60
 
 @interface NoteViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource>
-
+{
+     NSString *lockType;
+     NSString *lockPwd;
+     NSString *lockTips;
+}
 @property(nonatomic, strong)UITextView *noteTextView;
 @property(nonatomic, strong)UIButton *saveButton;
 @property(nonatomic, strong)UIButton *lockButton;
@@ -171,9 +175,17 @@ static NSString *cellIdentifier = @"cellIdentifier";
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if(indexPath.row == 0){
         EncryptViewController *entry = [EncryptViewController new];
+        entry.locktype = lockType;
+        entry.pwd = lockPwd;
+        entry.lockTips = lockTips;
+
         entry.eventClourse = ^(NSString* pwd,NSString *entryptTypeStr,NSString *noteTips){
             if (entryptTypeStr != EntryptTypeNone) {
                 self.noteModel.lockType = entryptTypeStr;
+                lockType = entryptTypeStr;
+                lockPwd = pwd;
+                lockTips = noteTips;
+                
                 self.noteModel.lock = YES;
                 self.noteModel.lockTitle = noteTips;
                 if (entryptTypeStr == FingureEntryptType) {

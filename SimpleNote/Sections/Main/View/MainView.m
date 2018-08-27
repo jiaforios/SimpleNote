@@ -68,9 +68,7 @@ static NSString *soundCellIdentifier = @"soundCell";
         _noteButton.clipsToBounds = YES;
         [_noteButton setImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
         [_noteButton addTarget:self action:@selector(noteAction) forControlEvents:UIControlEventTouchUpInside];
-        
-
-        
+      
         [_noteButton addTarget:self action:@selector(soundAction) forControlEvents:UIControlEventTouchDragExit];
     }
     return _noteButton;
@@ -176,14 +174,19 @@ static NSString *soundCellIdentifier = @"soundCell";
 -(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewRowAction *edit = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:LocalizedString(@"edit") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        
+        if ([self.delegate respondsToSelector:@selector(mainViewCellEdit:dataSource:)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
+            [self.delegate mainViewCellEdit:indexPath dataSource:self.dataArr[indexPath.row]];
+        }
     }];
     
     edit.backgroundColor = AppColor;
     
     UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:LocalizedString(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         
-        
+        if ([self.delegate respondsToSelector:@selector(mainViewCellDelete:dataSource:)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
+            [self.delegate mainViewCellDelete:indexPath dataSource:self.dataArr[indexPath.row]]; //删除数据
+            [self setUpDataReload:YES];
+        }
     }];
     delete.backgroundColor = [UIColor redColor];
     

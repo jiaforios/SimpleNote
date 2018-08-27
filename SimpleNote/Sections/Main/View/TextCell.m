@@ -23,9 +23,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
     [self.editButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5,10, 5)];
-//    self.coverView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lock_bg_2"]];
-    self.coverView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_8"]];
-
+    self.coverView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:APPCOLORIMAGE]]];
 }
 
 -(UIVisualEffectView*)visView{

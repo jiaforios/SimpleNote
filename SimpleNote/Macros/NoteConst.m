@@ -15,3 +15,6 @@ NSString * const SoundNoteType = @"SoundNoteType";
 NSString * const FingureEntryptType = @"FingureEntryptType";
 NSString * const PwdEntryptType = @"PwdEntryptType";
 NSString * const EntryptTypeNone = @"EntryptTypeNone";
+
+NSString * const AppColorChangeNotification = @"AppColorChangeNotification";
+NSString * const APPCOLORIMAGE = @"APPCOLORIMAGE";

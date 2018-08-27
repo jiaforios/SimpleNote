@@ -10,7 +10,7 @@
 "imgSet"="添加图片";
 "contentTips"="内容提示";
 "saveOver"="完成";
-"fingureEncrypt"="指纹加密";
+"fingureEncrypt"="使用手机指纹加密";
 "pwdEncrypt"="密码加密";
 "entryptTips"="请输入提示词";
 "cancel"="取消";
@@ -24,3 +24,15 @@
 "remindPlaceholder"="默认提示内容";
 "dateErrorTips"="时间设置不合理，可能无法提醒哦!";
 "contentNull"="内容为空哦！";
+"colorSet"="主题设置";
+"fontSet"="字体设置";
+"appEntrypt"="程序加密";
+"options"="意见反馈";
+"helps"="使用帮助";
+"clearAll"="清空全部";
+"versionInfo"="版本信息";
+"deleteTips"="删除后不可恢复，确定继续？";
+"choose"="选取";
+"curentSelect"="当前选中";
+"goodstyle"="推荐样式";
+"contentEntrypt"="内容已加密";

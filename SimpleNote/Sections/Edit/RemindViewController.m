@@ -30,7 +30,7 @@
         }else{
             _textField.placeholder = LocalizedString(@"remindPlaceholder");
         }
-        _textField.textColor = TextColor;
+        _textField.textColor = AppColor;
         _textField.font = [UIFont systemFontOfSize:15];
         _textField.background = [UIImage imageNamed:@"input_line"];
     }
@@ -74,6 +74,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"添加提醒";
     [self.view addSubview:self.pickerView];
     [self.view addSubview:self.label];
     [self.view addSubview:self.textField];

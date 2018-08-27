@@ -20,6 +20,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self requestAuthor];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:APPCOLORIMAGE] == nil) {
+        UIImage *img = [UIImage imageNamed:@"bg_8"];
+        NSData *data = UIImagePNGRepresentation(img);
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:APPCOLORIMAGE];
+    }
+    
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];

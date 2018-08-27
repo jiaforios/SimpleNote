@@ -71,5 +71,16 @@
     }
 }
 
+- (void)deleteWithId{
+    
+    NSString *sqlStr = [NSString stringWithFormat:@"delete from notes where noteId=%ld",(long)self.noteId];
+    if ([_delegate respondsToSelector:@selector(exeWithSqlStr:)] && [_delegate conformsToProtocol:@protocol(DataProtocol)]) {
+        [_delegate exeWithSqlStr:sqlStr];
+    }else{
+        NSLog(@"未实现");
+    }
+
+}
+
 
 @end

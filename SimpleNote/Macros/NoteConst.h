@@ -16,3 +16,6 @@ UIKIT_EXTERN NSString * const FingureEntryptType;
 UIKIT_EXTERN NSString * const PwdEntryptType;
 UIKIT_EXTERN NSString * const EntryptTypeNone;
 
+UIKIT_EXTERN NSString * const AppColorChangeNotification;
+UIKIT_EXTERN NSString * const APPCOLORIMAGE;
+

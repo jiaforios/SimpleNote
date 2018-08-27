@@ -11,17 +11,24 @@
 @interface Utils : NSObject
 
 + (NSString *)currentDateStr;
+
 + (NSString *)currentDateStrForSoundPathName;
-+ (NSMutableParagraphStyle *)paraStyle;
+
 + (CGFloat)widthOfContent:(NSString *)content;
+
 + (NSDate *)dateFromStr:(NSString *)str;
+
 + (NSString *)strFromDate:(NSDate*)date;
 // 通知添加
 + (void)localNotification:(NSString *)notifContent notiDate:(NSString *)dateStr;
 
 // 取消指定通知
-+ (void)cancelLocalNotificationWithId:(NSString *)notifiId;
++ (void)cancelLocalNotificationWithDate:(NSString *)notifiDate;
 
 // 取消全部通知
 + (void)cancelAllLocalnotifications;
+
++ (NSMutableParagraphStyle *)paraStyle;
+
+
 @end

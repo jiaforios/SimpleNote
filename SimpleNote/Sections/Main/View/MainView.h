@@ -16,6 +16,12 @@
 - (void)mainViewSoundEdit;
 
 @optional
+// 删除
+- (void)mainViewCellDelete:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData;
+
+// 编辑
+- (void)mainViewCellEdit:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData;
+
 - (void)mainViewCellSelect:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData;
 
 @end
