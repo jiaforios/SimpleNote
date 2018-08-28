@@ -7,6 +7,7 @@ target 'SimpleNote' do
 
   # Pods for SimpleNote
   pod 'LYSDatePicker'
+  pod 'BmobSDK'
 pod 'Masonry'
 pod 'MJExtension'
 target 'SimpleNoteTests' do

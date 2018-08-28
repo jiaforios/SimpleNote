@@ -28,7 +28,7 @@ static NSString *headIdentifier = @"headIdentifier";
 
 - (UILabel *)label0{
     if (!_label0) {
-        _label0 = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 100, 30)];
+        _label0 = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 100, 20)];
         _label0.text = LocalizedString(@"curentSelect");
         _label0.textAlignment = NSTextAlignmentLeft;
         _label0.font = [UIFont systemFontOfSize:14];
@@ -40,7 +40,7 @@ static NSString *headIdentifier = @"headIdentifier";
 
 - (UILabel *)label1{
     if (!_label1) {
-        _label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.currentImgv.frame)+25, 100, 30)];
+        _label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.currentImgv.frame)+15, 100, 20)];
         _label1.text = LocalizedString(@"goodstyle");
         _label1.font = [UIFont systemFontOfSize:14];
         _label1.textAlignment = NSTextAlignmentLeft;
@@ -51,7 +51,7 @@ static NSString *headIdentifier = @"headIdentifier";
 
 - (UIImageView *)currentImgv{
     if (!_currentImgv) {
-        _currentImgv = [[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label0.frame)+20, 80, 80)];
+        _currentImgv = [[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label0.frame)+10, 60, 60)];
         _currentImgv.layer.borderWidth = 1;
         _currentImgv.layer.borderColor = [UIColor brownColor].CGColor;
         _currentImgv.image = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:APPCOLORIMAGE]];
@@ -75,7 +75,7 @@ static NSString *headIdentifier = @"headIdentifier";
 - (NSMutableArray<UIImage *> *)sourceArr{
     if (!_sourceArr) {
         _sourceArr = [NSMutableArray new];
-        for (int i=0; i<8; i++) {
+        for (int i=0; i<24; i++) {
             UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"bg_%d",i+1]];
             if (img != nil) {
                 [_sourceArr addObject:img];
@@ -91,13 +91,20 @@ static NSString *headIdentifier = @"headIdentifier";
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumLineSpacing = 10;
         layout.minimumInteritemSpacing = 10;
-        layout.itemSize = CGSizeMake(80, 80);
-        layout.sectionInset = UIEdgeInsetsMake(20, 10, 20, 10);
+        layout.itemSize = CGSizeMake(60, 60);
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         int rows = (int)(self.sourceArr.count / (int)((MZWIDTH-10)/90.0)); // 计算出占了几行
-        _colltionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.label1.frame)+20, MZWIDTH, rows*80+(rows-1)*10+20*2) collectionViewLayout:layout];
+        CGFloat height = rows*60+(rows-1)*10+10*2;
+        CGFloat limit =  MZHEIGHT - (CGRectGetMaxY(self.label1.frame)+20) - 80 - 64-20;
+        
+        if (height > limit) {
+            height = limit;
+        }
+        
+        _colltionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.label1.frame)+20, MZWIDTH, height) collectionViewLayout:layout];
         _colltionView.delegate = self;
         _colltionView.dataSource = self;
-        _colltionView.backgroundColor = [UIColor whiteColor];
+        _colltionView.backgroundColor = RGB(230, 230, 230);
         [_colltionView registerClass:[ColorCell class] forCellWithReuseIdentifier:cellIdentifier];        
     }
     

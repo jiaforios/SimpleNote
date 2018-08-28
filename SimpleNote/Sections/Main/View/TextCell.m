@@ -22,7 +22,6 @@
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
-    [self.editButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5,10, 5)];
     self.coverView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:APPCOLORIMAGE]]];
 }
 
@@ -36,7 +35,7 @@
 
 - (void)showWithData:(NSDictionary *)dic{
     self.contentLabel.numberOfLines = 0;
-    self.timeLabel.text= dic[@"dateStr"];    
+    self.createTimeLabel.text= dic[@"dateStr"];
     self.coverView.hidden = ![dic[@"lock"] boolValue];
     self.tipLabel.text = dic[@"lockTitle"];
     if ([dic[@"lockType"] isEqualToString:FingureEntryptType]) {
@@ -48,7 +47,20 @@
     }else{
         self.lockImg.hidden = YES;
     }
-    self.remindImg.hidden = ![dic[@"remind"] boolValue];
+    if ([dic[@"remind"] boolValue]) {
+        self.remindImg.hidden = NO;
+        self.remindTimeLabel.text = dic[@"remindDateStr"];
+    }else{
+        self.remindImg.hidden = YES;
+        self.remindTimeLabel.text = @"";
+    }
+    
+    if([Utils compareTodaywithRemindTime:[Utils dateFromStr:dic[@"remindDateStr"]]] == 1) {
+        self.contentLabel.textColor = RGB(210, 210, 210);
+    }else{
+        self.contentLabel.textColor = [UIColor blackColor];
+
+    }
 
     NSAttributedString *attr = [[NSAttributedString alloc] initWithString:dic[@"content"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSKernAttributeName:@3,NSParagraphStyleAttributeName:[Utils paraStyle]}];
     NSMutableAttributedString *strM = [[NSMutableAttributedString alloc] initWithAttributedString:attr];

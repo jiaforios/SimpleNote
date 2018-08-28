@@ -1,18 +1,21 @@
 PODS:
+  - BmobSDK (2.3.1)
   - LYSDatePicker (0.0.3)
   - Masonry (1.1.0)
   - MJExtension (3.0.15.1)
 
 DEPENDENCIES:
+  - BmobSDK
   - LYSDatePicker
   - Masonry
   - MJExtension
 
 SPEC CHECKSUMS:
+  BmobSDK: e0f9e4b451233a80af63a8ae4f2d239474bf567b
   LYSDatePicker: dfd26bb5659c663032c5ef0b0ef8aa80bd45a4db
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
 
-PODFILE CHECKSUM: 2fdf7c678df195bed84a5093fef4f76b1e4a5382
+PODFILE CHECKSUM: 9ea50e742fe43fd987a6fc081695f1289431193e
 
 COCOAPODS: 1.4.0

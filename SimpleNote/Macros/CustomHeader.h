@@ -35,4 +35,6 @@
 // 多语言
 #define LocalizedString(key) ([[[NSLocale preferredLanguages] objectAtIndex:0] rangeOfString:@"zh-Hans"].length)? ([[NSBundle mainBundle] localizedStringForKey:key value:@"" table:nil]):([[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"]] localizedStringForKey:key value:@"" table:nil])
 
+#define BmobKey  @"314d88f0bfea4a5c7cf446fa797c41f7"
+
 #endif

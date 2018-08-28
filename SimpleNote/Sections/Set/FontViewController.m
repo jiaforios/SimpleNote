@@ -16,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"字体设置";
+//    self.title = @"字体设置";
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

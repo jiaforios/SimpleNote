@@ -27,7 +27,7 @@
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.lineSpacing = 8.;// 行间距
     paragraphStyle.lineHeightMultiple = 1.3;// 行高倍数（1.5倍行高）
-    paragraphStyle.firstLineHeadIndent = 30.0f;//首行缩进
+    paragraphStyle.firstLineHeadIndent = 10.0f;//首行缩进
     paragraphStyle.minimumLineHeight = 10;//最低行高
     paragraphStyle.alignment = NSTextAlignmentLeft;// 对齐方式
     paragraphStyle.defaultTabInterval = 144;// 默认Tab 宽度
@@ -45,6 +45,36 @@
     NSDateFormatter *format = [NSDateFormatter new];
     format.dateFormat = @"yyyy-MM-dd HH:mm";
     return [format stringFromDate:date];
+}
+
+
++ (NSDate *)getCurrentTime{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *dateTime=[formatter stringFromDate:[NSDate date]];
+    NSDate *date = [formatter dateFromString:dateTime];
+    return date;
+}
+//日期对比
++ (int)compareTodaywithRemindTime:(NSDate *)remindTime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *currentDayStr = [dateFormatter stringFromDate:[self getCurrentTime]];
+    NSString *BaseDayStr = [dateFormatter stringFromDate:remindTime];
+    NSDate *dateA = [dateFormatter dateFromString:currentDayStr];
+    NSDate *dateB = [dateFormatter dateFromString:BaseDayStr];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedDescending) {
+        //NSLog(@"Date1  is in the future");
+        return 1;
+    }
+    else if (result == NSOrderedAscending){
+        //NSLog(@"Date1 is in the past");
+        return -1;
+    }
+    //NSLog(@"Both dates are the same");
+    return 0;
 }
 
 + (CGFloat)widthOfContent:(NSString *)content{
@@ -73,8 +103,52 @@
     }
 }
 
+
 + (void)cancelAllLocalnotifications{
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
+
+//判断颜色是不是亮色
++ (BOOL) isLightColor:(UIColor*)clr {
+    CGFloat components[3];
+    [self getRGBComponents:components forColor:clr];
+    NSLog(@"%f %f %f", components[0], components[1], components[2]);
+    
+    CGFloat num = components[0] + components[1] + components[2];
+    if(num < 382)
+        return NO;
+    else
+        return YES;
+}
+
+
+
+//获取RGB值
++ (void)getRGBComponents:(CGFloat [3])components forColor:(UIColor *)color {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
+    int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
+#else
+    int bitmapInfo = kCGImageAlphaPremultipliedLast;
+#endif
+    
+    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char resultingPixel[4];
+    CGContextRef context = CGBitmapContextCreate(&resultingPixel,
+                                                 1,
+                                                 1,
+                                                 8,
+                                                 4,
+                                                 rgbColorSpace,
+                                                 bitmapInfo);
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, 1, 1));
+    CGContextRelease(context);
+    CGColorSpaceRelease(rgbColorSpace);
+    
+    for (int component = 0; component < 3; component++) {
+        components[component] = resultingPixel[component];
+    }
+}
+
 
 @end

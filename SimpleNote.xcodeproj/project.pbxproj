@@ -28,9 +28,11 @@
 		84455EA42133C612007B25A9 /* APPentryptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EA32133C612007B25A9 /* APPentryptViewController.m */; };
 		84455EA72133CB94007B25A9 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EA62133CB94007B25A9 /* OptionsViewController.m */; };
 		84455EAA2133CBA2007B25A9 /* HelpsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EA92133CBA2007B25A9 /* HelpsViewController.m */; };
-		84455EAD2133CBB9007B25A9 /* VersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EAC2133CBB9007B25A9 /* VersionViewController.m */; };
 		84455EB12133CF3B007B25A9 /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EB02133CF3B007B25A9 /* ColorCell.m */; };
 		84455EB32133F219007B25A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84455EB22133F218007B25A9 /* Assets.xcassets */; };
+		84455EB6213529CA007B25A9 /* RotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EB5213529CA007B25A9 /* RotationView.m */; };
+		84455EBA213545B8007B25A9 /* VersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EB8213545B8007B25A9 /* VersionViewController.m */; };
+		84455EBB213545B8007B25A9 /* VersionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84455EB9213545B8007B25A9 /* VersionViewController.xib */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
 		846E2569212A928200C797CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2568212A928200C797CE /* main.m */; };
@@ -109,11 +111,14 @@
 		84455EA62133CB94007B25A9 /* OptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		84455EA82133CBA2007B25A9 /* HelpsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpsViewController.h; sourceTree = "<group>"; };
 		84455EA92133CBA2007B25A9 /* HelpsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpsViewController.m; sourceTree = "<group>"; };
-		84455EAB2133CBB9007B25A9 /* VersionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionViewController.h; sourceTree = "<group>"; };
-		84455EAC2133CBB9007B25A9 /* VersionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionViewController.m; sourceTree = "<group>"; };
 		84455EAF2133CF3B007B25A9 /* ColorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
 		84455EB02133CF3B007B25A9 /* ColorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
 		84455EB22133F218007B25A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84455EB4213529CA007B25A9 /* RotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationView.h; sourceTree = "<group>"; };
+		84455EB5213529CA007B25A9 /* RotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationView.m; sourceTree = "<group>"; };
+		84455EB7213545B8007B25A9 /* VersionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionViewController.h; sourceTree = "<group>"; };
+		84455EB8213545B8007B25A9 /* VersionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionViewController.m; sourceTree = "<group>"; };
+		84455EB9213545B8007B25A9 /* VersionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionViewController.xib; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -188,6 +193,8 @@
 				84226A172130FE57009D2F82 /* ZAlertView */,
 				84226A14212FDEBA009D2F82 /* OptionView.h */,
 				84226A15212FDEBA009D2F82 /* OptionView.m */,
+				84455EB4213529CA007B25A9 /* RotationView.h */,
+				84455EB5213529CA007B25A9 /* RotationView.m */,
 			);
 			path = MyViews;
 			sourceTree = "<group>";
@@ -388,8 +395,9 @@
 				84455EA62133CB94007B25A9 /* OptionsViewController.m */,
 				84455EA82133CBA2007B25A9 /* HelpsViewController.h */,
 				84455EA92133CBA2007B25A9 /* HelpsViewController.m */,
-				84455EAB2133CBB9007B25A9 /* VersionViewController.h */,
-				84455EAC2133CBB9007B25A9 /* VersionViewController.m */,
+				84455EB7213545B8007B25A9 /* VersionViewController.h */,
+				84455EB8213545B8007B25A9 /* VersionViewController.m */,
+				84455EB9213545B8007B25A9 /* VersionViewController.xib */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -538,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */,
+				84455EBB213545B8007B25A9 /* VersionViewController.xib in Resources */,
 				84226A202130FE57009D2F82 /* error.png in Resources */,
 				846E25A5212B9C9400C797CE /* TextCell.xib in Resources */,
 				846E25AA212B9CAB00C797CE /* SoundCell.xib in Resources */,
@@ -677,15 +686,16 @@
 				84226A11212FD348009D2F82 /* EncryptViewController.m in Sources */,
 				842269F6212E75D8009D2F82 /* ZJTools.m in Sources */,
 				84455EA42133C612007B25A9 /* APPentryptViewController.m in Sources */,
+				84455EB6213529CA007B25A9 /* RotationView.m in Sources */,
 				84455EA12133C5F0007B25A9 /* FontViewController.m in Sources */,
 				846E2591212AA66600C797CE /* SetViewController.m in Sources */,
+				84455EBA213545B8007B25A9 /* VersionViewController.m in Sources */,
 				846E25A9212B9CAB00C797CE /* SoundCell.m in Sources */,
 				84226A242130FE57009D2F82 /* ZAlertViewManager.m in Sources */,
 				842269FC212E88B7009D2F82 /* NoteManager.m in Sources */,
 				846E25A4212B9C9400C797CE /* TextCell.m in Sources */,
 				84917005212D20C900AC23EB /* DBManager.m in Sources */,
 				84917000212CEE0500AC23EB /* MainView.m in Sources */,
-				84455EAD2133CBB9007B25A9 /* VersionViewController.m in Sources */,
 				846E257F212A92A000C797CE /* MZBaseViewController.m in Sources */,
 				84226A222130FE57009D2F82 /* UIColor+Hexadecimal.m in Sources */,
 				846E2597212ABF1E00C797CE /* UIFont+FontType.m in Sources */,

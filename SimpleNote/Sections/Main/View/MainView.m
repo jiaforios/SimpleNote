@@ -49,7 +49,7 @@ static NSString *soundCellIdentifier = @"soundCell";
         [_tableView registerNib:[UINib nibWithNibName:@"SoundCell" bundle:nil] forCellReuseIdentifier:soundCellIdentifier];
         
         _tableView.tableFooterView = [UIView new];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        UIView *head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 1)];
 //        head.backgroundColor = [UIColor whiteColor];
 //        _tableView.tableHeaderView = head;

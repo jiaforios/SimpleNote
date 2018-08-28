@@ -19,6 +19,8 @@
 + (NSDate *)dateFromStr:(NSString *)str;
 
 + (NSString *)strFromDate:(NSDate*)date;
+
++ (int)compareTodaywithRemindTime:(NSDate *)remindTime;
 // 通知添加
 + (void)localNotification:(NSString *)notifContent notiDate:(NSString *)dateStr;
 
@@ -30,5 +32,5 @@
 
 + (NSMutableParagraphStyle *)paraStyle;
 
-
++ (BOOL) isLightColor:(UIColor*)clr;
 @end

@@ -2,7 +2,7 @@
 //  VersionViewController.m
 //  SimpleNote
 //
-//  Created by admin on 2018/8/27.
+//  Created by admin on 2018/8/28.
 //  Copyright © 2018年 com. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"版本信息";
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

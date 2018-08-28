@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "MZBaseNavigationViewController.h"
+#import <BmobSDK/Bmob.h>
 
 @interface AppDelegate ()
 
@@ -20,8 +21,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self requestAuthor];
+    [Bmob registerWithAppKey:BmobKey];
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:APPCOLORIMAGE] == nil) {
-        UIImage *img = [UIImage imageNamed:@"bg_8"];
+        UIImage *img = [UIImage imageNamed:@"bg_24"];
         NSData *data = UIImagePNGRepresentation(img);
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:APPCOLORIMAGE];
     }
@@ -65,13 +68,14 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
 }
 
 

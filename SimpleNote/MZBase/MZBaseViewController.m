@@ -77,6 +77,7 @@
     UIImage *img = [[center userInfo] objectForKey:@"color"];
     NSData *data = UIImagePNGRepresentation(img);
     [self.user setObject:data forKey:APPCOLORIMAGE];
+
     self.view.backgroundColor = [UIColor colorWithPatternImage:img];
     [self.navigationController.navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
     
