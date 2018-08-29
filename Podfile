@@ -10,6 +10,7 @@ target 'SimpleNote' do
   pod 'BmobSDK'
 pod 'Masonry'
 pod 'MJExtension'
+pod 'LEEAlert'
 target 'SimpleNoteTests' do
     inherit! :search_paths
     # Pods for testing

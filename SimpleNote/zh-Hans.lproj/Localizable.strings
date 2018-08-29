@@ -38,3 +38,5 @@
 "contentEntrypt"="内容已加密";
 "sublimtSuc"="提交成功";
 "sublimt"="提交";
+"sublimtFail"="提交失败";
+"pleaseSetPwd"="请设置密码";

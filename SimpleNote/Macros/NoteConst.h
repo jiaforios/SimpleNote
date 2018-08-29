@@ -19,3 +19,4 @@ UIKIT_EXTERN NSString * const EntryptTypeNone;
 UIKIT_EXTERN NSString * const AppColorChangeNotification;
 UIKIT_EXTERN NSString * const APPCOLORIMAGE;
 
+UIKIT_EXTERN NSString * const APPLOCKKEY;

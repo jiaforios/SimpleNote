@@ -124,7 +124,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (void)saveAction{
     [self.view resignFirstResponder];
     if (_noteTextView.text.length == 0) {
-        [[ZAlertViewManager shareManager] showContent:LocalizedString(@"contentNull") type:AlertViewTypeError];
+        [self showTips:LocalizedString(@"contentNull") type:AlertViewTypeError];
         return;
     }
     self.noteModel.content = _noteTextView.text;

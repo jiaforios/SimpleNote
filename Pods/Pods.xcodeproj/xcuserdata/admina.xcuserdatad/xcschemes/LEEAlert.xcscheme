@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C612C2732C497B780D1C6F01755A18B0"
-               BlueprintName = "Pods-SimpleNote"
+               BlueprintIdentifier = "63C442A1BCA7D54FE4FD94167C3EDB1B"
+               BlueprintName = "LEEAlert"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPods-SimpleNote.a">
+               BuildableName = "libLEEAlert.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

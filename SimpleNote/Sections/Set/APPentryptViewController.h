@@ -9,5 +9,7 @@
 #import "MZBaseViewController.h"
 
 @interface APPentryptViewController : MZBaseViewController
-
+@property(nonatomic, copy) void(^eventClourse)(NSString *,NSString *);
+@property(nonatomic, copy)NSString *pwd;
+@property(nonatomic, copy)NSString *locktype;
 @end

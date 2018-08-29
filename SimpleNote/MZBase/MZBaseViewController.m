@@ -7,6 +7,7 @@
 //
 
 #import "MZBaseViewController.h"
+#import <LEEAlert.h>
 
 @interface MZBaseViewController ()
 @property(nonatomic, strong)NSUserDefaults *user;
@@ -62,14 +63,37 @@
 
 
 - (void)showAlertViewTitle:(NSString *)title message:(NSString *)message sureBlock:(void(^)(void))sBlock{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *sure = [UIAlertAction actionWithTitle:LocalizedString(@"sure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    
+    [LEEAlert alert].config
+    .LeeTitle(title)
+    .LeeContent(message)
+    .LeeCancelAction(LocalizedString(@"cancel"), ^{
+        
+    })
+    .LeeAction(LocalizedString(@"sure"), ^{
         sBlock?sBlock():nil;
-    }];
-    [alert addAction:cancel];
-    [alert addAction:sure];
-    [self presentViewController:alert animated:YES completion:nil];
+    })
+    .LeeShow();
+    
+}
+
+- (void)showTextAlertTitle:(NSString *)title message:(NSString *)message sureBlock:(BOOL(^)(NSString*))sBlock{
+    __block UITextField *tf = nil;
+    [LEEAlert alert].config.LeeAddTitle(^(UILabel *label) {
+        label.text = title;
+    }).LeeAddTextField(^(UITextField *textField) {
+        textField.textColor = AppColor;
+        tf = textField;
+    }).LeeAction(LocalizedString(@"sure"),^{
+        if (sBlock) {
+            if(!sBlock(tf.text)){
+                [self showTextAlertTitle:title message:message sureBlock:sBlock];
+            }
+        }
+    }).LeeCancelAction(LocalizedString(@"cancel"),^{
+        
+    }).LeeShow();
+    
 }
 
 - (void)appColorChange:(NSNotification *)center{
@@ -77,25 +101,21 @@
     UIImage *img = [[center userInfo] objectForKey:@"color"];
     NSData *data = UIImagePNGRepresentation(img);
     [self.user setObject:data forKey:APPCOLORIMAGE];
+    [self.user synchronize];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:img];
     [self.navigationController.navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
     
 }
 
+- (void)showTips:(NSString *)title type:(AlertViewType)type{
+    [[ZAlertViewManager shareManager] showContent:title type:type];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

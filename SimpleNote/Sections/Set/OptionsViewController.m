@@ -8,10 +8,11 @@
 
 #import "OptionsViewController.h"
 #import <BmobSDK/Bmob.h>
+#import "LoadButton.h"
 
-@interface OptionsViewController ()
+@interface OptionsViewController ()<UITextViewDelegate>
 @property(nonatomic, strong)UITextView *noteTextView;
-@property(nonatomic, strong)UIButton *saveButton;
+@property(nonatomic, strong)LoadButton *saveButton;
 @end
 
 @implementation OptionsViewController
@@ -39,7 +40,7 @@
 
 - (UIButton *)saveButton{
     if (!_saveButton) {
-        _saveButton = [[UIButton alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.noteTextView.frame)+25, MZWIDTH-60, 44)];
+        _saveButton = [[LoadButton alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.noteTextView.frame)+25, MZWIDTH-60, 44)];
         _saveButton.layer.cornerRadius = 10;
         _saveButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_saveButton setTitleColor:AppColor forState:UIControlStateNormal];
@@ -63,16 +64,22 @@
         [[ZAlertViewManager shareManager] showContent:LocalizedString(@"contentNull") type:AlertViewTypeError];
         return;
     }
-    
+    [self.saveButton toggle];
     NSString *uuid = [[UIDevice currentDevice].identifierForVendor UUIDString];
     BmobObject *gameScore = [BmobObject objectWithClassName:@"userOptions"];
     [gameScore setObject:_noteTextView.text forKey:@"content"];
     [gameScore setObject:uuid forKey:@"uuid"];
     [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        [self.saveButton endLoading];
         //进行操作
         if (isSuccessful) {
-            [[ZAlertViewManager shareManager] showContent:LocalizedString(@"sublimtSuc") type:AlertViewTypeError];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self showTips:LocalizedString(@"sublimtSuc")  type:AlertViewTypeError];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }else{
+            [[ZAlertViewManager shareManager] showContent:LocalizedString(@"sublimtFail") type:AlertViewTypeError];
+            [self showTips:LocalizedString(@"sublimtFail")  type:AlertViewTypeError];
         }
     }];
     

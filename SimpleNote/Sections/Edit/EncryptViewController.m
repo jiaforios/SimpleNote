@@ -120,14 +120,14 @@
     }else
     if (self.optView2.isSelected) {
         entryType = PwdEntryptType;
+        if(self.optView2.pwdContent.length == 0){
+            [self showTips:LocalizedString(@"pleaseSetPwd") type:AlertViewTypeSuccess];
+            return;
+        }
     }else{
         entryType = EntryptTypeNone;
     }
-    
-    if (entryType != EntryptTypeNone && self.textField.text.length == 0) {
-        NSLog(@"没有提示词");
-    }
-    
+
     if (self.eventClourse) {
         self.eventClourse(self.optView2.pwdContent,entryType,self.textField.text);
     }

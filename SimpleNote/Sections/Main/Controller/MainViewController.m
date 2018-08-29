@@ -19,6 +19,8 @@
 #import "SoundCell.h"
 
 #import "MainView.h"
+#import <LEEAlert.h>
+#import <objc/runtime.h>
 
 static NSString *textCellIdentifier = @"textCell";
 static NSString *imgCellIdentifier = @"imgCell";
@@ -53,6 +55,7 @@ static NSString *soundCellIdentifier = @"soundCell";
     mv.dataSource = self;
     self.view = mv;
     self.mainView  = mv;
+    [self appLockViewShow];
     
 }
 - (UIButton *)clearButton{
@@ -89,6 +92,64 @@ static NSString *soundCellIdentifier = @"soundCell";
     [self.navigationController pushViewController:set animated:YES];
 }
 
+- (void)appLockViewShow{
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:APPLOCKKEY];
+    
+    if (dic != nil) {
+        // 弹出解密
+        UIView *lockView = [[UIView alloc] initWithFrame:self.navigationController.view.bounds];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 118, 83)];
+        [btn setImage:[UIImage imageNamed:@"lock_app"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"lock_app"] forState:UIControlStateHighlighted];
+
+        [btn addTarget:self action:@selector(unlockSender:) forControlEvents:UIControlEventTouchUpInside];
+        btn.center = lockView.center;
+        [lockView addSubview:btn];
+        lockView.backgroundColor = [UIColor whiteColor];
+        [self.navigationController.view addSubview:lockView];
+        [self.navigationController.view bringSubviewToFront:lockView];
+        
+        objc_setAssociatedObject(btn, "dic", dic, OBJC_ASSOCIATION_COPY);
+        void(^resBlock)(void) = ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                lockView.alpha = 0 ;
+            } completion:^(BOOL finished) {
+                [lockView removeFromSuperview];
+            }];
+        };
+        objc_setAssociatedObject(btn, "block", resBlock, OBJC_ASSOCIATION_COPY);
+
+        [self unlockSender:btn];
+    }
+}
+
+- (void)unlockSender:(UIButton *)sender{
+    
+    id dic = objc_getAssociatedObject(sender, "dic");
+    NSString *type = dic[@"lockType"];
+    void(^resBlock)(void) = objc_getAssociatedObject(sender, "block");
+    if ([type isEqualToString: FingureEntryptType]) {
+        [MHD_FingerPrintVerify mhd_fingerPrintLocalAuthenticationFallBackTitle:LocalizedString(@"sure") localizedReason:@"解密指纹验证" callBack:^(BOOL isSuccess, NSError * _Nullable error, NSString *referenceMsg) {
+            if (isSuccess) {
+                resBlock?resBlock():nil;
+            }
+        }];
+    }
+
+    if ([type isEqualToString: PwdEntryptType]) {
+        [self showTextAlertTitle:LocalizedString(@"inputPwd") message:nil sureBlock:^(NSString *content) {
+            if ([content isEqualToString:dic[@"pwd"]]) {
+                resBlock?resBlock():nil;
+                return YES;
+            }else{
+                // 验证失败
+                [[ZAlertViewManager shareManager] showContent:LocalizedString(@"pwdError") type:AlertViewTypeSuccess];
+                return NO;
+            }
+        }];
+    }
+}
+
 - (void)clearAction{
 
 }
@@ -117,26 +178,19 @@ static NSString *soundCellIdentifier = @"soundCell";
         }
         
         if ([cellData[@"lockType"] isEqualToString: PwdEntryptType]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"inputPwd") message:cellData[@"lockTitle"] preferredStyle:UIAlertControllerStyleAlert];
-            [alert addTextFieldWithConfigurationHandler:nil];
-            UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:nil];
-            UIAlertAction *sure = [UIAlertAction actionWithTitle:LocalizedString(@"sure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                if ([alert.textFields[0].text isEqualToString:cellData[@"lockPwd"]]) {
+            [self showTextAlertTitle:LocalizedString(@"inputPwd") message:nil sureBlock:^(NSString *content) {
+                if ([content isEqualToString:cellData[@"lockPwd"]]) {
                     [NoteManager markUnLockedOnceNoteId:cellData[@"noteId"]];
                     [self.mainView setUpDataReload:NO]; // 如果仅解锁一次，屏蔽改代码：Notemodel -> fetchAllmodel
                     [self.mainView changeLockedCellState:indexPath];
+                    return YES;
                 }else{
                     // 验证失败
                     [[ZAlertViewManager shareManager] showContent:LocalizedString(@"pwdError") type:AlertViewTypeSuccess];
-                    [self presentViewController:alert animated:YES completion:nil];
+                    return NO;
                 }
             }];
-            
-            [alert addAction:cancel];
-            [alert addAction:sure];
-            [self presentViewController:alert animated:YES completion:nil];
         }
-        
     }
 }
 

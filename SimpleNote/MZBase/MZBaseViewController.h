@@ -11,4 +11,10 @@
 @interface MZBaseViewController : UIViewController
 // 事件处理弹框
 - (void)showAlertViewTitle:(NSString *)title message:(NSString *)message sureBlock:(void(^)(void))sBlock;
+
+- (void)showTextAlertTitle:(NSString *)title message:(NSString *)message sureBlock:(BOOL(^)(NSString*))sBlock;
+
+- (void)showTips:(NSString *)title type:(AlertViewType)type;
+
+
 @end

@@ -27,8 +27,10 @@
         UIImage *img = [UIImage imageNamed:@"bg_24"];
         NSData *data = UIImagePNGRepresentation(img);
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:APPCOLORIMAGE];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
+  
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -51,7 +53,6 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
     }
 }
-
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

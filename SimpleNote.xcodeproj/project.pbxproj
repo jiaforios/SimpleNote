@@ -33,6 +33,7 @@
 		84455EB6213529CA007B25A9 /* RotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EB5213529CA007B25A9 /* RotationView.m */; };
 		84455EBA213545B8007B25A9 /* VersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EB8213545B8007B25A9 /* VersionViewController.m */; };
 		84455EBB213545B8007B25A9 /* VersionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84455EB9213545B8007B25A9 /* VersionViewController.xib */; };
+		84455ECA21363C7A007B25A9 /* LoadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EC921363C7A007B25A9 /* LoadButton.m */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
 		846E2569212A928200C797CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2568212A928200C797CE /* main.m */; };
@@ -119,6 +120,8 @@
 		84455EB7213545B8007B25A9 /* VersionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionViewController.h; sourceTree = "<group>"; };
 		84455EB8213545B8007B25A9 /* VersionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionViewController.m; sourceTree = "<group>"; };
 		84455EB9213545B8007B25A9 /* VersionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionViewController.xib; sourceTree = "<group>"; };
+		84455EC821363C7A007B25A9 /* LoadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadButton.h; sourceTree = "<group>"; };
+		84455EC921363C7A007B25A9 /* LoadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadButton.m; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -190,6 +193,7 @@
 		84226A13212FDE8A009D2F82 /* MyViews */ = {
 			isa = PBXGroup;
 			children = (
+				84455EC721363C7A007B25A9 /* LoadButton */,
 				84226A172130FE57009D2F82 /* ZAlertView */,
 				84226A14212FDEBA009D2F82 /* OptionView.h */,
 				84226A15212FDEBA009D2F82 /* OptionView.m */,
@@ -221,6 +225,15 @@
 				84455EB02133CF3B007B25A9 /* ColorCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		84455EC721363C7A007B25A9 /* LoadButton */ = {
+			isa = PBXGroup;
+			children = (
+				84455EC821363C7A007B25A9 /* LoadButton.h */,
+				84455EC921363C7A007B25A9 /* LoadButton.m */,
+			);
+			path = LoadButton;
 			sourceTree = "<group>";
 		};
 		846E254D212A928200C797CE = {
@@ -692,6 +705,7 @@
 				84455EBA213545B8007B25A9 /* VersionViewController.m in Sources */,
 				846E25A9212B9CAB00C797CE /* SoundCell.m in Sources */,
 				84226A242130FE57009D2F82 /* ZAlertViewManager.m in Sources */,
+				84455ECA21363C7A007B25A9 /* LoadButton.m in Sources */,
 				842269FC212E88B7009D2F82 /* NoteManager.m in Sources */,
 				846E25A4212B9C9400C797CE /* TextCell.m in Sources */,
 				84917005212D20C900AC23EB /* DBManager.m in Sources */,
