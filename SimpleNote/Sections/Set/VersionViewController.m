@@ -9,6 +9,8 @@
 #import "VersionViewController.h"
 
 @interface VersionViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *appLabel;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -17,6 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = LocalizedString(@"versionInfo");
+    self.appLabel.font = [UIFont systemFontOfSize:15];
+    self.versionLabel.font = [UIFont systemFontOfSize:13];
+    self.versionLabel.text = [NSString stringWithFormat:@"%@(%@)",AppVersion,AppBuildVersion];
 }
 
 - (void)didReceiveMemoryWarning {

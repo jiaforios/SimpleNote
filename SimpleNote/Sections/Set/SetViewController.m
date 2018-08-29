@@ -28,7 +28,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
     if (!_sourceArr) {
         _sourceArr = [NSMutableArray new];
         NSArray *section0 = @[LocalizedString(@"colorSet"),LocalizedString(@"fontSet"),LocalizedString(@"appEntrypt"),LocalizedString(@"clearAll")];
-        NSArray *section1 = @[LocalizedString(@"options"),LocalizedString(@"helps"),LocalizedString(@"versionInfo")];
+        NSArray *section1 = @[LocalizedString(@"options"),LocalizedString(@"versionInfo")];
         [_sourceArr addObject:section0];
         [_sourceArr addObject:section1];
     }
@@ -82,20 +82,46 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
     NSArray *arr = self.sourceArr[indexPath.section];;
     cell.textLabel.text = arr[indexPath.row];
+    if (indexPath.section == 0 && indexPath.row == 2) {
+        cell.detailTextLabel.text = [self fetchLockStatus];
+    }
     return cell;
 }
 
+
+- (NSString *)fetchLockStatus{
+   NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:APPLOCKKEY];
+    if (dic != nil) {
+        if ([dic[@"lockType"] isEqualToString:FingureEntryptType]) {
+            return LocalizedString(@"fingureEncrypt");
+        }else if([dic[@"lockType"] isEqualToString:PwdEntryptType]) {
+            return LocalizedString(@"pwdEncrypt");
+        }
+    }
+    return @"";
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
                 [self.navigationController showViewController:[ColorViewController new] sender:nil];
                 break;
             case 1:
+                NSLog(@"111");
+                NSLog(@"111");
+                NSLog(@"111");
+
                 [self.navigationController showViewController:[FontViewController new] sender:nil];
                 break;
-            case 2:
-                [self.navigationController showViewController:[APPentryptViewController new] sender:nil];
+            case 2:{
+                APPentryptViewController *app = [APPentryptViewController new];
+                app.eventClourse = ^(NSString *pwd, NSString *type) {
+                   cell.detailTextLabel.text = [self fetchLockStatus];
+                };
+                [self.navigationController showViewController:app sender:nil];
+            }
                 break;
             case 3:
                 [self clearAll];
@@ -112,11 +138,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
                 break;
             case 1:
-                [self.navigationController showViewController:[HelpsViewController new] sender:nil];
-
-                break;
-            case 2:
                 [self.navigationController showViewController:[VersionViewController new] sender:nil];
+                break;
                 break;
             default:
                 break;

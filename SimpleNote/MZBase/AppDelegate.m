@@ -21,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self requestAuthor];
+    [Utils cancelExpireNotification];
     [Bmob registerWithAppKey:BmobKey];
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:APPCOLORIMAGE] == nil) {

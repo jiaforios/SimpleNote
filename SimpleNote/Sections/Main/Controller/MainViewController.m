@@ -50,13 +50,15 @@ static NSString *soundCellIdentifier = @"soundCell";
 //    UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithCustomView:self.clearButton];
 //    self.navigationItem.leftBarButtonItem = clear;
     
+    
+//    迷你简硬笔楷书 ：Jyinbikai,少女： DFGirl-W6-WIN-BF，FZKaTong-M19S：FZKATJW--GB1-0，Li Xuke Comic Font：Li-Xuke-Comic-Font
+    
     MainView *mv = [[MainView alloc] initWithFrame:self.view.bounds];
     mv.delegate = self;
     mv.dataSource = self;
     self.view = mv;
     self.mainView  = mv;
     [self appLockViewShow];
-    
 }
 - (UIButton *)clearButton{
     if (!_clearButton) {
@@ -94,7 +96,6 @@ static NSString *soundCellIdentifier = @"soundCell";
 
 - (void)appLockViewShow{
     NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:APPLOCKKEY];
-    
     if (dic != nil) {
         // 弹出解密
         UIView *lockView = [[UIView alloc] initWithFrame:self.navigationController.view.bounds];

@@ -6,7 +6,7 @@
   Copyright © 2018年 com. All rights reserved.
 */
 "encryptSet"="设置加密";
-"remindSet"="添加提醒";
+"remindSet"="定时提醒";
 "imgSet"="添加图片";
 "contentTips"="内容提示";
 "saveOver"="完成";
@@ -40,3 +40,6 @@
 "sublimt"="提交";
 "sublimtFail"="提交失败";
 "pleaseSetPwd"="请设置密码";
+"stopOver"="停用加密";
+"stopSuc"="已停止加密";
+"fontSuc"="字体设置成功，重启程序生效";

@@ -30,7 +30,17 @@
 // 取消全部通知
 + (void)cancelAllLocalnotifications;
 
+// 移除过期通知
++ (void)cancelExpireNotification;
+
 + (NSMutableParagraphStyle *)paraStyle;
 
 + (BOOL) isLightColor:(UIColor*)clr;
+
+
++ (void)userDefaultSet:(id)obj key:(NSString *)key;
+
++(id)userDefaultGet:(NSString *)key;
+
+
 @end

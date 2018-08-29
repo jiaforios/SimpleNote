@@ -8,8 +8,15 @@
 
 #import "Utils.h"
 
+static NSMutableSet *weakViews;
+
+
 
 @implementation Utils
+
++(void)initialize{
+    weakViews = [NSMutableSet new];
+}
 
 + (NSString *)currentDateStr{
     NSDateFormatter *format = [NSDateFormatter new];
@@ -108,6 +115,17 @@
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
++(void)cancelExpireNotification{
+    
+    for (UILocalNotification *nofi in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        if ([self compareTodaywithRemindTime:[self dateFromStr:[nofi.userInfo objectForKey:@"notifId"]]] == 1) {
+            NSLog(@"过期通知，移除");
+            [[UIApplication sharedApplication] cancelLocalNotification:nofi];
+        }
+    }
+}
+
+
 //判断颜色是不是亮色
 + (BOOL) isLightColor:(UIColor*)clr {
     CGFloat components[3];
@@ -148,6 +166,21 @@
     for (int component = 0; component < 3; component++) {
         components[component] = resultingPixel[component];
     }
+}
+
+
+
++(id)userDefaultGet:(NSString *)key{
+    return [[self user] objectForKey:key];
+}
+
++ (void)userDefaultSet:(id)obj key:(NSString *)key{
+    [[self user] setObject:obj forKey:key];
+    [[self user] synchronize];
+}
+
++ (NSUserDefaults *)user{
+    return [NSUserDefaults standardUserDefaults];
 }
 
 

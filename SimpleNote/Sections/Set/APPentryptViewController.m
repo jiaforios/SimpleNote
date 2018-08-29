@@ -36,6 +36,19 @@
     return _saveButton;
 }
 
+- (UIButton *)stopButton{
+    if (!_stopButton) {
+        _stopButton = [[UIButton alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.saveButton.frame)+25, MZWIDTH-60, 44)];
+        _stopButton.layer.cornerRadius = 10;
+        _stopButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_stopButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        _stopButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
+        [_stopButton setTitle:LocalizedString(@"stopOver") forState:UIControlStateNormal];
+        [_stopButton addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _stopButton;
+}
+
 - (OptionView *)optView1{
     if (!_optView1) {
         _optView1 = [[OptionView alloc] initWithFrame:CGRectMake(20, 60, MZWIDTH-40, 60) title:LocalizedString(@"fingureEncrypt") type:OptionViewTypeFingure];
@@ -64,7 +77,7 @@
     [self.optView1 addObserver:self forKeyPath:@"checkButton.selected" options:NSKeyValueObservingOptionNew context:@"opt1"];
     [self.optView2 addObserver:self forKeyPath:@"checkButton.selected" options:NSKeyValueObservingOptionNew context:@"opt2"];
     [self.view addSubview:self.saveButton];
-    
+    [self.view addSubview:self.stopButton];
     if (self.locktype == FingureEntryptType) {
         self.optView1.select = YES;
     }
@@ -72,6 +85,19 @@
     if (self.locktype == PwdEntryptType) {
         self.optView2.select = YES;
         self.optView2.pwdContent = self.pwd;
+    }
+    
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:APPLOCKKEY];
+    if (dic!=nil) {
+        NSString *lockType = dic[@"lockType"];
+        NSString *pwd = dic[@"pwd"];
+        if ([lockType isEqualToString:FingureEntryptType]) {
+            self.optView1.select = YES;
+        }
+        if ([lockType isEqualToString:PwdEntryptType]) {
+            self.optView2.pwdContent = pwd;
+            self.optView2.select = YES;
+        }
     }
     
 }
@@ -111,13 +137,24 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:dic forKey:APPLOCKKEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:APPLOCKKEY];
-    NSLog(@"dict = %@",dict);
     
     if (self.eventClourse) {
         self.eventClourse(self.optView2.pwdContent,entryType);
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)stopAction{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:APPLOCKKEY];
+    [self showTips:LocalizedString(@"stopSuc") type:AlertViewTypeSuccess];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

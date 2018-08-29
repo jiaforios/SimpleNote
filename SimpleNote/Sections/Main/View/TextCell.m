@@ -23,6 +23,9 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
     self.coverView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:APPCOLORIMAGE]]];
+    self.createTimeLabel.font = [UIFont systemFontOfSize:12];
+    self.remindTimeLabel.font = [UIFont systemFontOfSize:12];
+    
 }
 
 -(UIVisualEffectView*)visView{

@@ -34,6 +34,11 @@
 		84455EBA213545B8007B25A9 /* VersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EB8213545B8007B25A9 /* VersionViewController.m */; };
 		84455EBB213545B8007B25A9 /* VersionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84455EB9213545B8007B25A9 /* VersionViewController.xib */; };
 		84455ECA21363C7A007B25A9 /* LoadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84455EC921363C7A007B25A9 /* LoadButton.m */; };
+		84455EDE21369897007B25A9 /* STHeiti-Light.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 84455ED821369897007B25A9 /* STHeiti-Light.ttc */; };
+		84455EDF21369897007B25A9 /* font1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84455ED921369897007B25A9 /* font1.ttf */; };
+		84455EE121369897007B25A9 /* font4.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84455EDB21369897007B25A9 /* font4.ttf */; };
+		84455EE221369897007B25A9 /* font3.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84455EDC21369897007B25A9 /* font3.ttf */; };
+		84455EE321369897007B25A9 /* font5.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84455EDD21369897007B25A9 /* font5.ttf */; };
 		846E255B212A928200C797CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E255A212A928200C797CE /* AppDelegate.m */; };
 		846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E2564212A928200C797CE /* LaunchScreen.storyboard */; };
 		846E2569212A928200C797CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E2568212A928200C797CE /* main.m */; };
@@ -122,6 +127,11 @@
 		84455EB9213545B8007B25A9 /* VersionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersionViewController.xib; sourceTree = "<group>"; };
 		84455EC821363C7A007B25A9 /* LoadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadButton.h; sourceTree = "<group>"; };
 		84455EC921363C7A007B25A9 /* LoadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadButton.m; sourceTree = "<group>"; };
+		84455ED821369897007B25A9 /* STHeiti-Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti-Light.ttc"; sourceTree = "<group>"; };
+		84455ED921369897007B25A9 /* font1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font1.ttf; sourceTree = "<group>"; };
+		84455EDB21369897007B25A9 /* font4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font4.ttf; sourceTree = "<group>"; };
+		84455EDC21369897007B25A9 /* font3.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font3.ttf; sourceTree = "<group>"; };
+		84455EDD21369897007B25A9 /* font5.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font5.ttf; sourceTree = "<group>"; };
 		846E2556212A928200C797CE /* SimpleNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E2559212A928200C797CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E255A212A928200C797CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -325,6 +335,11 @@
 		846E2592212ABBC000C797CE /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				84455ED921369897007B25A9 /* font1.ttf */,
+				84455EDC21369897007B25A9 /* font3.ttf */,
+				84455EDB21369897007B25A9 /* font4.ttf */,
+				84455EDD21369897007B25A9 /* font5.ttf */,
+				84455ED821369897007B25A9 /* STHeiti-Light.ttc */,
 				846E2595212ABF1E00C797CE /* UIFont+FontType.h */,
 				846E2596212ABF1E00C797CE /* UIFont+FontType.m */,
 			);
@@ -561,8 +576,13 @@
 				846E2566212A928200C797CE /* LaunchScreen.storyboard in Resources */,
 				84455EBB213545B8007B25A9 /* VersionViewController.xib in Resources */,
 				84226A202130FE57009D2F82 /* error.png in Resources */,
+				84455EDE21369897007B25A9 /* STHeiti-Light.ttc in Resources */,
+				84455EDF21369897007B25A9 /* font1.ttf in Resources */,
+				84455EE221369897007B25A9 /* font3.ttf in Resources */,
+				84455EE321369897007B25A9 /* font5.ttf in Resources */,
 				846E25A5212B9C9400C797CE /* TextCell.xib in Resources */,
 				846E25AA212B9CAB00C797CE /* SoundCell.xib in Resources */,
+				84455EE121369897007B25A9 /* font4.ttf in Resources */,
 				846E25B0212BA24600C797CE /* ImgCell.xib in Resources */,
 				84226A0A212FD053009D2F82 /* Localizable.strings in Resources */,
 				84455EB32133F219007B25A9 /* Assets.xcassets in Resources */,

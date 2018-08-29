@@ -26,6 +26,10 @@
 	<string>使用麦克风录音</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>font1.ttf</string>
+		<string>font3.ttf</string>
+		<string>font4.ttf</string>
+		<string>font5.ttf</string>
 		<string>STHeiti-Light.ttc</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
