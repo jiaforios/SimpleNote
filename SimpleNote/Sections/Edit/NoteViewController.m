@@ -10,6 +10,7 @@
 #import "NoteModel.h"
 #import "EncryptViewController.h"
 #import "RemindViewController.h"
+#import "PhotosViewController.h"
 
 static NSString *cellIdentifier = @"cellIdentifier";
 #define kRowHeight 60
@@ -19,6 +20,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
      NSString *lockType;
      NSString *lockPwd;
      NSString *lockTips;
+
 }
 @property(nonatomic, strong)UITextView *noteTextView;
 @property(nonatomic, strong)UIButton *saveButton;
@@ -43,7 +45,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
         _dataSource = [NSMutableArray new];
         [_dataSource addObject:LocalizedString(@"encryptSet")];
         [_dataSource addObject:LocalizedString(@"remindSet")];
-        [_dataSource addObject:LocalizedString(@"imgSet")];
+//        [_dataSource addObject:LocalizedString(@"imgSet")];
     }
     return _dataSource;
 }
@@ -147,13 +149,17 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
 }
 
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kRowHeight;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataSource.count;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -215,6 +221,10 @@ static NSString *cellIdentifier = @"cellIdentifier";
         };
         
         [self.navigationController showViewController:remind sender:nil];
+    }
+    
+    if (indexPath.row == 2) {
+        [self.navigationController showViewController:[PhotosViewController new] sender:nil];
     }
     
 

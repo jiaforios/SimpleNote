@@ -70,27 +70,20 @@ static NSString *cellIdentifier = @"cellIdentifier";
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    NSString *type = nil;
-    
-    if (indexPath.row == 0) {
-        type = @"Jyinbikai";
-    }
-    if (indexPath.row == 1) {
-        type = @"FZKATJW--GB1-0";
-    }
-    if (indexPath.row == 2) {
-        type = @"Li-Xuke-Comic-Font";
-    }
-    if (indexPath.row == 3) {
-        type = @"STHeitiK-Light";
-    }
-    
-    cell.textLabel.font = [UIFont fontWithName:type size:15];
+    cell.textLabel.font = [UIFont fontWithName:[self typeString:indexPath] size:15];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+ 
+    [Utils userDefaultSet:[self typeString:indexPath] key:@"fontType"];
+    
+    [self showTips:LocalizedString(@"fontSuc") type:AlertViewTypeSuccess];
+}
+
+
+- (NSString *)typeString:(NSIndexPath *)indexPath{
     NSString *type = nil;
     
     if (indexPath.row == 0) {
@@ -105,10 +98,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
     if (indexPath.row == 3) {
         type = @"STHeitiK-Light";
     }
-    
-    [Utils userDefaultSet:type key:@"fontType"];
-    
-    [self showTips:LocalizedString(@"fontSuc") type:AlertViewTypeSuccess];
+    return type;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,14 +106,5 @@ static NSString *cellIdentifier = @"cellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

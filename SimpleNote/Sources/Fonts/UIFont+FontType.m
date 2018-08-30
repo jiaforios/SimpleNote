@@ -32,14 +32,15 @@ static NSString *const FONT5 = @"STHeitiK-Light";
 + (UIFont *)jl_changeNameFontOfSize:(CGFloat)fontSize{
     
     NSString *fontName = [Utils userDefaultGet:@"fontType"];
-    
+    fontName = @"ChalkboardSE-Light";
     UIFont *font = [UIFont fontWithName:fontName size:fontSize];
     if (!font)return [self jl_changeNameFontOfSize:fontSize];
     return font;
 }
 + (UIFont *)jl_changeNameBoldFontOfSize:(CGFloat)fontSize{
     NSString *fontName = [Utils userDefaultGet:@"fontType"];
-
+    fontName = @"ChalkboardSE-Light";
+//STHeitiSC-Light
     UIFont *font = [UIFont fontWithName:fontName size:fontSize];
     if (!font)return [self jl_changeNameBoldFontOfSize:fontSize];
     return font;

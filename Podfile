@@ -11,6 +11,8 @@ target 'SimpleNote' do
 pod 'Masonry'
 pod 'MJExtension'
 pod 'LEEAlert'
+pod 'ACMediaFrame'
+
 target 'SimpleNoteTests' do
     inherit! :search_paths
     # Pods for testing

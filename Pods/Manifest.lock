@@ -1,11 +1,27 @@
 PODS:
+  - ACAlertController (1.0.0)
+  - ACMediaFrame (2.0.5):
+    - ACAlertController (~> 1.0.0)
+    - MWPhotoBrowser (~> 2.1.2)
+    - TZImagePickerController
   - BmobSDK (2.3.1)
+  - DACircularProgress (2.3.1)
   - LEEAlert (1.1.9)
   - LYSDatePicker (0.0.3)
   - Masonry (1.1.0)
+  - MBProgressHUD (0.9.2)
   - MJExtension (3.0.15.1)
+  - MWPhotoBrowser (2.1.2):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - TZImagePickerController (2.2.3)
 
 DEPENDENCIES:
+  - ACMediaFrame
   - BmobSDK
   - LEEAlert
   - LYSDatePicker
@@ -13,12 +29,19 @@ DEPENDENCIES:
   - MJExtension
 
 SPEC CHECKSUMS:
+  ACAlertController: 10f0455c3e1691a6197b5cd0d96d6f9a03c82763
+  ACMediaFrame: 7b8e74e3fcb8d7cf46049bfe5756c6e556cca568
   BmobSDK: e0f9e4b451233a80af63a8ae4f2d239474bf567b
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   LEEAlert: d220ed4026ce237fd90febaeac26949c2a95e108
   LYSDatePicker: dfd26bb5659c663032c5ef0b0ef8aa80bd45a4db
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  TZImagePickerController: 5374a30df056b33428802c8112ed44011fe2596a
 
-PODFILE CHECKSUM: daca86c104c9ed95eb9c77210cf74956124ec8cb
+PODFILE CHECKSUM: 4be79ce619770563596525d65b94bdebadaf3d8e
 
 COCOAPODS: 1.4.0
