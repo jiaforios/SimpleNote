@@ -75,12 +75,27 @@ static NSString *headIdentifier = @"headIdentifier";
 - (NSMutableArray<UIImage *> *)sourceArr{
     if (!_sourceArr) {
         _sourceArr = [NSMutableArray new];
+        
+        dispatch_queue_t queue = dispatch_queue_create("loadImage", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_group_t grop = dispatch_group_create();
+        
         for (int i=0; i<24; i++) {
-            UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"bg_%d",i+1]];
-            if (img != nil) {
-                [_sourceArr addObject:img];
-            }
+            dispatch_group_async(grop, queue, ^{
+                UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"bg_%d",i+1]];
+                if (img != nil) {
+                    [_sourceArr addObject:img];
+                }
+            });
         }
+        
+        dispatch_group_notify(grop, queue, ^{
+            NSLog(@"通知线程全部结束了");
+            dispatch_async(dispatch_get_main_queue(), ^{
+               
+                [self.colltionView reloadData];
+            });
+        });
+        
     }
     return _sourceArr;
 }

@@ -91,9 +91,9 @@ static UIWindow* _staWindow;
 }
 
 - (void)test_topAlertViewContent:(NSString *)content Type:(AlertViewType)type{
-    if (!DEBUG) {
-        return;
-    }
+#ifdef RELEASE
+    return;
+#endif
     switch (type)
     {
         case AlertViewTypeSuccess:

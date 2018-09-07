@@ -19,3 +19,5 @@ NSString * const EntryptTypeNone = @"EntryptTypeNone";
 NSString * const AppColorChangeNotification = @"AppColorChangeNotification";
 NSString * const APPCOLORIMAGE = @"APPCOLORIMAGE";
 NSString * const APPLOCKKEY = @"APPLOCKKEY";
+NSString * const GUIDEKEY = @"GUIDEKEY";
+

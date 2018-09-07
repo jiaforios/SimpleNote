@@ -65,7 +65,7 @@
         _textField.placeholder = LocalizedString(@"entryptTips");
         _textField.textColor = AppColor;
         _textField.font = [UIFont systemFontOfSize:15];
-        _textField.text = self.lockTips?:LocalizedString(@"contentEntrypt");
+        _textField.text = self.lockTips;
         _textField.background = [UIImage imageNamed:@"input_line"];
     }
     return _textField;

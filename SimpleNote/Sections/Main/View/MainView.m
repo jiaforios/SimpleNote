@@ -50,6 +50,7 @@ static NSString *soundCellIdentifier = @"soundCell";
         
         _tableView.tableFooterView = [UIView new];
 //        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
 //        UIView *head = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MZWIDTH, 1)];
 //        head.backgroundColor = [UIColor whiteColor];
 //        _tableView.tableHeaderView = head;
@@ -145,6 +146,8 @@ static NSString *soundCellIdentifier = @"soundCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.delegate respondsToSelector:@selector(mainViewCellSelect:dataSource:)] && [self.delegate conformsToProtocol:@protocol(MainViewDelegate)]) {
         [self.delegate mainViewCellSelect:indexPath dataSource:self.dataArr[indexPath.row]];
+        CFRunLoopWakeUp(CFRunLoopGetMain());
+
     }
 }
 

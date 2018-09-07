@@ -27,6 +27,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 @property(nonatomic, strong)UIButton *lockButton;
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong) NSMutableArray *dataSource;
+
 @property(nonatomic, strong)NoteModel *noteModel;
 
 @end
@@ -113,11 +114,19 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"新增";
+
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.saveButton];
     self.navigationItem.rightBarButtonItem = set;
     [self.view addSubview:self.noteTextView];
+    
+    NoteModel *model = (NoteModel *)self.noteDataModel;
+    self.noteTextView.text = model.content;
+    self.noteModel = model;
+    
     [self.view addSubview:self.tableView];
 }
+
+
 
 - (void)lockAction:(UIButton *)sender{
     sender.selected = !sender.selected;
@@ -125,18 +134,26 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (void)saveAction{
     [self.view resignFirstResponder];
+    
+    
     if (_noteTextView.text.length == 0) {
         [self showTips:LocalizedString(@"contentNull") type:AlertViewTypeError];
         return;
     }
     self.noteModel.content = _noteTextView.text;
-    [self.noteModel save];
+    
+    if (self.noteDataModel != nil) {
+        // 更新note
+        [self.noteModel update];
+    }else{
+        // 插入note
+        [self.noteModel save];
+    }
     if (self.noteModel.isRemind) { // 触发之后应该设置过期，或者remind 设置no，删除note 同时要删除 通知
         [Utils localNotification:self.noteModel.remindTips notiDate:self.noteModel.remindDateStr];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 #pragma mark -- delegate --
@@ -148,8 +165,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
     textView.attributedText  = strM;
     
 }
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kRowHeight;
@@ -174,6 +189,19 @@ static NSString *cellIdentifier = @"cellIdentifier";
     cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (indexPath.row == 0) {
+        if ([self.noteModel.lockType isEqualToString: FingureEntryptType]) {
+            cell.detailTextLabel.text = LocalizedString(@"fingureEncrypt");
+        }
+        if ([self.noteModel.lockType isEqualToString: PwdEntryptType]) {
+            cell.detailTextLabel.text = LocalizedString(@"pwdEncrypt");
+        }
+    }else if (indexPath.row == 1){
+       
+        cell.detailTextLabel.text =  self.noteModel.remindDateStr;
+    }
+  
     return cell;
 }
 
@@ -194,10 +222,10 @@ static NSString *cellIdentifier = @"cellIdentifier";
                 
                 self.noteModel.lock = YES;
                 self.noteModel.lockTitle = noteTips;
-                if (entryptTypeStr == FingureEntryptType) {
+                if ([entryptTypeStr isEqualToString: FingureEntryptType]) {
                     cell.detailTextLabel.text = LocalizedString(@"fingureEncrypt");
                 }
-                if (entryptTypeStr == PwdEntryptType) {
+                if ([entryptTypeStr isEqualToString: PwdEntryptType]) {
                     cell.detailTextLabel.text = LocalizedString(@"pwdEncrypt");
                     self.noteModel.lockPwd = pwd;
                 }

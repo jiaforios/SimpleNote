@@ -90,6 +90,9 @@ static NSMutableSet *weakViews;
 }
 
 + (void)localNotification:(NSString *)notifContent notiDate:(NSString *)dateStr{
+    // 先取消已经有的提醒
+    [self cancelLocalNotificationWithDate:dateStr];
+    
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     localNotification.alertBody = notifContent;
     localNotification.fireDate = [self dateFromStr:dateStr];

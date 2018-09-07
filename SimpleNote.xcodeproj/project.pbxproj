@@ -62,6 +62,9 @@
 		84917000212CEE0500AC23EB /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84916FFF212CEE0500AC23EB /* MainView.m */; };
 		84917005212D20C900AC23EB /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84917004212D20C900AC23EB /* DBManager.m */; };
 		8493EE6D212E654A001FC8C2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493EE6C212E654A001FC8C2 /* Utils.m */; };
+		849AFED221424A9E00453C94 /* DHGifImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 849AFECE21424A9E00453C94 /* DHGifImageOperation.m */; };
+		849AFED321424A9E00453C94 /* DHGuidePageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 849AFED021424A9E00453C94 /* DHGuidePageHUD.m */; };
+		849AFED421424A9E00453C94 /* GuideImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 849AFED121424A9E00453C94 /* GuideImage.bundle */; };
 		9D06DD739D7CB08BBD90D425 /* libPods-SimpleNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 410AA372B6791D54BB9FEEAF /* libPods-SimpleNote.a */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +184,11 @@
 		8493EE6A212E5E48001FC8C2 /* DataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataProtocol.h; sourceTree = "<group>"; };
 		8493EE6B212E654A001FC8C2 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		8493EE6C212E654A001FC8C2 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		849AFECD21424A9E00453C94 /* DHGifImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
+		849AFECE21424A9E00453C94 /* DHGifImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGifImageOperation.m; sourceTree = "<group>"; };
+		849AFECF21424A9E00453C94 /* DHGuidePageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGuidePageHUD.h; sourceTree = "<group>"; };
+		849AFED021424A9E00453C94 /* DHGuidePageHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGuidePageHUD.m; sourceTree = "<group>"; };
+		849AFED121424A9E00453C94 /* GuideImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GuideImage.bundle; sourceTree = "<group>"; };
 		A439BBC2FEDD917CF93016B4 /* Pods-SimpleNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNoteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNoteTests/Pods-SimpleNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DAE35767B18355652C4DE338 /* Pods-SimpleNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleNote/Pods-SimpleNote.debug.xcconfig"; sourceTree = "<group>"; };
 		F086426C41C966F95491F9B3 /* libPods-SimpleNoteTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleNoteTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +217,7 @@
 		84226A13212FDE8A009D2F82 /* MyViews */ = {
 			isa = PBXGroup;
 			children = (
+				849AFECC21424A9E00453C94 /* DHGuidePageHUD */,
 				84455EC721363C7A007B25A9 /* LoadButton */,
 				84226A172130FE57009D2F82 /* ZAlertView */,
 				84226A14212FDEBA009D2F82 /* OptionView.h */,
@@ -474,6 +483,18 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		849AFECC21424A9E00453C94 /* DHGuidePageHUD */ = {
+			isa = PBXGroup;
+			children = (
+				849AFECD21424A9E00453C94 /* DHGifImageOperation.h */,
+				849AFECE21424A9E00453C94 /* DHGifImageOperation.m */,
+				849AFECF21424A9E00453C94 /* DHGuidePageHUD.h */,
+				849AFED021424A9E00453C94 /* DHGuidePageHUD.m */,
+				849AFED121424A9E00453C94 /* GuideImage.bundle */,
+			);
+			path = DHGuidePageHUD;
+			sourceTree = "<group>";
+		};
 		A1027E0B1DC9B8950F676F1D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +616,7 @@
 				84455EE121369897007B25A9 /* font4.ttf in Resources */,
 				846E25B0212BA24600C797CE /* ImgCell.xib in Resources */,
 				84226A0A212FD053009D2F82 /* Localizable.strings in Resources */,
+				849AFED421424A9E00453C94 /* GuideImage.bundle in Resources */,
 				84455EB32133F219007B25A9 /* Assets.xcassets in Resources */,
 				84226A212130FE57009D2F82 /* success.png in Resources */,
 			);
@@ -734,9 +756,11 @@
 				846E2569212A928200C797CE /* main.m in Sources */,
 				84226A232130FE57009D2F82 /* ZAlertView.m in Sources */,
 				84226A11212FD348009D2F82 /* EncryptViewController.m in Sources */,
+				849AFED221424A9E00453C94 /* DHGifImageOperation.m in Sources */,
 				842269F6212E75D8009D2F82 /* ZJTools.m in Sources */,
 				84455EA42133C612007B25A9 /* APPentryptViewController.m in Sources */,
 				84455EB6213529CA007B25A9 /* RotationView.m in Sources */,
+				849AFED321424A9E00453C94 /* DHGuidePageHUD.m in Sources */,
 				84455EA12133C5F0007B25A9 /* FontViewController.m in Sources */,
 				846E2591212AA66600C797CE /* SetViewController.m in Sources */,
 				84455EBA213545B8007B25A9 /* VersionViewController.m in Sources */,
@@ -915,7 +939,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = CKXF9F3R3Y;
+				ENABLE_BITCODE = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SimpleNote/Macros/SimpleNote-PrefixHeader.pch";
 				INFOPLIST_FILE = SimpleNote/Info.plist;
@@ -925,7 +951,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7ee96ae9-87bc-41e7-8928-e266409f6f8c";
 				PROVISIONING_PROFILE_SPECIFIER = customDev;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -935,17 +961,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CKXF9F3R3Y;
+				ENABLE_BITCODE = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SimpleNote/Macros/SimpleNote-PrefixHeader.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"RELEASE=1",
+				);
 				INFOPLIST_FILE = SimpleNote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mz.SimpleNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "496618f1-19cf-429d-8d28-4853f1db26fd";
+				PROVISIONING_PROFILE_SPECIFIER = customDev;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -27,10 +27,11 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (NSMutableArray *)sourceArr{
     if (!_sourceArr) {
         _sourceArr = [NSMutableArray new];
-        NSArray *section0 = @[LocalizedString(@"colorSet"),LocalizedString(@"fontSet"),LocalizedString(@"appEntrypt"),LocalizedString(@"clearAll")];
+        NSArray *section0 = @[LocalizedString(@"colorSet"),LocalizedString(@"appEntrypt"),LocalizedString(@"clearAll")];
         NSArray *section1 = @[LocalizedString(@"options"),LocalizedString(@"versionInfo")];
         [_sourceArr addObject:section0];
         [_sourceArr addObject:section1];
+        
     }
     
     return _sourceArr;
@@ -51,7 +52,55 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [super viewDidLoad];
     self.title = @"设置";
     [self.view addSubview:self.tableView];
+//    [self listenRunloop];
+    
 }
+
+
+- (void)listenRunloop{
+    
+    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+        switch (activity) {
+            case kCFRunLoopEntry:
+                NSLog(@"RunLoop进入");
+                break;
+            case kCFRunLoopBeforeTimers:
+                NSLog(@"RunLoop要处理Timers了");
+                break;
+            case kCFRunLoopBeforeSources:
+                NSLog(@"RunLoop要处理Sources了");
+                break;
+            case kCFRunLoopBeforeWaiting:
+                NSLog(@"RunLoop要休息了");
+                break;
+            case kCFRunLoopAfterWaiting:
+                NSLog(@"RunLoop醒来了");
+                break;
+            case kCFRunLoopExit:
+                NSLog(@"RunLoop退出了");
+                break;
+                
+            default:
+                break;
+        }
+    });
+    
+    // 给RunLoop添加监听者
+    /*
+     第一个参数 CFRunLoopRef rl：要监听哪个RunLoop,这里监听的是主线程的RunLoop
+     第二个参数 CFRunLoopObserverRef observer 监听者
+     第三个参数 CFStringRef mode 要监听RunLoop在哪种运行模式下的状态
+     */
+    CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
+    /*
+     CF的内存管理（Core Foundation）
+     凡是带有Create、Copy、Retain等字眼的函数，创建出来的对象，都需要在最后做一次release
+     GCD本来在iOS6.0之前也是需要我们释放的，6.0之后GCD已经纳入到了ARC中，所以我们不需要管了
+     */
+    CFRelease(observer);
+
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
@@ -108,14 +157,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
             case 0:
                 [self.navigationController showViewController:[ColorViewController new] sender:nil];
                 break;
-            case 1:
-                NSLog(@"111");
-                NSLog(@"111");
-                NSLog(@"111");
-
-                [self.navigationController showViewController:[FontViewController new] sender:nil];
-                break;
-            case 2:{
+    
+            case 1:{
                 APPentryptViewController *app = [APPentryptViewController new];
                 app.eventClourse = ^(NSString *pwd, NSString *type) {
                    cell.detailTextLabel.text = [self fetchLockStatus];
@@ -123,7 +166,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
                 [self.navigationController showViewController:app sender:nil];
             }
                 break;
-            case 3:
+            case 2:
                 [self clearAll];
                 break;
             default:
@@ -135,11 +178,20 @@ static NSString *cellIdentifier = @"cellIdentifier";
         switch (indexPath.row) {
             case 0:
                 [self.navigationController showViewController:[OptionsViewController new] sender:nil];
+            {
+//                NSLog(@"准备执行事件 ---------");
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"1" message:@"2" preferredStyle:UIAlertControllerStyleAlert];
+//                [alert addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
+//
+//                [self presentViewController:alert animated:YES completion:nil];
+                
+//                CFRunLoopWakeUp(CFRunLoopGetMain());
+//                NSLog(@"事件完成 ---------");
 
+            }
                 break;
             case 1:
                 [self.navigationController showViewController:[VersionViewController new] sender:nil];
-                break;
                 break;
             default:
                 break;

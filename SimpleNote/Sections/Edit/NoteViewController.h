@@ -10,4 +10,7 @@
 
 @interface NoteViewController : MZBaseViewController
 
+// 由编辑界面传入
+@property(nonatomic, strong)id noteDataModel;
+
 @end

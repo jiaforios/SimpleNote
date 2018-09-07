@@ -82,5 +82,15 @@
 
 }
 
+- (void)update{
+    NSString *sqlStr = [NSString stringWithFormat:@"update 'notes' set 'content'= '%@','lock' = %d,'lockTitle' = '%@','lockPwd' = '%@','lockType' = '%@','remindTips' = '%@','remind' = %d,'remindDateStr'= '%@' where noteId = %ld",self.content,self.isLock,self.lockTitle,self.lockPwd,self.lockType,self.remindTips,self.isRemind,self.remindDateStr,(long)self.noteId];
+    
+    if ([_delegate respondsToSelector:@selector(exeWithSqlStr:)] && [_delegate conformsToProtocol:@protocol(DataProtocol)]) {
+        [_delegate exeWithSqlStr:sqlStr];
+    }else{
+        NSLog(@"未实现数据存储");
+    }
+}
+
 
 @end

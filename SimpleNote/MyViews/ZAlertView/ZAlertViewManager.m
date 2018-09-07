@@ -41,12 +41,14 @@
     [self performSelector:@selector(dismissView) withObject:nil afterDelay:2];
 }
 - (void)test_showConnectType:(NSString *)content{
-    if (DEBUG) {
-        [[self class ] cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissView) object:nil];
-        [self.alertView test_topAlertViewContent:content Type:AlertViewTypeSuccess];
-        [self.alertView show];
-        [self performSelector:@selector(dismissView) withObject:nil afterDelay:2];
-    }
+    
+#ifdef DEBUG
+    [[self class ] cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissView) object:nil];
+    [self.alertView test_topAlertViewContent:content Type:AlertViewTypeSuccess];
+    [self.alertView show];
+    [self performSelector:@selector(dismissView) withObject:nil afterDelay:2];
+#endif
+
 }
 
 - (void)dismissView{

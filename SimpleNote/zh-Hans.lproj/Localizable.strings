@@ -21,7 +21,7 @@
 "delete"="删除";
 "edit"="编辑";
 "remindTips"="提醒暗语";
-"remindPlaceholder"="默认提示内容";
+"remindPlaceholder"="提示语";
 "dateErrorTips"="时间设置不合理，可能无法提醒哦!";
 "contentNull"="内容为空哦！";
 "colorSet"="主题设置";

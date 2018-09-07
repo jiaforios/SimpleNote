@@ -37,7 +37,7 @@
 
 + (NSArray<NoteModel*>*)fetchAllModel;
 - (void)save;
-
+- (void)update;
 - (void)deleteWithId;
 
 @end

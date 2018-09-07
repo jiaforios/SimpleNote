@@ -8,15 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-UIKIT_EXTERN NSString * const TextNoteType;
-UIKIT_EXTERN NSString * const ImgNoteType;
-UIKIT_EXTERN NSString * const SoundNoteType;
+FOUNDATION_EXTERN NSString * const TextNoteType;
+FOUNDATION_EXTERN NSString * const ImgNoteType;
+FOUNDATION_EXTERN NSString * const SoundNoteType;
 
-UIKIT_EXTERN NSString * const FingureEntryptType;
-UIKIT_EXTERN NSString * const PwdEntryptType;
-UIKIT_EXTERN NSString * const EntryptTypeNone;
+FOUNDATION_EXTERN NSString * const FingureEntryptType;
+FOUNDATION_EXTERN NSString * const PwdEntryptType;
+FOUNDATION_EXTERN NSString * const EntryptTypeNone;
 
-UIKIT_EXTERN NSString * const AppColorChangeNotification;
-UIKIT_EXTERN NSString * const APPCOLORIMAGE;
+FOUNDATION_EXTERN NSString * const AppColorChangeNotification;
+FOUNDATION_EXTERN NSString * const APPCOLORIMAGE;
 
-UIKIT_EXTERN NSString * const APPLOCKKEY;
+FOUNDATION_EXTERN NSString * const APPLOCKKEY;
+
+
+FOUNDATION_EXTERN NSString *const GUIDEKEY;
+

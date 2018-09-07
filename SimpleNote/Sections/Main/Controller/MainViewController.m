@@ -21,6 +21,8 @@
 #import "MainView.h"
 #import <LEEAlert.h>
 #import <objc/runtime.h>
+#import "DHGuidePageHUD.h"
+
 
 static NSString *textCellIdentifier = @"textCell";
 static NSString *imgCellIdentifier = @"imgCell";
@@ -44,6 +46,7 @@ static NSString *soundCellIdentifier = @"soundCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"主页";
+    [self setGuidePage];
     UIBarButtonItem *set = [[UIBarButtonItem alloc] initWithCustomView:self.setButton];
     self.navigationItem.rightBarButtonItem = set;
     
@@ -60,6 +63,22 @@ static NSString *soundCellIdentifier = @"soundCell";
     self.mainView  = mv;
     [self appLockViewShow];
 }
+
+
+- (void)setGuidePage{
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:GUIDEKEY]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:GUIDEKEY];
+        NSArray *imageNameArray = @[@"guid_01.jpg",@"guid_02.jpg",@"guid_03.jpg",@"guid_04.jpg"];
+        DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.frame imageNameArray:imageNameArray buttonIsHidden:YES];
+        guidePage.slideInto = YES;
+        
+        [self.navigationController.view addSubview:guidePage];
+    }
+    
+}
+
+
 - (UIButton *)clearButton{
     if (!_clearButton) {
         _clearButton = [[UIButton alloc] init];
@@ -211,7 +230,11 @@ static NSString *soundCellIdentifier = @"soundCell";
 }
 
 -(void)mainViewCellEdit:(NSIndexPath *)indexPath dataSource:(NSDictionary *)cellData{
-//    NoteModel *model = [NoteModel mj_objectWithKeyValues:cellData];
+    NoteModel *model = [NoteModel mj_objectWithKeyValues:cellData];
+    
+    NoteViewController *note = [[NoteViewController alloc] init];
+    note.noteDataModel = model;
+    [self showViewController:note sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {
